@@ -151,3 +151,4 @@ Received Import Request.
   path: Assets/Materials/Cube Material.mat
   artifactKey: Guid(bd4088bfb961b284e9548e7eeccaa80a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
 Start importing Assets/Materials/Cube Material.mat using Guid(bd4088bfb961b284e9548e7eeccaa80a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7d8e148bca225384e9e25379f99f04d2') in 0.010944 seconds 
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
