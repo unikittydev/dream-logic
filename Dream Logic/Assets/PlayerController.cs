@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Transform tr;
-    private Rigidbody rb;
+    private CharacterController cc;
 
     [SerializeField]
     private float forwardMoveSpeed;
@@ -15,17 +15,14 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         tr = transform;
-        rb = GetComponent<Rigidbody>();
+        cc = GetComponent<CharacterController>();
     }
 
     private void Update()
     {
         rotationInput = Input.GetAxisRaw("Horizontal");
-    }
 
-    private void FixedUpdate()
-    {
-        rb.AddForce(tr.forward * forwardMoveSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
-        rb.AddTorque(tr.up * rotationSpeed * rotationInput * Time.fixedDeltaTime, ForceMode.VelocityChange);
+        cc.Move(tr.forward * forwardMoveSpeed * Time.deltaTime);
+        tr.Rotate(tr.up, rotationSpeed * rotationInput * Time.deltaTime);
     }
 }
