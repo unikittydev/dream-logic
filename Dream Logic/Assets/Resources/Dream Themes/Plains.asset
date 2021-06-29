@@ -12,7 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 941d1afca80379248b7c5f8767d882ca, type: 3}
   m_Name: Plains
   m_EditorClassIdentifier: 
+  style: 0
   floorPrefab: {fileID: 8611359788250657278, guid: 22d503917a41f0e469a88dc58a884e05, type: 3}
-  skyColor: {r: 0.032840855, g: 0.27005392, b: 0.7735849, a: 0}
-  player: {fileID: 0}
-  enemies: []
+  skyColor: {r: 0.039738327, g: 0.17001933, b: 0.4433962, a: 0}
+  cameraAngle: 60
+  cameraDistance: 15
+  playerPrefab: {fileID: 4726646756577039398, guid: 7ceb7b1a12945134d959b9773c9ec7ac, type: 3}
+  enemies:
+  - {fileID: 1357167524087111354, guid: d5be63ec3482b7f46bc9ba27e1bc0f7b, type: 3}
+  - {fileID: 7378127139494620608, guid: 6278119168986b1498f801dff180a08d, type: 3}
+  obstacles: []
+  postprocessing: {fileID: 11400000, guid: c02e182b5127c4f468e611ffb2e219eb, type: 2}

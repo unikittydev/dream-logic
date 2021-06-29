@@ -1,11 +1,29 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
-[CreateAssetMenu(fileName = "New Dream Theme", menuName = "Dream/Theme")]
-public class DreamTheme : ScriptableObject
+namespace Game.Dream
 {
-    public FloorTile floorPrefab;
-    public Color skyColor;
+    /// <summary>
+    /// Тема сна.
+    /// </summary>
+    [CreateAssetMenu(fileName = "New Dream Theme", menuName = "Dream/Theme")]
+    public class DreamTheme : ScriptableObject
+    {
+        public DreamStyle style;
 
-    public PlayerController player;
-    public GameObject[] enemies;
+        public FloorTile floorPrefab;
+
+        public Color skyColor;
+
+        public float cameraAngle;
+        public float cameraDistance;
+
+        public PlayerController playerPrefab;
+
+        public GameObject[] enemies;
+
+        public GameObject[] obstacles;
+
+        public VolumeProfile postprocessing;
+    }
 }

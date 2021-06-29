@@ -1,16 +1,57 @@
 using UnityEngine;
 
-public class DreamSimulation : MonoBehaviour
+namespace Game.Dream
 {
-    [SerializeField]
-    private DreamTheme theme;
-
-    [SerializeField]
-    private FloorSpawner floorSpawner;
-    private SimpleSpawner[] enemySpawners;
-
-    private void OnValidate()
+    /// <summary>
+    /// Симуляция снов.
+    /// </summary>
+    public class DreamSimulation : MonoBehaviour
     {
-        floorSpawner.floorPrefab = theme.floorPrefab;
+        private static Dream currentDream;
+
+        public static void WakeUp()
+        {
+            EndDream();
+        }
+
+        public static void StartNewDreamCycle()
+        {
+            EndDream();
+            ChooseTheme();
+            ApplyTheme();
+            ChooseRule();
+            ApplyRule();
+            StartDream();
+        }
+
+        private static void ChooseTheme()
+        {
+
+        }
+
+        private static void ApplyTheme()
+        {
+
+        }
+
+        private static void ChooseRule()
+        {
+
+        }
+
+        private static void ApplyRule()
+        {
+
+        }
+
+        private static void StartDream()
+        {
+
+        }
+
+        private static void EndDream()
+        {
+
+        }
     }
 }

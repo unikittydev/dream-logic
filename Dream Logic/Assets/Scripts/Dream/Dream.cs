@@ -1,11 +1,25 @@
 using UnityEngine;
 
-/// <summary>
-/// Абстрактный класс сна.
-/// </summary>
-public abstract class Dream : MonoBehaviour
+namespace Game.Dream
 {
-    protected abstract void OnEnable();
+    /// <summary>
+    /// Сон.
+    /// </summary>
+    public class Dream : MonoBehaviour
+    {
+        private float maxTime;
+        private float timeCounter;
 
-    protected abstract void OnDisable();
+        private DreamTheme theme;
+        private DreamBehaviour rules;
+
+        private void Update()
+        {
+            timeCounter += Time.deltaTime;
+            if (timeCounter >= maxTime)
+            {
+                DreamSimulation.StartNewDreamCycle();
+            }
+        }
+    }
 }
