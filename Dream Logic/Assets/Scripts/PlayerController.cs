@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     {
         rotationInput = Input.GetAxisRaw("Horizontal");
 
-        cc.Move(tr.forward * forwardMoveSpeed * Time.deltaTime);
+        cc.Move((tr.forward * forwardMoveSpeed + Physics.gravity) * Time.deltaTime);
         tr.Rotate(tr.up, rotationSpeed * rotationInput * Time.deltaTime);
     }
 }
