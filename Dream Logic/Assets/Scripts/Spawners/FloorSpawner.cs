@@ -5,8 +5,7 @@ public class FloorSpawner : MonoBehaviour
 {
     private const float defaultTileSize = 8f;
 
-    [SerializeField]
-    private FloorTile floorPrefab;
+    public FloorTile floorPrefab;
     [SerializeField]
     private Transform environment;
     [SerializeField]

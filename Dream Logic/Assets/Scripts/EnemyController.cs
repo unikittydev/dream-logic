@@ -9,8 +9,8 @@ public class EnemyController : MonoBehaviour
     private Transform _tr;
     public Transform tr => _tr;
 
-    private CharacterController _cc;
-    public CharacterController cc => _cc;
+    private Rigidbody _rb;
+    public Rigidbody rb => _rb;
 
     private Coroutine dashCoroutine;
 
@@ -28,7 +28,7 @@ public class EnemyController : MonoBehaviour
     private void Awake()
     {
         _tr = transform;
-        _cc = GetComponent<CharacterController>();
+        _rb = GetComponent<Rigidbody>();
     }
 
     private void OnEnable()
@@ -41,9 +41,13 @@ public class EnemyController : MonoBehaviour
         StopCoroutine(dashCoroutine);
     }
 
+    private void FixedUpdate()
+    {
+        rb.MovePosition(tr.position + tr.forward * forwardMoveSpeed * forwardInput * Time.fixedDeltaTime);
+    }
+
     private void Update()
     {
-        cc.Move((tr.forward * forwardMoveSpeed * forwardInput + Physics.gravity) * Time.deltaTime);
         tr.Rotate(tr.up, rotationSpeed * rotationInput * Time.deltaTime);
     }
 
