@@ -2,11 +2,16 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Transform tr;
-    private CharacterController cc;
+    private Transform _tr;
+    public Transform tr => _tr;
+
+    private CharacterController _cc;
+    public CharacterController cc => _cc;
 
     [SerializeField]
     private float forwardMoveSpeed;
+    public float speed => forwardMoveSpeed;
+
     [SerializeField]
     private float rotationSpeed;
 
@@ -14,8 +19,8 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        tr = transform;
-        cc = GetComponent<CharacterController>();
+        _tr = transform;
+        _cc = GetComponent<CharacterController>();
     }
 
     private void Update()
@@ -24,5 +29,18 @@ public class PlayerController : MonoBehaviour
 
         cc.Move((tr.forward * forwardMoveSpeed + Physics.gravity) * Time.deltaTime);
         tr.Rotate(tr.up, rotationSpeed * rotationInput * Time.deltaTime);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+            print("We lost");
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(other.name);
+        if (other.gameObject.CompareTag("Enemy"))
+            print("We lost");
     }
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SimpleSpawner : MonoBehaviour
 {
-    private Transform player;
+    private PlayerController player;
 
     [SerializeField]
     private Transform objectParent;
@@ -23,7 +23,7 @@ public class SimpleSpawner : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
     private void Update()
@@ -33,8 +33,10 @@ public class SimpleSpawner : MonoBehaviour
         if (counter >= frequency)
         {
             counter = 0f;
+
             Vector2 circleOffset = Random.insideUnitCircle.normalized * Random.Range(minDistance, maxDistance);
-            Vector3 position = player.position + new Vector3(circleOffset.x, height, circleOffset.y);
+            Vector3 fallOffset = player.tr.forward * Mathf.Sqrt(2f * height * player.speed / Physics.gravity.magnitude);
+            Vector3 position = player.tr.position + fallOffset + new Vector3(circleOffset.x, height, circleOffset.y);
 
             Instantiate(prefab, position, Quaternion.identity, objectParent);
         }
