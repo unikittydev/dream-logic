@@ -11,7 +11,7 @@ namespace Game.Dream
     {
         public DreamStyle style;
 
-        public FloorTile floorPrefab;
+        public FloorSpawnerSettings floorSettings;
 
         public Color skyColor;
 
@@ -20,7 +20,7 @@ namespace Game.Dream
 
         public PlayerController playerPrefab;
 
-        public GameObject[] enemies;
+        public EnemySpawner[] enemySpawners;
 
         public GameObject[] obstacles;
 

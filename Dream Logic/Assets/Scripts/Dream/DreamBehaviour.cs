@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Game.Dream
 {
     /// <summary>
-    /// Класс логики сна.
+    /// Логика сна.
     /// </summary>
     public abstract class DreamBehaviour : MonoBehaviour
     {

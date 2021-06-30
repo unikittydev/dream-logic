@@ -1,30 +1,36 @@
 using System.Collections;
 using UnityEngine;
 
-public class FloorTile : MonoBehaviour
+namespace Game
 {
-    private const float epsilon = .1f;
-    public void Spawn(float height, float time)
+    /// <summary>
+    /// Класс плитки пола.
+    /// </summary>
+    public class FloorTile : MonoBehaviour
     {
-        StartCoroutine(Move(height, time, false));
-    }
-
-    public void Despawn(float height, float time)
-    {
-        StopAllCoroutines();
-        StartCoroutine(Move(height, time, true));
-    }
-
-    private IEnumerator Move(float height, float time, bool destroy)
-    {
-        float currSpeed = 0f;
-        while (Mathf.Abs(transform.position.y - height) > epsilon)
+        private const float epsilon = .1f;
+        public void Spawn(float height, float time)
         {
-            float damp = Mathf.SmoothDamp(transform.position.y, height, ref currSpeed, time);
-            transform.position = new Vector3(transform.position.x, damp, transform.position.z);
-            yield return null;
+            StartCoroutine(Move(height, time, false));
         }
-        if (destroy)
-            Destroy(gameObject);
+
+        public void Despawn(float height, float time)
+        {
+            StopAllCoroutines();
+            StartCoroutine(Move(height, time, true));
+        }
+
+        private IEnumerator Move(float height, float time, bool destroy)
+        {
+            float currSpeed = 0f;
+            while (Mathf.Abs(transform.position.y - height) > epsilon)
+            {
+                float damp = Mathf.SmoothDamp(transform.position.y, height, ref currSpeed, time);
+                transform.position = new Vector3(transform.position.x, damp, transform.position.z);
+                yield return null;
+            }
+            if (destroy)
+                Destroy(gameObject);
+        }
     }
 }
