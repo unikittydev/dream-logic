@@ -11,7 +11,7 @@ namespace Game.Dream
     {
         public DreamStyle style;
 
-        public FloorSpawnerSettings floorSettings;
+        public FloorSpawner floorSpawner;
 
         public Color skyColor;
 

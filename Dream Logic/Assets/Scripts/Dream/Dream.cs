@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Game.Dream
 {
@@ -33,6 +34,14 @@ namespace Game.Dream
             this.theme = theme;
 
             StartCoroutine(LerpCameraState(theme.cameraAngle, theme.cameraDistance));
+
+            Camera.main.backgroundColor = theme.skyColor;
+
+            GameObject.FindGameObjectWithTag(GameTags.volume).GetComponent<Volume>().profile = theme.postprocessing;
+
+            // игрок
+            // враги
+            // препятствия
         }
 
         private IEnumerator LerpCameraState(float angle, float distance)

@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   style: 0
   floorSettings: {fileID: 0}
-  skyColor: {r: 0.039738327, g: 0.17001933, b: 0.4433962, a: 0}
-  cameraAngle: 30
-  cameraDistance: 30
+  skyColor: {r: 1, g: 1, b: 1, a: 1}
+  cameraAngle: 60
+  cameraDistance: 15
   playerPrefab: {fileID: 4726646756577039398, guid: 7ceb7b1a12945134d959b9773c9ec7ac, type: 3}
   enemySpawners: []
   obstacles: []
