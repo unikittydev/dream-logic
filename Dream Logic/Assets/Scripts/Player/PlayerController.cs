@@ -1,46 +1,48 @@
+using Game.Dream;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+namespace Game
 {
-    private Transform _tr;
-    public Transform tr => _tr;
-
-    private CharacterController _cc;
-    public CharacterController cc => _cc;
-
-    [SerializeField]
-    private float forwardMoveSpeed;
-    public float speed => forwardMoveSpeed;
-
-    [SerializeField]
-    private float rotationSpeed;
-
-    private float rotationInput;
-
-    private void Awake()
+    /// <summary>
+    /// Бегущий вперёд игрок.
+    /// </summary>
+    public class PlayerController : MonoBehaviour
     {
-        _tr = transform;
-        _cc = GetComponent<CharacterController>();
-    }
+        private Transform _tr;
+        public Transform tr => _tr;
 
-    private void Update()
-    {
-        rotationInput = Input.GetAxisRaw("Horizontal");
+        private CharacterController _cc;
+        public CharacterController cc => _cc;
 
-        cc.Move((tr.forward * forwardMoveSpeed + Physics.gravity) * Time.deltaTime);
-        tr.Rotate(tr.up, rotationSpeed * rotationInput * Time.deltaTime);
-    }
+        [SerializeField]
+        private float forwardMoveSpeed;
+        public float speed => forwardMoveSpeed;
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
-            print("We lost");
-    }
+        [SerializeField]
+        private float rotationSpeed;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log(other.name);
-        if (other.gameObject.CompareTag("Enemy"))
-            print("We lost");
+        private float rotationInput;
+
+        private void Awake()
+        {
+            _tr = transform;
+            _cc = GetComponent<CharacterController>();
+        }
+
+        private void Update()
+        {
+            rotationInput = Input.GetAxisRaw("Horizontal");
+
+            cc.Move((tr.forward * forwardMoveSpeed + Physics.gravity) * Time.deltaTime);
+            tr.Rotate(tr.up, rotationSpeed * rotationInput * Time.deltaTime);
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.CompareTag(GameTags.enemy))
+            {
+                DreamSimulation.WakeUp();
+            }
+        }
     }
 }

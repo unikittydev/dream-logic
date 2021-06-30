@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 065b1c19f1fb5d945a4d00d5d25cd4dd, type: 3}
-  m_Name: Enemy 1
+  m_Name: Enemy 2
   m_EditorClassIdentifier: 
   prefabs:
-  - {fileID: 1357167524087111354, guid: d5be63ec3482b7f46bc9ba27e1bc0f7b, type: 3}
+  - {fileID: 7378127139494620608, guid: 6278119168986b1498f801dff180a08d, type: 3}
   minDistance: 3
   maxDistance: 10
-  height: 0
-  frequency: 1
+  height: 15
+  frequency: 2

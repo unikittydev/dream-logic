@@ -7,51 +7,44 @@ namespace Game.Dream
     /// </summary>
     public class DreamSimulation : MonoBehaviour
     {
-        private static Dream currentDream;
+        private const string themesPath = "Dream Themes/";
+
+        private static Dream dream;
+
+        private static DreamTheme[] themes;
+
+        private void Awake()
+        {
+            themes = Resources.LoadAll<DreamTheme>(themesPath);
+            dream = GetComponent<Dream>();
+
+            StartNewDreamCycle();
+        }
 
         public static void WakeUp()
         {
-            EndDream();
+            dream.Stop();
+            print("You woke up");
         }
 
         public static void StartNewDreamCycle()
         {
-            EndDream();
-            ChooseTheme();
-            ApplyTheme();
-            ChooseRule();
-            ApplyRule();
-            StartDream();
+            dream.Stop();
+
+            var theme = ChooseTheme();
+            var rules = ChooseRules();
+
+            dream.Play(theme, rules);
         }
 
-        private static void ChooseTheme()
+        private static DreamTheme ChooseTheme()
         {
-
+            return themes[Random.Range(0, themes.Length)];
         }
 
-        private static void ApplyTheme()
+        private static DreamBehaviour ChooseRules()
         {
-
-        }
-
-        private static void ChooseRule()
-        {
-
-        }
-
-        private static void ApplyRule()
-        {
-
-        }
-
-        private static void StartDream()
-        {
-
-        }
-
-        private static void EndDream()
-        {
-
+            return default;
         }
     }
 }

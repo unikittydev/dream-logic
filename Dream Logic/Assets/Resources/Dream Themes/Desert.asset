@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 941d1afca80379248b7c5f8767d882ca, type: 3}
   m_Name: Desert
   m_EditorClassIdentifier: 
-  floorPrefab: {fileID: 8611359788250657278, guid: 965e4b6164e51324d8eb984c11670606, type: 3}
+  style: 0
+  floorSettings: {fileID: 0}
   skyColor: {r: 0.38527945, g: 0.48624688, b: 0.6981132, a: 0}
-  player: {fileID: 0}
-  enemies: []
+  cameraAngle: 30
+  cameraDistance: 30
+  playerPrefab: {fileID: 0}
+  enemySpawners: []
+  obstacles: []
+  postprocessing: {fileID: 0}
