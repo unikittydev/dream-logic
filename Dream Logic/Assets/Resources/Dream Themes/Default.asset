@@ -10,14 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 941d1afca80379248b7c5f8767d882ca, type: 3}
-  m_Name: Desert
+  m_Name: Default
   m_EditorClassIdentifier: 
   style: 0
-  floorSettings: {fileID: 0}
-  skyColor: {r: 1, g: 1, b: 1, a: 1}
+  floorSpawnerSettings: {fileID: 11400000, guid: 93112a90f4972c94f80370f49d3e1a6e, type: 2}
+  skyColor: {r: 0.8349056, g: 0.9071344, b: 1, a: 1}
   cameraAngle: 60
   cameraDistance: 15
-  playerPrefab: {fileID: 0}
-  enemySpawners: []
-  obstacles: []
-  postprocessing: {fileID: 0}
+  playerPrefab: {fileID: 4726646756577039398, guid: 7ceb7b1a12945134d959b9773c9ec7ac, type: 3}
+  enemySpawnerSettings: []
+  postprocessing: {fileID: 11400000, guid: c02e182b5127c4f468e611ffb2e219eb, type: 2}

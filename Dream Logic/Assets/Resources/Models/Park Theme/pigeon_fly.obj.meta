@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: pigeon_flyMat
+    second: {fileID: 2100000, guid: 0cd9cdf1584db5d46b48da142b657e79, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: pigeon_fly_Material
     second: {fileID: 2100000, guid: 0cd9cdf1584db5d46b48da142b657e79, type: 2}
   materials:

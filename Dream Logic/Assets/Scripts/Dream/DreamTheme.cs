@@ -11,7 +11,7 @@ namespace Game.Dream
     {
         public DreamStyle style;
 
-        public FloorSpawner floorSpawner;
+        public FloorSpawnerSettings floorSpawnerSettings;
 
         public Color skyColor;
 
@@ -20,9 +20,9 @@ namespace Game.Dream
 
         public PlayerController playerPrefab;
 
-        public EnemySpawner[] enemySpawners;
+        public EnemySpawnerSettings[] enemySpawnerSettings;
 
-        public GameObject[] obstacles;
+        //public GameObject[] obstacles;
 
         public VolumeProfile postprocessing;
     }

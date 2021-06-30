@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a6894f9990c0374882b5cbfc36b43e1, type: 3}
-  m_Name: Floor 1
+  m_Name: Floor Space
   m_EditorClassIdentifier: 
-  floorPrefab: {fileID: 4542639042719827615, guid: 2d2b856fc5641cc46872809b0430a1c4, type: 3}
-  tileRadius: 1
-  heightOffset: 0.1
-  startHeight: -30
+  floorPrefab: {fileID: -3257348326144508723, guid: 082630465db3436459462b7a3634910b, type: 3}
+  tileRadius: 3
+  heightOffset: 0
+  startHeight: 0
   endHeight: -0.75
-  smoothTime: 0.5
+  smoothTime: 0

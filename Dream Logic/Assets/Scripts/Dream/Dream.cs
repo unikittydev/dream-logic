@@ -9,8 +9,8 @@ namespace Game.Dream
     /// </summary>
     public class Dream : MonoBehaviour
     {
-        private float maxTime;
-        private float timeCounter;
+        public float maxTime { get; set; }
+        public float timeCounter { get; set; }
 
         private DreamTheme theme;
         private DreamBehaviour rules;
@@ -68,18 +68,6 @@ namespace Game.Dream
         private void ApplyRules(DreamBehaviour rules)
         {
             this.rules = rules;
-        }
-
-        private void Update()
-        {
-            if (timeCounter >= maxTime)
-            {
-                DreamSimulation.StartNewDreamCycle();
-            }
-            else
-            {
-                timeCounter += Time.deltaTime;
-            }
         }
     }
 }

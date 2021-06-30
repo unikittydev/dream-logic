@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: smol_treeMat
+    second: {fileID: 2100000, guid: cd2a79d3717c4854fb27c565d51a0538, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: smol_tree_Material
     second: {fileID: 2100000, guid: cd2a79d3717c4854fb27c565d51a0538, type: 2}
   materials:

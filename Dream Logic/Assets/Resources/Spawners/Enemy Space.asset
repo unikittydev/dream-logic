@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 065b1c19f1fb5d945a4d00d5d25cd4dd, type: 3}
+  m_Name: Enemy Space
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 9074577618919795683, guid: c4629495ffcb24b41a25b8b8d1aa172f, type: 3}
+  - {fileID: 1416608957638940529, guid: ea1ae11ca5377b540ac65b7cc81b1ca9, type: 3}
+  - {fileID: 2286991642084045074, guid: d338af6b98f5f2646b4e557ebeff2cd0, type: 3}
+  - {fileID: 7255461779130743649, guid: 20f7071193ffb8248ab8aad0dbd01713, type: 3}
+  - {fileID: 4798400728565578005, guid: 42b2eb4372753a542807b526c87dbeb3, type: 3}
+  minDistance: 10
+  maxDistance: 20
+  height: 1
+  frequency: 2
