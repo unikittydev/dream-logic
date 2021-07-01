@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Western
   m_EditorClassIdentifier: 
   style: 0
-  floorSpawnerSettings: {fileID: 0}
-  skyColor: {r: 0, g: 0, b: 0, a: 0}
-  cameraAngle: 0
-  cameraDistance: 0
+  floorSpawnerSettings: {fileID: 11400000, guid: 3a9e177ab9bf9aa439c62dc2479f30f9, type: 2}
+  skyColor: {r: 0.55695975, g: 0.68872094, b: 0.7924528, a: 0}
+  cameraAngle: 20
+  cameraDistance: 60
   playerPrefab: {fileID: 0}
   objectSpawnerSettings: []
-  postprocessing: {fileID: 0}
+  postprocessing: {fileID: 11400000, guid: 79d2c97943d1c17469c9b33db1edf803, type: 2}

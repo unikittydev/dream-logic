@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a6894f9990c0374882b5cbfc36b43e1, type: 3}
+  m_Name: Western
+  m_EditorClassIdentifier: 
+  floorPrefab: {fileID: 8611359788250657278, guid: 965e4b6164e51324d8eb984c11670606, type: 3}
+  tileRadius: 1
+  heightOffset: 0.5
+  startHeight: -30
+  endHeight: 0.75
+  smoothTime: 0.5

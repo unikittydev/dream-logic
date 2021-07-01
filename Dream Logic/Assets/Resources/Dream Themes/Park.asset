@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Park
   m_EditorClassIdentifier: 
   style: 0
-  floorSpawnerSettings: {fileID: 0}
-  skyColor: {r: 0, g: 0, b: 0, a: 0}
-  cameraAngle: 0
-  cameraDistance: 0
+  floorSpawnerSettings: {fileID: 11400000, guid: 22ff1d246bd19314bb5b94c96ac0b329, type: 2}
+  skyColor: {r: 0.51998043, g: 0.6886423, b: 0.8962264, a: 0}
+  cameraAngle: 60
+  cameraDistance: 15
   playerPrefab: {fileID: 0}
   objectSpawnerSettings: []
-  postprocessing: {fileID: 0}
+  postprocessing: {fileID: 11400000, guid: c02e182b5127c4f468e611ffb2e219eb, type: 2}
