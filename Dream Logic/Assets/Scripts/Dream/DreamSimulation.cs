@@ -19,11 +19,11 @@ namespace Game.Dream
         public static FloorSpawner floorSpawner => _floorSpawner;
 
         [SerializeField]
-        private EnemySpawner _enemySpawnerPrefab;
-        private static EnemySpawner enemySpawnerPrefab;
+        private ObjectSpawner _objectSpawnerPrefab;
+        private static ObjectSpawner objectSpawnerPrefab;
 
-        private static List<EnemySpawner> _enemySpawners;
-        public static List<EnemySpawner> enemySpawners => _enemySpawners;
+        private static List<ObjectSpawner> _objectSpawners;
+        public static List<ObjectSpawner> objectSpawners => _objectSpawners;
 
         private static Transform _environment;
         public static Transform environment => _environment;
@@ -44,9 +44,9 @@ namespace Game.Dream
         {
             _player = FindObjectOfType<PlayerController>();
             _floorSpawner = FindObjectOfType<FloorSpawner>();
-            _enemySpawners = new List<EnemySpawner>(FindObjectsOfType<EnemySpawner>());
+            _objectSpawners = new List<ObjectSpawner>(FindObjectsOfType<ObjectSpawner>());
             _environment = GameObject.FindGameObjectWithTag(GameTags.environment).transform;
-            enemySpawnerPrefab = _enemySpawnerPrefab;
+            objectSpawnerPrefab = _objectSpawnerPrefab;
 
             allThemes = Resources.LoadAll<DreamTheme>(themesPath);
             transitionTheme = _transitionTheme;
@@ -89,7 +89,7 @@ namespace Game.Dream
             ClearEnvironment();
             floorSpawner.Refresh(theme.floorSpawnerSettings);
             ReplacePlayer(theme.playerPrefab);
-            ReplaceSpawners(theme.enemySpawnerSettings);
+            ReplaceSpawners(theme.objectSpawnerSettings);
         }
 
         public static void WakeUp()
@@ -128,17 +128,17 @@ namespace Game.Dream
             }
         }
 
-        private static void ReplaceSpawners(EnemySpawnerSettings[] settings)
+        private static void ReplaceSpawners(ObjectSpawnerSettings[] settings)
         {
-            for (int i = 0; i < enemySpawners.Count; i++)
+            for (int i = 0; i < objectSpawners.Count; i++)
             {
-                Destroy(enemySpawners[i].gameObject);
+                Destroy(objectSpawners[i].gameObject);
             }
-            enemySpawners.Clear();
+            objectSpawners.Clear();
             for (int i = 0; i < settings.Length; i++)
             {
-                var spawner = Instantiate(enemySpawnerPrefab);
-                enemySpawners.Add(spawner);
+                var spawner = Instantiate(objectSpawnerPrefab);
+                objectSpawners.Add(spawner);
                 spawner.Refresh(settings[i]);
             }
         }

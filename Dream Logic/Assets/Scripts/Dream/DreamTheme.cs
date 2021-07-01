@@ -20,9 +20,7 @@ namespace Game.Dream
 
         public PlayerController playerPrefab;
 
-        public EnemySpawnerSettings[] enemySpawnerSettings;
-
-        //public GameObject[] obstacles;
+        public ObjectSpawnerSettings[] objectSpawnerSettings;
 
         public VolumeProfile postprocessing;
     }

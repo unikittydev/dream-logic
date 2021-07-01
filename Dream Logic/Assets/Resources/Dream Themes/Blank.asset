@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 941d1afca80379248b7c5f8767d882ca, type: 3}
-  m_Name: Default
+  m_Name: Blank
   m_EditorClassIdentifier: 
   style: 0
   floorSpawnerSettings: {fileID: 11400000, guid: 93112a90f4972c94f80370f49d3e1a6e, type: 2}

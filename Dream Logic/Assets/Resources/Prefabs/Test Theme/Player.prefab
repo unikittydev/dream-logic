@@ -161,6 +161,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forwardMoveSpeed: 3
   rotationSpeed: 120
+  jumpStayTime: 0.5
+  jumpHeight: 3
 --- !u!1 &4726646757219327463
 GameObject:
   m_ObjectHideFlags: 0

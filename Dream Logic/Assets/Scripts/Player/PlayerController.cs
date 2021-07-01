@@ -1,4 +1,5 @@
 using Game.Dream;
+using System.Collections;
 using UnityEngine;
 
 namespace Game
@@ -23,6 +24,14 @@ namespace Game
 
         private float rotationInput;
 
+        [Header("Jumping")]
+        [SerializeField]
+        private float jumpStayTime;
+        [SerializeField]
+        private float jumpHeight;
+
+        private bool jumping;
+
         private void Awake()
         {
             _tr = transform;
@@ -33,8 +42,33 @@ namespace Game
         {
             rotationInput = Input.GetAxisRaw("Horizontal");
 
-            cc.Move((tr.forward * forwardMoveSpeed + Physics.gravity) * Time.deltaTime);
+            Vector3 motion = (tr.forward * forwardMoveSpeed + (jumping ? Vector3.zero : Physics.gravity)) * Time.deltaTime;
+            cc.Move(motion);
+
             tr.Rotate(tr.up, rotationSpeed * rotationInput * Time.deltaTime);
+
+            if (!jumping && cc.isGrounded && Input.GetKeyDown(KeyCode.Space) && jumpHeight > 0f)
+            {
+                StartCoroutine(Jump());
+            }
+        }
+
+        private IEnumerator Jump()
+        {
+            jumping = true;
+
+            float startHeight = tr.position.y;
+
+            // Rise
+            while (tr.position.y < startHeight + jumpHeight)
+            {
+                cc.Move(-Physics.gravity * Time.deltaTime);
+                yield return null;
+            }
+            // Stay
+            yield return new WaitForSeconds(jumpStayTime);
+            // Fall
+            jumping = false;
         }
 
         private void OnCollisionEnter(Collision collision)

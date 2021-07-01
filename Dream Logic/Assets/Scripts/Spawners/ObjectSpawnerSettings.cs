@@ -3,10 +3,10 @@ using UnityEngine;
 namespace Game
 {
     /// <summary>
-    /// Настройки спавнера противников.
+    /// Настройки спавнера объектов.
     /// </summary>
-    [CreateAssetMenu(fileName = "Enemy Spawner Settings", menuName = "Dream/Enemy Spawner")]
-    public class EnemySpawnerSettings : ScriptableObject
+    [CreateAssetMenu(fileName = "Object Spawner Settings", menuName = "Dream/Object Spawner")]
+    public class ObjectSpawnerSettings : ScriptableObject
     {
         public GameObject[] prefabs;
 

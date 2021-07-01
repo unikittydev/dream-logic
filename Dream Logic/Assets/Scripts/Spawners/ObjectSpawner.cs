@@ -6,14 +6,14 @@ namespace Game
     /// <summary>
     /// Спавнер противников.
     /// </summary>
-    public class EnemySpawner : MonoBehaviour
+    public class ObjectSpawner : MonoBehaviour
     {
         [SerializeField]
-        private EnemySpawnerSettings settings;
+        private ObjectSpawnerSettings settings;
 
         private float counter;
 
-        public void Refresh(EnemySpawnerSettings newSettings)
+        public void Refresh(ObjectSpawnerSettings newSettings)
         {
             settings = newSettings;
         }
