@@ -277,7 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3bfa242035cc234c90e106f62ea9bd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemySpawnerPrefab: {fileID: 2311790652292920739, guid: 0f942b19751418141b07200f2531da49, type: 3}
+  _objectSpawnerPrefab: {fileID: 2311790652292920739, guid: 0f942b19751418141b07200f2531da49, type: 3}
   _transitionTheme: {fileID: 11400000, guid: 48bc4aac05896c74d8882b6476812cde, type: 2}
 --- !u!4 &588359124
 Transform:
@@ -743,7 +743,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.2728708, y: 1}
+    m_SensorSize: {x: 2.274448, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

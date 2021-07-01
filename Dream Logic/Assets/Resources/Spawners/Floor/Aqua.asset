@@ -16,5 +16,5 @@ MonoBehaviour:
   tileRadius: 2
   heightOffset: 0.3
   startHeight: -20
-  endHeight: 5.25
+  endHeight: -6.75
   smoothTime: 1.25
