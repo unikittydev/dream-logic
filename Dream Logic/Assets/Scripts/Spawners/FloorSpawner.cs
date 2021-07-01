@@ -44,9 +44,7 @@ namespace Game
                     }
                     if (!foundTile)
                     {
-                        desiredTilePos.y = settings.startHeight;
-                        FloorTile newTile = Instantiate(settings.floorPrefab, desiredTilePos, Quaternion.identity, tr);
-                        newTile.Spawn(settings.endHeight + Random.Range(-settings.heightOffset, settings.heightOffset), settings.smoothTime);
+                        var newTile = CreateTile(desiredTilePos, settings.startHeight);
                         floorTiles.Add(newTile);
                     }
                 }
@@ -68,12 +66,20 @@ namespace Game
             for (int k = 0; k < floorTiles.Count; k++)
             {
                 Vector3 position = floorTiles[k].transform.position;
-                position.y = settings.endHeight;
 
-                FloorTile newTile = Instantiate(settings.floorPrefab, position, Quaternion.identity, tr);
                 floorTiles[k].Despawn(settings.startHeight, settings.smoothTime);
+                var newTile = CreateTile(position, floorTiles[k].transform.position.y + (floorTiles[k].transform.lossyScale.y - settings.floorPrefab.transform.lossyScale.y) * .5f);
                 floorTiles[k] = newTile;
             }
+        }
+
+        private FloorTile CreateTile(Vector3 position, float startHeight)
+        {
+            position.y = startHeight;
+            FloorTile newTile = Instantiate(settings.floorPrefab, position, Quaternion.identity, tr);
+            newTile.Spawn(settings.floorPrefab.transform.lossyScale.y * -.5f + Random.Range(-settings.heightOffset, settings.heightOffset), settings.smoothTime);
+
+            return newTile;
         }
     }
 }

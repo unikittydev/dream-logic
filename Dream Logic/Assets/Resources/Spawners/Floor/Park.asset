@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Park
   m_EditorClassIdentifier: 
   floorPrefab: {fileID: 6069777810758981989, guid: f0c7c254b391cfd4ea9b094376ad23d2, type: 3}
-  tileRadius: 1
+  tileRadius: 2
   heightOffset: 0.1
   startHeight: -30
-  endHeight: -0.75
   smoothTime: 0.5

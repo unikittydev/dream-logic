@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floorPrefab: {fileID: -2521868638308305318, guid: 4a06e621d14c19a4f9baa53d1488e1f3, type: 3}
   tileRadius: 2
-  heightOffset: 0.3
+  heightOffset: 0.2
   startHeight: -20
-  endHeight: -6.75
-  smoothTime: 1.25
+  smoothTime: 1

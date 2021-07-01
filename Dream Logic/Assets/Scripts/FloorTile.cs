@@ -9,6 +9,7 @@ namespace Game
     public class FloorTile : MonoBehaviour
     {
         private const float epsilon = .1f;
+
         public void Spawn(float height, float time)
         {
             StartCoroutine(Move(height, time, false));

@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: titanicMat
+    second: {fileID: 2100000, guid: a267e7b7d0dbc9a4897042e2f7b1cdd0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: titanic_Material
     second: {fileID: 2100000, guid: a267e7b7d0dbc9a4897042e2f7b1cdd0, type: 2}
   materials:

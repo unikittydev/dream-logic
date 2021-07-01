@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   style: 0
   floorSpawnerSettings: {fileID: 11400000, guid: 97a1a22897ab83f47a066cff99fb8642, type: 2}
-  skyColor: {r: 0.9811321, g: 0.94285744, b: 0.745105, a: 0}
+  skyColor: {r: 0.13725491, g: 0.5294118, b: 0.49803922, a: 0}
   cameraAngle: 45
   cameraDistance: 20
-  playerPrefab: {fileID: 4726646756577039398, guid: 7ceb7b1a12945134d959b9773c9ec7ac, type: 3}
+  playerPrefab: {fileID: 1121152586178158948, guid: 39cca13c35dfff7468fc436d65988e8f, type: 3}
   objectSpawnerSettings: []
   postprocessing: {fileID: 11400000, guid: b517bb9c207507a41aa810f512959aed, type: 2}

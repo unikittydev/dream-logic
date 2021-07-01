@@ -14,7 +14,6 @@ namespace Game
         public int tileRadius;
         public float heightOffset;
         public float startHeight;
-        public float endHeight;
         public float smoothTime;
     }
 }

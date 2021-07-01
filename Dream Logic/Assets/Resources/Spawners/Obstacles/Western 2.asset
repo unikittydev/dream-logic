@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 065b1c19f1fb5d945a4d00d5d25cd4dd, type: 3}
+  m_Name: Western 2
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 1583798939603095898, guid: 71a98c9ca39f2554e992928c68fc81e8, type: 3}
+  - {fileID: 1573280518800419054, guid: dc660afce8e2f5344bdd6a156cf58712, type: 3}
+  - {fileID: 2149491837547057543, guid: c60d9b9b7c6fa264ebfc321e4ba8568d, type: 3}
+  minDistance: 5
+  maxDistance: 20
+  height: 10
+  frequency: 5

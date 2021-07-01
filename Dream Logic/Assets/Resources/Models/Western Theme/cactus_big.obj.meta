@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: cactus_bigMat
+    second: {fileID: 2100000, guid: 09d36d50c05c6554a83367030d3c0f70, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: cactus_big_Material
     second: {fileID: 2100000, guid: 09d36d50c05c6554a83367030d3c0f70, type: 2}
   materials:

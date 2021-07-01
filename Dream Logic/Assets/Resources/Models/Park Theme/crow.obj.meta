@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: crowMat
+    second: {fileID: 2100000, guid: 3c743742a6846f547b4e4896a9efa760, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: crow_Material
     second: {fileID: 2100000, guid: 3c743742a6846f547b4e4896a9efa760, type: 2}
   materials:

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 065b1c19f1fb5d945a4d00d5d25cd4dd, type: 3}
+  m_Name: Park 1
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 298765942254637400, guid: aae31deb6b14cf640831c8dd88d600ba, type: 3}
+  - {fileID: 4879017428727265655, guid: d7209f14dd2d7ad489d324d48f7746d4, type: 3}
+  - {fileID: 6824564505780379403, guid: 469337b3cd300614da9ca9094dd3873f, type: 3}
+  minDistance: 5
+  maxDistance: 13
+  height: 15
+  frequency: 2

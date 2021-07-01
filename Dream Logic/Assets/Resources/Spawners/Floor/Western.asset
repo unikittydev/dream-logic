@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Western
   m_EditorClassIdentifier: 
   floorPrefab: {fileID: 8611359788250657278, guid: 965e4b6164e51324d8eb984c11670606, type: 3}
-  tileRadius: 1
+  tileRadius: 3
   heightOffset: 0.5
   startHeight: -30
-  endHeight: -0.75
   smoothTime: 0.5
