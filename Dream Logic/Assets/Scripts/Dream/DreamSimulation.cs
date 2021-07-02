@@ -18,19 +18,23 @@ namespace Game.Dream
 
         private static DreamThemeSwitcher themeSwitcher;
 
+        private static DreamDifficulty _difficulty;
+        public static DreamDifficulty difficulty => _difficulty;
+
         private void Awake()
         {
             player = FindObjectOfType<PlayerController>();
             _environment = GameObject.FindGameObjectWithTag(GameTags.environment).transform;
 
             themeSwitcher = GetComponent<DreamThemeSwitcher>();
+            _difficulty = GetComponent<DreamDifficulty>();
 
             timeCounter = maxTime;
         }
 
         private void Update()
         {
-            if (timeCounter >= maxTime)
+            if (timeCounter >= maxTime * difficulty.dreamDurationMultiplier)
             {
                 StartCoroutine(StartNewDreamCycle());
                 timeCounter = 0f;
@@ -53,6 +57,7 @@ namespace Game.Dream
             themeSwitcher.SetDefaultTheme();
             yield return new WaitForSeconds(5f);
             themeSwitcher.SetRandomTheme();
+            difficulty.RaiseDifficulty();
         }
     }
 }

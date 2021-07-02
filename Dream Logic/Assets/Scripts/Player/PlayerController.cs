@@ -42,10 +42,10 @@ namespace Game
         {
             rotationInput = Input.GetAxisRaw("Horizontal");
 
-            Vector3 motion = (tr.forward * forwardMoveSpeed + (jumping ? Vector3.zero : Physics.gravity)) * Time.deltaTime;
+            Vector3 motion = (tr.forward * forwardMoveSpeed * DreamSimulation.difficulty.playerSpeedMultiplier + (jumping ? Vector3.zero : Physics.gravity)) * Time.deltaTime;
             cc.Move(motion);
 
-            tr.Rotate(tr.up, rotationSpeed * rotationInput * Time.deltaTime);
+            tr.Rotate(tr.up, rotationSpeed * rotationInput * DreamSimulation.difficulty.playerSpeedMultiplier * Time.deltaTime);
 
             if (!jumping && cc.isGrounded && Input.GetKeyDown(KeyCode.Space) && jumpHeight > 0f)
             {

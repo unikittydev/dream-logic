@@ -1,3 +1,4 @@
+using Game.Dream;
 using System.Collections;
 using UnityEngine;
 
@@ -43,12 +44,8 @@ public class EnemyController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.MovePosition(tr.position + tr.forward * forwardMoveSpeed * forwardInput * Time.fixedDeltaTime);
-    }
-
-    private void Update()
-    {
-        tr.Rotate(tr.up, rotationSpeed * rotationInput * Time.deltaTime);
+        rb.MovePosition(tr.position + tr.forward * forwardMoveSpeed * forwardInput * DreamSimulation.difficulty.objectSpeedMultiplier * Time.fixedDeltaTime);
+        rb.MoveRotation(tr.rotation * Quaternion.AngleAxis(rotationSpeed * rotationInput * DreamSimulation.difficulty.objectSpeedMultiplier * Time.fixedDeltaTime, tr.up));
     }
 
     private IEnumerator DashMove()

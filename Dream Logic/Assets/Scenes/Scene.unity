@@ -420,6 +420,7 @@ GameObject:
   - component: {fileID: 588359124}
   - component: {fileID: 588359123}
   - component: {fileID: 588359125}
+  - component: {fileID: 588359126}
   m_Layer: 0
   m_Name: Simulation
   m_TagString: Untagged
@@ -471,6 +472,19 @@ MonoBehaviour:
   currentVolume: {fileID: 714233205}
   nextVolume: {fileID: 336195952}
   objectSpawnerPrefab: {fileID: 2311790652292920739, guid: 0f942b19751418141b07200f2531da49, type: 3}
+--- !u!114 &588359126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 588359122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae6ae9ab7cb4a7949bf3e67061515ece, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 11400000, guid: 6db90121ba9f0aa489f6875719dd9bb8, type: 2}
 --- !u!1 &714233204
 GameObject:
   m_ObjectHideFlags: 0

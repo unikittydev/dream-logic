@@ -22,7 +22,7 @@ namespace Game
         {
             counter += Time.deltaTime;
 
-            if (counter >= settings.frequency)
+            if (counter * DreamSimulation.difficulty.objectSpawnFrequencyMultiplier >= settings.frequency)
             {
                 counter = 0f;
 
