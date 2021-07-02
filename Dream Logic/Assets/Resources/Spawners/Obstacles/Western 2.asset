@@ -19,4 +19,5 @@ MonoBehaviour:
   minDistance: 5
   maxDistance: 20
   height: 10
+  createChance: 1
   frequency: 5

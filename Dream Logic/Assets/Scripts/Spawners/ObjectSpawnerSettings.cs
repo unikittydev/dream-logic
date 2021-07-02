@@ -14,6 +14,7 @@ namespace Game
         public float maxDistance;
         public float height;
 
+        public float createChance;
         public float frequency;
     }
 }
