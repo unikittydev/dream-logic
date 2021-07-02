@@ -366,7 +366,7 @@ GameObject:
   - component: {fileID: 330636689}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -434,7 +434,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &330636689
 MonoBehaviour:
@@ -594,7 +594,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &513060070
 MonoBehaviour:
@@ -812,6 +812,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e2493d9eb4bd6224b83a89ab2e3cbdfe, type: 3}
   m_PrefabInstance: {fileID: 752776900}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &792993903
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 792993905}
+  - component: {fileID: 792993904}
+  m_Layer: 0
+  m_Name: Menu Room
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &792993904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792993903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a66ed9bedb87444680b2c875486e332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minWaitTime: 3
+--- !u!4 &792993905
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792993903}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &811662486
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1145,6 +1189,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 792993904}
+        m_TargetAssemblyTypeName: MenuRoom, Assembly-CSharp
+        m_MethodName: StartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1391218086
 GameObject:
   m_ObjectHideFlags: 0
@@ -1191,7 +1247,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1601681755
 PrefabInstance:
@@ -1303,7 +1359,7 @@ Transform:
   - {fileID: 314578245}
   - {fileID: 1751910601}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1678881696
 GameObject:
@@ -1340,9 +1396,11 @@ PlayableDirector:
   m_ExposedReferences:
     m_References:
     - d2bf1a939fe83eb439f6e30e3125b128: {fileID: 513060067}
+    - d5db300b77d56d64493f5aac669fc6ea: {fileID: 792993903}
     - f3802d445e9d27e47847922a7f78628c: {fileID: 1128105248}
     - 262436a17c530fc4dbe782285a5cce83: {fileID: 513060067}
     - 97b40993ca77d71459d0d1e333e0454d: {fileID: 1128105248}
+    - 6d0e5fab921c70549b41bc58abda6033: {fileID: 792993903}
     - 9d19d07603d6ccc4a8235607cec39191: {fileID: 316259702}
 --- !u!4 &1678881698
 Transform:
@@ -1356,7 +1414,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1751910600
 GameObject:
@@ -1580,7 +1638,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 32.94, y: -6.909, z: 17.484}
 --- !u!1001 &2120458090
 PrefabInstance:

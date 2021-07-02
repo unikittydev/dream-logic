@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: paddleMat
+    second: {fileID: 2100000, guid: 26abe66eed818b841b0d0deef67a9ad3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: paddle_Material
     second: {fileID: 2100000, guid: 26abe66eed818b841b0d0deef67a9ad3, type: 2}
   materials:

@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: just_boatMat
+    second: {fileID: 2100000, guid: 9e76d7fa660635644b2d300784dfa44c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: just_boat_Material
     second: {fileID: 2100000, guid: 9e76d7fa660635644b2d300784dfa44c, type: 2}
   materials:
