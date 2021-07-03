@@ -70,13 +70,5 @@ namespace Game
             // Fall
             jumping = false;
         }
-
-        private void OnControllerColliderHit(ControllerColliderHit hit)
-        {
-            if (hit.gameObject.CompareTag(GameTags.enemy))
-            {
-                DreamSimulation.WakeUp();
-            }
-        }
     }
 }
