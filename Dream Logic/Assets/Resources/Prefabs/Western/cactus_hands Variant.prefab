@@ -84,6 +84,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cactus_hands Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a42867f02807e2b48b7dfca96f442686, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a42867f02807e2b48b7dfca96f442686, type: 3}
 --- !u!1 &5643226501662964133 stripped

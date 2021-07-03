@@ -7,6 +7,7 @@ namespace Game.Dream
     public enum DreamStyle
     {
         Voxel,
+        LowPoly,
         Sprite,
     }
 }

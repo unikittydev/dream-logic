@@ -14,7 +14,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 122
+  m_Constraints: 80
   m_CollisionDetection: 3
 --- !u!143 &1499556346
 CharacterController:
@@ -34,6 +34,20 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &-8843693035835515980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6828536431081143458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5afb78ff987d95499d7fd7298f842cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  height: 0.25
+  riseTime: 0.25
 --- !u!114 &1499556347
 MonoBehaviour:
   m_ObjectHideFlags: 0

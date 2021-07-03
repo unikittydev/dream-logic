@@ -71,9 +71,9 @@ namespace Game
             jumping = false;
         }
 
-        private void OnCollisionEnter(Collision collision)
+        private void OnControllerColliderHit(ControllerColliderHit hit)
         {
-            if (collision.gameObject.CompareTag(GameTags.enemy))
+            if (hit.gameObject.CompareTag(GameTags.enemy))
             {
                 DreamSimulation.WakeUp();
             }

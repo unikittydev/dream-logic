@@ -66,7 +66,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b2f158921b644724fab215ac4db0e5f0, type: 3}
       propertyPath: m_Name
-      value: cactus_smol_poly
+      value: cactus_smol_poly Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b2f158921b644724fab215ac4db0e5f0, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2f158921b644724fab215ac4db0e5f0, type: 3}

@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 065b1c19f1fb5d945a4d00d5d25cd4dd, type: 3}
-  m_Name: Western 1
+  m_Name: Park 4
   m_EditorClassIdentifier: 
   prefabs:
-  - {fileID: 419091808030726618, guid: a3600f0f32072c740a2627b484326183, type: 3}
-  - {fileID: 301794218906042744, guid: 55bf5c6f51f766e4693f35928253b7f1, type: 3}
-  - {fileID: 5057722389333808070, guid: aa8d796b2287db54f882d3fc6982305b, type: 3}
-  minDistance: 5
-  maxDistance: 20
-  height: 0
-  createChance: 0.8
-  frequency: 1
+  - {fileID: 9202689872550523027, guid: 964c08dd886df464e9010fe1a1ddc547, type: 3}
+  - {fileID: 3791068432933169168, guid: c7b14ec1fa0b1994991179b9d22e1fa4, type: 3}
+  - {fileID: 6783688189552574194, guid: 598db1a8673d68c4580a8d597611bd6d, type: 3}
+  minDistance: 0
+  maxDistance: 10
+  height: 1.5
+  createChance: 0.6
+  frequency: 2

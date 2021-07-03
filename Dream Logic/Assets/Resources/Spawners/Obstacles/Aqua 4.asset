@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 065b1c19f1fb5d945a4d00d5d25cd4dd, type: 3}
-  m_Name: Western 1
+  m_Name: Aqua 4
   m_EditorClassIdentifier: 
   prefabs:
-  - {fileID: 419091808030726618, guid: a3600f0f32072c740a2627b484326183, type: 3}
-  - {fileID: 301794218906042744, guid: 55bf5c6f51f766e4693f35928253b7f1, type: 3}
-  - {fileID: 5057722389333808070, guid: aa8d796b2287db54f882d3fc6982305b, type: 3}
-  minDistance: 5
+  - {fileID: 7667278775718889682, guid: 0b4baef09a2d5464295fdf1563046c44, type: 3}
+  - {fileID: 5082250794837176522, guid: 6fb87b45aa5895e4aa1a9579a313523b, type: 3}
+  - {fileID: 1888494171449517532, guid: 665ac7638a915684ebc772559be64a2b, type: 3}
+  - {fileID: 8123467774317039764, guid: 4cc35e6ffdeca8740993830d03c0fb6f, type: 3}
+  minDistance: 0
   maxDistance: 20
-  height: 0
+  height: 15
   createChance: 0.8
-  frequency: 1
+  frequency: 2

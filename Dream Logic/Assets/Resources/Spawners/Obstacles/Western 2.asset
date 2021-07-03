@@ -16,8 +16,9 @@ MonoBehaviour:
   - {fileID: 1583798939603095898, guid: 71a98c9ca39f2554e992928c68fc81e8, type: 3}
   - {fileID: 1573280518800419054, guid: dc660afce8e2f5344bdd6a156cf58712, type: 3}
   - {fileID: 2149491837547057543, guid: c60d9b9b7c6fa264ebfc321e4ba8568d, type: 3}
+  - {fileID: 1263065728701237642, guid: 3eb22f4ab45cbab478760bf2d799408e, type: 3}
   minDistance: 5
   maxDistance: 20
   height: 10
-  createChance: 1
-  frequency: 5
+  createChance: 0.8
+  frequency: 3

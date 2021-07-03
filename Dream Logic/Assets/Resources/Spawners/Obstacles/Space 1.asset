@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 065b1c19f1fb5d945a4d00d5d25cd4dd, type: 3}
-  m_Name: Enemy Space
+  m_Name: Space 1
   m_EditorClassIdentifier: 
   prefabs:
   - {fileID: 9074577618919795683, guid: c4629495ffcb24b41a25b8b8d1aa172f, type: 3}

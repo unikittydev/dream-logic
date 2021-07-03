@@ -18,5 +18,9 @@ MonoBehaviour:
   cameraAngle: 45
   cameraDistance: 20
   playerPrefab: {fileID: 1981733445967646683, guid: abc800ed9eb2f2b45849a61fb144cd22, type: 3}
-  objectSpawnerSettings: []
+  objectSpawnerSettings:
+  - {fileID: 11400000, guid: 76c8e1ea8a54ee44fa71932b7869bbff, type: 2}
+  - {fileID: 11400000, guid: 9710025e79f0d624180de4f297f45e59, type: 2}
+  - {fileID: 11400000, guid: c7965ca00a940944984b2b78f39e8ba5, type: 2}
+  - {fileID: 11400000, guid: 7a69b72a936f39742a23cf3a59c79c9e, type: 2}
   postprocessing: {fileID: 11400000, guid: b517bb9c207507a41aa810f512959aed, type: 2}

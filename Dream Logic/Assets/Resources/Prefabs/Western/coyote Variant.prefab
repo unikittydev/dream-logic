@@ -14,7 +14,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 122
+  m_Constraints: 112
   m_CollisionDetection: 3
 --- !u!65 &8060694804248189458
 BoxCollider:
@@ -29,6 +29,35 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5409556, y: 1.0088277, z: 1.591461}
   m_Center: {x: -0.052966624, y: 0.49876928, z: 0.004413843}
+--- !u!114 &-4827683860343593629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5316106163230107434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea7a4869fae06ba419e58474ef160ba8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forwardMoveSpeed: 4
+  rotationSpeed: 90
+  maxDashDistance: 15
+--- !u!114 &-719631166263373188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5316106163230107434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5afb78ff987d95499d7fd7298f842cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  height: 0.25
+  riseTime: 0.5
 --- !u!1001 &4974212260686027387
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -83,6 +112,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 487d271e10dedac4d84b3b976d44d4d9, type: 3}
       propertyPath: m_Name
       value: coyote Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 487d271e10dedac4d84b3b976d44d4d9, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 487d271e10dedac4d84b3b976d44d4d9, type: 3}

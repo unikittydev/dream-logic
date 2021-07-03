@@ -17,6 +17,6 @@ MonoBehaviour:
   skyColor: {r: 0.8349056, g: 0.9071344, b: 1, a: 1}
   cameraAngle: 60
   cameraDistance: 15
-  playerPrefab: {fileID: 4726646756577039398, guid: 2b0a909b7038d844dbd5685c46fe2a7e, type: 3}
+  playerPrefab: {fileID: 827868320, guid: 4452e2716d4006545b0410aa303f223a, type: 3}
   objectSpawnerSettings: []
   postprocessing: {fileID: 11400000, guid: c3474ba9419b1d54c86a8ebae4e5b8cc, type: 2}

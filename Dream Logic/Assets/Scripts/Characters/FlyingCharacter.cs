@@ -34,7 +34,7 @@ namespace Game
             }
 
             Vector3 pos = model.localPosition;
-            pos.y = height * Mathf.Sin(Time.time * riseTime + startHeight);
+            pos.y = height * Mathf.Sin(Time.time / riseTime + startHeight);
             //pos.y = rise ?
             //    Mathf.Lerp(startHeight, startHeight + height, riseCounter / riseTime) :
             //    Mathf.Lerp(startHeight + height, startHeight, riseCounter / riseTime);
