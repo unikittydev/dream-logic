@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a6894f9990c0374882b5cbfc36b43e1, type: 3}
   m_Name: Aqua
   m_EditorClassIdentifier: 
-  floorPrefab: {fileID: -2521868638308305318, guid: 4a06e621d14c19a4f9baa53d1488e1f3, type: 3}
+  floorPrefab:
+  - {fileID: -2521868638308305318, guid: 4a06e621d14c19a4f9baa53d1488e1f3, type: 3}
+  - {fileID: -2521868638308305318, guid: 00330e845c721db438221ce7b6437732, type: 3}
+  weights:
+  - 2
+  - 1
+  cumWeights: []
   tileRadius: 2
   heightOffset: 0.2
   startHeight: -20

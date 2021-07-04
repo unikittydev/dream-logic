@@ -23,5 +23,7 @@ namespace Game.Dream
         public ObjectSpawnerSettings[] objectSpawnerSettings;
 
         public VolumeProfile postprocessing;
+
+        public DreamModeFlag allowedModes;
     }
 }

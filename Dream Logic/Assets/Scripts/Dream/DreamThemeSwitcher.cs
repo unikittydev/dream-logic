@@ -16,6 +16,9 @@ namespace Game.Dream
         [SerializeField]
         private DreamTheme defaultTheme;
 
+        private DreamTheme _currentTheme;
+        public DreamTheme currentTheme => _currentTheme;
+
         [SerializeField]
         private CinemachineVirtualCamera currentVirtualCamera;
         [SerializeField]
@@ -31,8 +34,6 @@ namespace Game.Dream
 
         private Transform environment;
 
-        private FloorSpawner floorSpawner;
-
         private List<ObjectSpawner> objectSpawners;
 
         private DreamTheme[] allThemes;
@@ -41,21 +42,9 @@ namespace Game.Dream
         {
             allThemes = Resources.LoadAll<DreamTheme>(themesPath);
 
-            floorSpawner = FindObjectOfType<FloorSpawner>();
             objectSpawners = new List<ObjectSpawner>(FindObjectsOfType<ObjectSpawner>());
 
             environment = GameObject.FindGameObjectWithTag(GameTags.environment).transform;
-        }
-
-        public void SwitchThemes(DreamTheme newTheme)
-        {
-            StartCoroutine(SetSkyColor(newTheme.skyColor, 2f));
-            SetCameraSettings(newTheme.cameraAngle, newTheme.cameraDistance);
-            StartCoroutine(SetActiveVolume(newTheme.postprocessing, 2f));
-            floorSpawner.Refresh(newTheme.floorSpawnerSettings);
-            ClearEnvironment();
-            ReplacePlayer(newTheme.playerPrefab);
-            ReplaceSpawners(newTheme.objectSpawnerSettings);
         }
 
         public void SetDefaultTheme()
@@ -66,6 +55,18 @@ namespace Game.Dream
         public void SetRandomTheme()
         {
             SwitchThemes(allThemes[Random.Range(0, allThemes.Length)]);
+        }
+
+        private void SwitchThemes(DreamTheme newTheme)
+        {
+            _currentTheme = newTheme;
+            StartCoroutine(SetSkyColor(newTheme.skyColor, 2f));
+            SetCameraSettings(newTheme.cameraAngle, newTheme.cameraDistance);
+            StartCoroutine(SetActiveVolume(newTheme.postprocessing, 2f));
+            DreamSimulation.floorSpawner.Refresh(newTheme.floorSpawnerSettings);
+            ClearEnvironment();
+            ReplacePlayer(newTheme.playerPrefab);
+            ReplaceSpawners(newTheme.objectSpawnerSettings);
         }
 
         private IEnumerator SetSkyColor(Color newColor, float switchTime)

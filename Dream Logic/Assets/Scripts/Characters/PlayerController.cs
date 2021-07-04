@@ -53,6 +53,11 @@ namespace Game
             }
         }
 
+        private void OnControllerColliderHit(ControllerColliderHit hit)
+        {
+            DreamSimulation.onPlayerHit.Invoke(this, hit);
+        }
+
         private IEnumerator Jump()
         {
             jumping = true;

@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a6894f9990c0374882b5cbfc36b43e1, type: 3}
   m_Name: Plain
   m_EditorClassIdentifier: 
-  floorPrefab: {fileID: 8611359788250657278, guid: 22d503917a41f0e469a88dc58a884e05, type: 3}
+  floorPrefab:
+  - {fileID: 8611359788250657278, guid: 22d503917a41f0e469a88dc58a884e05, type: 3}
+  weights:
+  - 1
+  cumWeights: []
   tileRadius: 1
   heightOffset: 0.1
   startHeight: -30
-  endHeight: -0.75
   smoothTime: 0.5

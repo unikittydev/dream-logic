@@ -23,6 +23,23 @@ namespace Game
             floorTiles = new List<FloorTile>(FindObjectsOfType<FloorTile>());
         }
 
+        private void SetupWeights()
+        {
+            settings.cumWeights = new float[settings.weights.Length];
+
+            float sum = 0f, cumSum = 0f;
+            for (int i = 0; i < settings.weights.Length; i++)
+            {
+                sum += settings.weights[i];
+            }
+            for (int i = 0; i < settings.weights.Length; i++)
+            {
+                settings.weights[i] /= sum;
+                cumSum += settings.weights[i];
+                settings.cumWeights[i] = cumSum;
+            }
+        }
+
         private void Update()
         {
             for (int i = -settings.tileRadius; i <= settings.tileRadius; i++)
@@ -44,7 +61,9 @@ namespace Game
                     }
                     if (!foundTile)
                     {
-                        var newTile = CreateTile(desiredTilePos, settings.startHeight);
+                        var newTile = CreateTile(desiredTilePos);
+                        desiredTilePos.y = settings.startHeight;
+                        newTile.transform.position = desiredTilePos;
                         floorTiles.Add(newTile);
                     }
                 }
@@ -63,23 +82,63 @@ namespace Game
         public void Refresh(FloorSpawnerSettings newSettings)
         {
             settings = newSettings;
+            SetupWeights();
             for (int k = 0; k < floorTiles.Count; k++)
             {
                 Vector3 position = floorTiles[k].transform.position;
 
                 floorTiles[k].Despawn(settings.startHeight, settings.smoothTime);
-                var newTile = CreateTile(position, floorTiles[k].transform.position.y + (floorTiles[k].transform.lossyScale.y - settings.floorPrefab.transform.lossyScale.y) * .5f);
+                var newTile = CreateTile(position);
+                position.y = floorTiles[k].transform.position.y + (floorTiles[k].transform.lossyScale.y - newTile.transform.lossyScale.y) * .5f;
+                newTile.transform.position = position;
                 floorTiles[k] = newTile;
             }
         }
 
-        private FloorTile CreateTile(Vector3 position, float startHeight)
+        public void ReplaceRandomTile(FloorTile prefab, bool includePlayerTile = false)
         {
-            position.y = startHeight;
-            FloorTile newTile = Instantiate(settings.floorPrefab, position, Quaternion.identity, tr);
-            newTile.Spawn(settings.floorPrefab.transform.lossyScale.y * -.5f + Random.Range(-settings.heightOffset, settings.heightOffset), settings.smoothTime);
+            Vector3Int playerTilePos = Vector3Int.RoundToInt(DreamSimulation.player.transform.position / defaultTileSize);
+            playerTilePos.y = 0;
+            Vector3Int floorTilePos;
+            int k;
+
+            do
+            {
+                k = Random.Range(0, floorTiles.Count);
+                floorTilePos = Vector3Int.RoundToInt(floorTiles[k].transform.position / defaultTileSize);
+            }
+            while (!includePlayerTile && Mathf.Approximately((floorTilePos - playerTilePos).sqrMagnitude, 0f));
+
+            Vector3 position = floorTiles[k].transform.position;
+
+            floorTiles[k].Despawn(settings.startHeight, settings.smoothTime);
+            var newTile = CreateTile(position, prefab);
+            position.y = floorTiles[k].transform.position.y + (floorTiles[k].transform.lossyScale.y - newTile.transform.lossyScale.y) * .5f;
+            newTile.transform.position = position;
+            floorTiles[k] = newTile;
+        }
+
+        private FloorTile CreateTile(Vector3 position)
+        {
+            var floorPrefab = GetRandomPrefab();
+            return CreateTile(position, floorPrefab);
+        }
+
+        private FloorTile CreateTile(Vector3 position, FloorTile prefab)
+        {
+            FloorTile newTile = Instantiate(prefab, position, Quaternion.identity, tr);
+            newTile.Spawn(prefab.transform.lossyScale.y * -.5f + Random.Range(-settings.heightOffset, settings.heightOffset), settings.smoothTime);
 
             return newTile;
+        }
+
+        private FloorTile GetRandomPrefab()
+        {
+            float value = Random.value;
+            int index;
+            for (index = 0; index < settings.cumWeights.Length && value > settings.cumWeights[index]; index++) { }
+
+            return settings.floorPrefab[index];
         }
     }
 }

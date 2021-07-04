@@ -21,3 +21,4 @@ MonoBehaviour:
   objectSpawnerSettings:
   - {fileID: 11400000, guid: a43eeaa23b26bdc46b89fac2fe3ba95d, type: 2}
   postprocessing: {fileID: 11400000, guid: 9114b2d1b7f29ac4d8f092de8a04e927, type: 2}
+  allowedModes: 14

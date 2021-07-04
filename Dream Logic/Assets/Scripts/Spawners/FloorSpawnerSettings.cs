@@ -8,7 +8,10 @@ namespace Game
     [CreateAssetMenu(fileName = "Floor Spawner Settings", menuName = "Dream/Floor Spawner")]
     public class FloorSpawnerSettings : ScriptableObject
     {
-        public FloorTile floorPrefab;
+        public FloorTile[] floorPrefab;
+        public float[] weights;
+        [HideInInspector]
+        public float[] cumWeights;
 
         [Space]
         public int tileRadius;

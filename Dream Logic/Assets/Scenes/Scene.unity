@@ -486,8 +486,8 @@ GameObject:
   - component: {fileID: 588359124}
   - component: {fileID: 588359123}
   - component: {fileID: 588359125}
+  - component: {fileID: 588359128}
   - component: {fileID: 588359126}
-  - component: {fileID: 588359127}
   m_Layer: 0
   m_Name: Simulation
   m_TagString: Untagged
@@ -552,7 +552,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 6db90121ba9f0aa489f6875719dd9bb8, type: 2}
---- !u!114 &588359127
+--- !u!114 &588359128
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -561,11 +561,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 588359122}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a209d1c3013d874fa0d5fd9f9cabb85, type: 3}
+  m_Script: {fileID: 11500000, guid: 784af5fa94aea6f4c86e052715774f16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreMultiplier: 1.5
-  scoreInt: 0
 --- !u!1 &714233204
 GameObject:
   m_ObjectHideFlags: 0

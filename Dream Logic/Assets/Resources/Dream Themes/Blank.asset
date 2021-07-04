@@ -20,3 +20,4 @@ MonoBehaviour:
   playerPrefab: {fileID: 827868320, guid: 4452e2716d4006545b0410aa303f223a, type: 3}
   objectSpawnerSettings: []
   postprocessing: {fileID: 11400000, guid: c3474ba9419b1d54c86a8ebae4e5b8cc, type: 2}
+  allowedModes: 1

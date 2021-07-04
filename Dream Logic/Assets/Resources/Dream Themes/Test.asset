@@ -22,3 +22,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 48c990b97cfc32b40a6c443eddd62180, type: 2}
   - {fileID: 11400000, guid: 0d3caa5387e6bfe4e96aaf13f981037f, type: 2}
   postprocessing: {fileID: 11400000, guid: c02e182b5127c4f468e611ffb2e219eb, type: 2}
+  allowedModes: 14
