@@ -28,6 +28,8 @@ namespace Game.Dream
         private Volume currentVolume;
         [SerializeField]
         private Volume nextVolume;
+        [SerializeField]
+        private Volume switchVolume;
 
         [SerializeField]
         private ObjectSpawner objectSpawnerPrefab;
@@ -60,6 +62,7 @@ namespace Game.Dream
         private void SwitchThemes(DreamTheme newTheme)
         {
             _currentTheme = newTheme;
+            StartCoroutine(SwitchEffect(1f));
             StartCoroutine(SetSkyColor(newTheme.skyColor, 2f));
             SetCameraSettings(newTheme.cameraAngle, newTheme.cameraDistance);
             StartCoroutine(SetActiveVolume(newTheme.postprocessing, 2f));
@@ -67,6 +70,27 @@ namespace Game.Dream
             ClearEnvironment();
             ReplacePlayer(newTheme.playerPrefab);
             ReplaceSpawners(newTheme.objectSpawnerSettings);
+        }
+
+        private IEnumerator SwitchEffect(float switchTime)
+        {
+            float switchCounter = 0f;
+
+            switchVolume.weight = 0f;
+            switchVolume.enabled = true;
+            while (switchCounter <= switchTime * .5f)
+            {
+                switchVolume.weight = Mathf.Clamp01(switchCounter / switchTime);
+                switchCounter += Time.deltaTime;
+                yield return null;
+            }
+            while (switchCounter <= switchTime)
+            {
+                switchVolume.weight = Mathf.Clamp01(1f - switchCounter / switchTime);
+                switchCounter += Time.deltaTime;
+                yield return null;
+            }
+            switchVolume.enabled = false;
         }
 
         private IEnumerator SetSkyColor(Color newColor, float switchTime)

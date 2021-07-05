@@ -11,9 +11,15 @@ namespace Game.Dream
     /// </summary>
     public class DreamUI : MonoBehaviour
     {
+        private const string highScore = "HIGH_SCORE";
+
         [SerializeField]
         private TMP_Text _score;
         public TMP_Text score => _score;
+        [SerializeField]
+        private TMP_Text _highScore;
+        [SerializeField]
+        private TMP_Text _gameScore;
 
         [SerializeField]
         private TMP_Text themeDesc;
@@ -55,18 +61,25 @@ namespace Game.Dream
         public void Resume()
         {
             Time.timeScale = 1f;
-            StartCoroutine(FadeUI(pausePanel, false, alpha: .75f));
+            StartCoroutine(FadeUI(pausePanel, false));
         }
 
         public void Restart()
         {
             Time.timeScale = 1f;
-            StartCoroutine(FadeUI(lostPanel, false, alpha: .75f));
+            StartCoroutine(FadeUI(lostPanel, false));
         }
 
         public void Stop()
         {
             StartCoroutine(FadeUI(lostPanel, true, alpha: .75f));
+
+            if (!PlayerPrefs.HasKey(highScore))
+                PlayerPrefs.SetFloat(highScore, 0f);
+            if (DreamSimulation.score > PlayerPrefs.GetFloat(highScore))
+                PlayerPrefs.SetFloat(highScore, DreamSimulation.score);
+            _highScore.SetText(((int)PlayerPrefs.GetFloat(highScore)).ToString());
+            _gameScore.SetText(((int)DreamSimulation.score).ToString());
             Time.timeScale = 0f;
         }
 
@@ -88,7 +101,7 @@ namespace Game.Dream
         private IEnumerator DisplayDreamDescription(TMP_Text ui, string text)
         {
             ui.SetText(string.Empty);
-            ui.gameObject.SetActive(true);
+            StartCoroutine(FadeUI(ui, true));
             yield return StartCoroutine(DisplayText(ui, text, addLetterTime));
             yield return new WaitForSeconds(idleTime);
             StartCoroutine(FadeUI(ui, false));
@@ -96,6 +109,7 @@ namespace Game.Dream
 
         public static IEnumerator DisplayText(TMP_Text ui, string text, float time)
         {
+            ui.SetText(string.Empty);
             float counter = 0f;
 
             for (int i = 0; i < text.Length; i++)

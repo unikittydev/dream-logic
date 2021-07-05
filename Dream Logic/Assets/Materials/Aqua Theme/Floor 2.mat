@@ -78,6 +78,7 @@ Material:
     m_Ints: []
     m_Floats:
     - Alpha: 1
+    - Scroll_Speed: 0.2
     - Smoothness: 0.5
     - _AlphaClip: 0
     - _Blend: 0
