@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuRoom : MonoBehaviour
 {
+    private const int mainSceneIndex = 0;
     private const int playSceneIndex = 1;
 
     private static MenuRoom instance;
@@ -13,29 +14,30 @@ public class MenuRoom : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-            instance = this;
-        else if (instance != this)
+        Time.timeScale = 1f;
+        if (instance == this)
             Destroy(gameObject);
+        else
+            instance = this;
 
         DontDestroyOnLoad(gameObject);
     }
 
     public static void StartGame()
     {
-        instance.StartCoroutine(instance.StartGameCoroutine());
+        instance.StartCoroutine(instance.StartGameCoroutine(playSceneIndex, instance.minWaitTime));
     }
 
-    public static void ShortWakeUp()
+    public static void WakeUp()
     {
-
+        instance.StartCoroutine(instance.StartGameCoroutine(mainSceneIndex, 0f));
     }
 
-    private IEnumerator StartGameCoroutine()
+    private IEnumerator StartGameCoroutine(int sceneIndex, float waitTime)
     {
-        yield return new WaitForSeconds(minWaitTime);
+        yield return new WaitForSeconds(waitTime);
 
-        var sceneLoader = SceneManager.LoadSceneAsync(playSceneIndex, LoadSceneMode.Additive);
+        var sceneLoader = SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Additive);
 
         while (!sceneLoader.isDone)
         {
@@ -50,6 +52,6 @@ public class MenuRoom : MonoBehaviour
             yield return null;
         }
 
-        SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(playSceneIndex));
+        SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(sceneIndex));
     }
 }

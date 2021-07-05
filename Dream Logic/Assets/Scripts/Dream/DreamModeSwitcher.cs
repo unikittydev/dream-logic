@@ -17,10 +17,25 @@ namespace Game.Dream
             { DreamModeFlag.RunCatch,       typeof(RunCatchDream) },
         };
 
+        private Dictionary<DreamModeFlag, string> modeDesc = new Dictionary<DreamModeFlag, string>()
+        {
+            { DreamModeFlag.Blank, "" },
+            { DreamModeFlag.RunAvoid, "Беги и уклоняйся!" },
+            { DreamModeFlag.FallingFloor, "Смотри под ноги!" },
+            { DreamModeFlag.RunCatch, "Беги и лови!" },
+        };
+
+        private DreamModeFlag _currMode;
+
         private void OnDisable()
         {
             if (gameObject.TryGetComponent<DreamMode>(out var mode))
                 Destroy(mode);
+        }
+        
+        public string GetCurrentModeDescription()
+        {
+            return modeDesc[_currMode];
         }
 
         public void SetDefaultMode()
@@ -36,6 +51,8 @@ namespace Game.Dream
 
         private void SetMode(DreamModeFlag flag)
         {
+            _currMode = flag;
+
             if (gameObject.TryGetComponent<DreamMode>(out var mode))
                 Destroy(mode);
 

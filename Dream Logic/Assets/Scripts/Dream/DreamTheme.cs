@@ -25,5 +25,7 @@ namespace Game.Dream
         public VolumeProfile postprocessing;
 
         public DreamModeFlag allowedModes;
+
+        public string description;
     }
 }
