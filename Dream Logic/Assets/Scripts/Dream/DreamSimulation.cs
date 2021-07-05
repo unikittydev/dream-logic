@@ -76,6 +76,7 @@ namespace Game.Dream
             timeCounter = maxTime * difficulty.dreamDurationMultiplier;
             player.tr.position = defaultPlayerPosition;
             score = 0f;
+            difficulty.ResetDifficulty();
         }
 
         public IEnumerator StartNewDreamCycle()

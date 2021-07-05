@@ -42,8 +42,10 @@ namespace Game
 
         private void Update()
         {
-            for (int i = -settings.tileRadius; i <= settings.tileRadius; i++)
-                for (int j = -settings.tileRadius; j <= settings.tileRadius; j++)
+            int tileRadius = Mathf.RoundToInt(settings.tileRadius * DreamSimulation.difficulty.playerSpeedMultiplier);
+
+            for (int i = -tileRadius; i <= tileRadius; i++)
+                for (int j = -tileRadius; j <= tileRadius; j++)
                 {
                     Vector3Int playerTilePos = Vector3Int.RoundToInt(DreamSimulation.player.transform.position / defaultTileSize);
                     Vector3 desiredTilePos = new Vector3(i + playerTilePos.x, 0f, j + playerTilePos.z) * defaultTileSize;
@@ -71,7 +73,7 @@ namespace Game
             {
                 Vector3Int playerTilePos = Vector3Int.RoundToInt(DreamSimulation.player.transform.position / defaultTileSize);
                 Vector3Int floorTilePos = Vector3Int.RoundToInt(floorTiles[k].transform.position / defaultTileSize);
-                if (Mathf.Abs(playerTilePos.x - floorTilePos.x) > settings.tileRadius || Mathf.Abs(playerTilePos.z - floorTilePos.z) > settings.tileRadius)
+                if (Mathf.Abs(playerTilePos.x - floorTilePos.x) > tileRadius || Mathf.Abs(playerTilePos.z - floorTilePos.z) > tileRadius)
                 {
                     floorTiles[k].Despawn(settings.startHeight, settings.smoothTime);
                     floorTiles.RemoveAt(k);

@@ -29,5 +29,10 @@ namespace Game.Dream
             _objectSpeedMultiplier = Mathf.Max(1f, _objectSpeedMultiplier + Random.Range(settings.objectSpeedRise.x, settings.objectSpeedRise.y));
             _dreamDurationMultiplier = Mathf.Max(1f, _dreamDurationMultiplier + Random.Range(settings.dreamDurationRise.x, settings.dreamDurationRise.y));
         }
+
+        public void ResetDifficulty()
+        {
+            _playerSpeedMultiplier = _objectSpawnFrequencyMultiplier = _objectSpeedMultiplier = _dreamDurationMultiplier = 1f;
+        }
     }
 }

@@ -81,20 +81,26 @@ namespace Game.Dream
                 StopCoroutine(themeCoroutine);
             if (modeCoroutine != null)
                 StopCoroutine(modeCoroutine);
-            themeCoroutine = StartCoroutine(DisplayText(theme, themeDesc));
-            modeCoroutine = StartCoroutine(DisplayText(mode, modeDesc));
+            themeCoroutine = StartCoroutine(DisplayDreamDescription(themeDesc, theme));
+            modeCoroutine = StartCoroutine(DisplayDreamDescription(modeDesc, mode));
         }
 
-        private IEnumerator DisplayText(string text, TMP_Text ui)
+        private IEnumerator DisplayDreamDescription(TMP_Text ui, string text)
         {
             ui.SetText(string.Empty);
-            StartCoroutine(FadeUI(ui, true));
+            ui.gameObject.SetActive(true);
+            yield return StartCoroutine(DisplayText(ui, text, addLetterTime));
+            yield return new WaitForSeconds(idleTime);
+            StartCoroutine(FadeUI(ui, false));
+        }
 
+        public static IEnumerator DisplayText(TMP_Text ui, string text, float time)
+        {
             float counter = 0f;
 
             for (int i = 0; i < text.Length; i++)
             {
-                while (counter < addLetterTime)
+                while (counter < time)
                 {
                     counter += Time.deltaTime;
                     yield return null;
@@ -102,8 +108,6 @@ namespace Game.Dream
                 ui.SetText(string.Concat(ui.text, text[i]));
                 counter = 0f;
             }
-            yield return new WaitForSeconds(idleTime);
-            StartCoroutine(FadeUI(ui, false));
         }
 
         public static IEnumerator FadeUI(Behaviour ui, bool enable, float alpha = 1f, float time = .5f)
