@@ -30,6 +30,9 @@ namespace Game.Dream
         [SerializeField]
         private float addLetterTime;
 
+        private Coroutine themeCoroutine;
+        private Coroutine modeCoroutine;
+
         private void Update()
         {
             score.SetText(((int)DreamSimulation.score).ToString());
@@ -42,7 +45,7 @@ namespace Game.Dream
                     Pause();
             }
         }
-        
+
         public void Pause()
         {
             StartCoroutine(FadeUI(pausePanel, true, alpha: .75f));
@@ -53,6 +56,11 @@ namespace Game.Dream
         {
             Time.timeScale = 1f;
             StartCoroutine(FadeUI(pausePanel, false, alpha: .75f));
+        }
+
+        public void Restart()
+        {
+            Time.timeScale = 1f;
             StartCoroutine(FadeUI(lostPanel, false, alpha: .75f));
         }
 
@@ -69,8 +77,12 @@ namespace Game.Dream
 
         public void DisplayDescription(string theme, string mode)
         {
-            StartCoroutine(DisplayText(theme, themeDesc));
-            StartCoroutine(DisplayText(mode, modeDesc));
+            if (themeCoroutine != null)
+                StopCoroutine(themeCoroutine);
+            if (modeCoroutine != null)
+                StopCoroutine(modeCoroutine);
+            themeCoroutine = StartCoroutine(DisplayText(theme, themeDesc));
+            modeCoroutine = StartCoroutine(DisplayText(mode, modeDesc));
         }
 
         private IEnumerator DisplayText(string text, TMP_Text ui)

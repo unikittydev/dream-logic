@@ -70,8 +70,8 @@ namespace Game.Dream
 
         public static void Restart()
         {
+            ui.Restart();
             timeCounter = maxTime * difficulty.dreamDurationMultiplier;
-            ui.Resume();
         }
 
         public IEnumerator StartNewDreamCycle()
