@@ -45,6 +45,8 @@ namespace Game.Dream
             _floorSpawner = FindObjectOfType<FloorSpawner>();
 
             timeCounter = maxTime * difficulty.dreamDurationMultiplier;
+
+            score = 0f;
         }
 
         private void Update()
@@ -72,6 +74,8 @@ namespace Game.Dream
         {
             ui.Restart();
             timeCounter = maxTime * difficulty.dreamDurationMultiplier;
+            player.tr.position = defaultPlayerPosition;
+            score = 0f;
         }
 
         public IEnumerator StartNewDreamCycle()
