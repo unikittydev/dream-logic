@@ -48,6 +48,18 @@ MonoBehaviour:
   rotationSpeed: 90
   jumpStayTime: 3
   jumpHeight: 2
+--- !u!114 &-4134796467902762057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6092788502491561336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7836642552887af46909d5334e9245b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6362608864723648553
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -101,7 +113,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6ba0012488311f549bf15dc7595406f4, type: 3}
       propertyPath: m_Name
-      value: charlie_fly Player
+      value: charlie_fly Player Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ba0012488311f549bf15dc7595406f4, type: 3}

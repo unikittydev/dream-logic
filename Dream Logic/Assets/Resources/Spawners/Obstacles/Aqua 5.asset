@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 065b1c19f1fb5d945a4d00d5d25cd4dd, type: 3}
+  m_Name: Aqua 5
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 7667278775718889682, guid: 0b4baef09a2d5464295fdf1563046c44, type: 3}
+  - {fileID: 5082250794837176522, guid: 6fb87b45aa5895e4aa1a9579a313523b, type: 3}
+  - {fileID: 1888494171449517532, guid: 665ac7638a915684ebc772559be64a2b, type: 3}
+  - {fileID: 8123467774317039764, guid: 4cc35e6ffdeca8740993830d03c0fb6f, type: 3}
+  minDistance: 5
+  maxDistance: 15
+  height: 15
+  createChance: 1
+  frequency: 0.75

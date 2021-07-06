@@ -64,6 +64,18 @@ MonoBehaviour:
   rotationSpeed: 45
   jumpStayTime: 3
   jumpHeight: 5
+--- !u!114 &-2624588768957287712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6828536431081143458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7836642552887af46909d5334e9245b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5909492805497684467
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -117,7 +129,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f1ce0db8854553f4189520aa8aa6573c, type: 3}
       propertyPath: m_Name
-      value: crow Variant
+      value: crow Player Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1ce0db8854553f4189520aa8aa6573c, type: 3}
