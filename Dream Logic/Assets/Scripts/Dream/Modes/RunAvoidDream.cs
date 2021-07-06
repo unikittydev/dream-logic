@@ -29,6 +29,7 @@ namespace Game.Dream
         {
             if (hit.gameObject.CompareTag(GameTags.enemy))
             {
+                AudioManager.instance.Play("hit");
                 DreamSimulation.WakeUp();
             }
         }

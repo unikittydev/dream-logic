@@ -118,6 +118,8 @@ namespace Game
             position.y = floorTiles[k].transform.position.y + (floorTiles[k].transform.lossyScale.y - newTile.transform.lossyScale.y) * .5f;
             newTile.transform.position = position;
             floorTiles[k] = newTile;
+
+            AudioManager.instance.Play("fall");
         }
 
         private FloorTile CreateTile(Vector3 position)

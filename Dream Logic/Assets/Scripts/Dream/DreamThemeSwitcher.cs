@@ -61,6 +61,8 @@ namespace Game.Dream
 
         private void SwitchThemes(DreamTheme newTheme)
         {
+            AudioManager.instance.Play("theme.switch");
+            AudioManager.instance.PlayTheme(newTheme.themeSound);
             _currentTheme = newTheme;
             StartCoroutine(SwitchEffect(1f));
             StartCoroutine(SetSkyColor(newTheme.skyColor, 2f));

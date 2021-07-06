@@ -32,6 +32,10 @@ namespace Game
         public float addLetterTime => _addLetterTime;
 
         [SerializeField]
+        private bool skipGreeting;
+
+
+        [SerializeField]
         private string[] firstGreetingMessages;
 
         [SerializeField]
@@ -41,6 +45,7 @@ namespace Game
 
         private void Awake()
         {
+            seenGreet = skipGreeting;
             if (!seenGreet)
             {
                 buttons = FindObjectsOfType<MenuRoomButton>();

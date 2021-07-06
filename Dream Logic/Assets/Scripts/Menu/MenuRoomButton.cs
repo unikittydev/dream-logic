@@ -38,6 +38,8 @@ namespace Game
 
             roomUI.ShowNavigationText(hintText);
             material.SetFloat(twinkKeyword, twinkSpeed);
+
+            AudioManager.instance.Play("menu.over");
         }
 
         private void OnMouseExit()
@@ -54,6 +56,7 @@ namespace Game
             if (!buttonEnabled)
                 return;
 
+            AudioManager.instance.Play("menu.press");
             onClick.Invoke();
         }
     }

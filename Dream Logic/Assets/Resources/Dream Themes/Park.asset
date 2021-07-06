@@ -28,3 +28,4 @@ MonoBehaviour:
   allowedModes: 14
   description: "\u0412\u044B \u0441\u043E\u0431\u0430\u043A\u0430, \u043C\u0438\u0440\u043D\u043E
     \u0433\u0443\u043B\u044F\u044E\u0449\u0430\u044F \u043F\u043E \u043F\u0430\u0440\u043A\u0443."
+  themeSound: {fileID: 11400000, guid: e26402c16e1d18d4688f426ce598ecf5, type: 2}

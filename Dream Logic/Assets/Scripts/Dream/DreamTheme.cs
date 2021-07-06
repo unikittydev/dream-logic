@@ -27,5 +27,7 @@ namespace Game.Dream
         public DreamModeFlag allowedModes;
 
         public string description;
+
+        public Sound themeSound;
     }
 }

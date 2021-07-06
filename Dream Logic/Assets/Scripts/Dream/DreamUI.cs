@@ -77,7 +77,12 @@ namespace Game.Dream
             if (!PlayerPrefs.HasKey(highScore))
                 PlayerPrefs.SetFloat(highScore, 0f);
             if (DreamSimulation.score > PlayerPrefs.GetFloat(highScore))
+            {
                 PlayerPrefs.SetFloat(highScore, DreamSimulation.score);
+                AudioManager.instance.Play("lost.newRecord");
+            }
+            else
+                AudioManager.instance.Play("lost");
             _highScore.SetText(((int)PlayerPrefs.GetFloat(highScore)).ToString());
             _gameScore.SetText(((int)DreamSimulation.score).ToString());
             Time.timeScale = 0f;

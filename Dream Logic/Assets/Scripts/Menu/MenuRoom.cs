@@ -1,57 +1,70 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class MenuRoom : MonoBehaviour
+namespace Game
 {
-    private const int mainSceneIndex = 0;
-    private const int playSceneIndex = 1;
-
-    private static MenuRoom instance;
-
-    [SerializeField]
-    private float minWaitTime;
-
-    private void Awake()
+    /// <summary>
+    /// Скрипт, отвечающий за смену сцен.
+    /// </summary>
+    public class MenuRoom : MonoBehaviour
     {
-        Time.timeScale = 1f;
-        if (instance == this)
-            Destroy(gameObject);
-        else
-            instance = this;
+        private const int mainSceneIndex = 0;
+        private const int playSceneIndex = 1;
 
-        DontDestroyOnLoad(gameObject);
-    }
+        private static MenuRoom instance;
 
-    public static void StartGame()
-    {
-        instance.StartCoroutine(instance.StartGameCoroutine(playSceneIndex, instance.minWaitTime));
-    }
+        [SerializeField]
+        private float minWaitTime;
 
-    public static void WakeUp()
-    {
-        instance.StartCoroutine(instance.StartGameCoroutine(mainSceneIndex, 0f));
-    }
-
-    private IEnumerator StartGameCoroutine(int sceneIndex, float waitTime)
-    {
-        yield return new WaitForSeconds(waitTime);
-
-        var sceneLoader = SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Additive);
-
-        while (!sceneLoader.isDone)
+        private void Awake()
         {
-            yield return null;
-        }
-        Camera.main.GetComponent<AudioListener>().enabled = false;
+            Time.timeScale = 1f;
+            if (instance == this)
+                Destroy(gameObject);
+            else
+                instance = this;
 
-        var sceneUnloader = SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
-
-        while (!sceneUnloader.isDone)
-        {
-            yield return null;
+            DontDestroyOnLoad(gameObject);
         }
 
-        SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(sceneIndex));
+        public static void StartGame()
+        {
+            instance.StartCoroutine(instance.StartGameCoroutine(playSceneIndex, instance.minWaitTime));
+        }
+
+        public static void WakeUp()
+        {
+            instance.StartCoroutine(instance.StartGameCoroutine(mainSceneIndex, 0f));
+        }
+
+        private IEnumerator StartGameCoroutine(int sceneIndex, float waitTime)
+        {
+            var listener = Camera.main.GetComponent<AudioListener>();
+            FindObjectOfType<EventSystem>().gameObject.SetActive(false);
+            var buttons = FindObjectsOfType<MenuRoomButton>();
+            foreach (var button in buttons)
+                button.buttonEnabled = false;
+
+            yield return new WaitForSeconds(waitTime);
+
+            var sceneLoader = SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Additive);
+
+            while (!sceneLoader.isDone)
+            {
+                yield return null;
+            }
+            listener.enabled = false;
+
+            var sceneUnloader = SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+
+            while (!sceneUnloader.isDone)
+            {
+                yield return null;
+            }
+
+            SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(sceneIndex));
+        }
     }
 }

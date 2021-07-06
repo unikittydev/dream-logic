@@ -31,6 +31,10 @@ namespace Game.Dream
         private static FloorSpawner _floorSpawner;
         public static FloorSpawner floorSpawner => _floorSpawner;
 
+        [SerializeField]
+        private float _voidHeight;
+        private static float voidHeight;
+
         private void Awake()
         {
             player = FindObjectOfType<PlayerController>();
@@ -44,12 +48,19 @@ namespace Game.Dream
 
             _floorSpawner = FindObjectOfType<FloorSpawner>();
 
-            timeCounter = maxTime * difficulty.dreamDurationMultiplier;
+            timeCounter = maxTime * difficulty.dreamDurationMultiplier - Time.deltaTime;
+            voidHeight = _voidHeight;
 
             score = 0f;
         }
 
         private void Update()
+        {
+            Simulate();
+            CheckPlayerPosition();
+        }
+
+        private void Simulate()
         {
             if (timeCounter >= maxTime * difficulty.dreamDurationMultiplier)
             {
@@ -59,6 +70,14 @@ namespace Game.Dream
             else
             {
                 timeCounter += Time.deltaTime;
+            }
+        }
+
+        private void CheckPlayerPosition()
+        {
+            if (player.tr.position.y < voidHeight)
+            {
+                player.Move(defaultPlayerPosition);
             }
         }
 
@@ -74,7 +93,7 @@ namespace Game.Dream
         {
             ui.Restart();
             timeCounter = maxTime * difficulty.dreamDurationMultiplier;
-            player.tr.position = defaultPlayerPosition;
+            player.Move(defaultPlayerPosition);
             score = 0f;
             difficulty.ResetDifficulty();
         }

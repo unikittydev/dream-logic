@@ -56,7 +56,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9acecd11e8acab44ae538104d84b4db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  height: 1
+  height: -1
   riseTime: 1
 --- !u!1001 &4754674777466518352
 PrefabInstance:

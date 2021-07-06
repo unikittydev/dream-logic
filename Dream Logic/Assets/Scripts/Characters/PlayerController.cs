@@ -64,6 +64,8 @@ namespace Game
 
             float startHeight = tr.position.y;
 
+            AudioManager.instance.Play("jump");
+
             // Rise
             while (tr.position.y < startHeight + jumpHeight)
             {
@@ -74,6 +76,13 @@ namespace Game
             yield return new WaitForSeconds(jumpStayTime);
             // Fall
             jumping = false;
+        }
+
+        public void Move(Vector3 position)
+        {
+            cc.enabled = false;
+            tr.position = position;
+            cc.enabled = true;
         }
     }
 }

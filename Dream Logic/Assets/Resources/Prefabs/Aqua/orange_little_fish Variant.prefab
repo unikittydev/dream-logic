@@ -56,8 +56,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9acecd11e8acab44ae538104d84b4db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  height: 1.5
-  riseTime: 0.25
+  height: -1.5
+  riseTime: 0.75
 --- !u!1001 &5352143302856166811
 PrefabInstance:
   m_ObjectHideFlags: 0
