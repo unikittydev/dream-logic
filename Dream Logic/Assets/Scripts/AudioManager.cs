@@ -27,12 +27,14 @@ namespace Game
 
         private void Awake()
         {
-            if (_instance == null)
-                _instance = this;
-            else if (_instance != this)
+            if (instance != this)
             {
-                Destroy(gameObject);
-                return;
+                if (instance != null)
+                {
+                    instance.currentTheme.source.Stop();
+                    Destroy(instance.gameObject);
+                }
+                _instance = this;
             }
 
             currentThemeSource = gameObject.AddComponent<AudioSource>();
@@ -61,11 +63,6 @@ namespace Game
                 Debug.LogWarning($"Sound {name} not found.");
             else
                 settings.source.Play();
-        }
-
-        public void FadeAudio(Sound settings)
-        {
-            StartCoroutine(FadeCoroutine(settings, false, fadeTime));
         }
 
         private IEnumerator FadeCoroutine(Sound settings, bool enabled, float time)

@@ -12,6 +12,7 @@ namespace Game.Dream
         RunAvoid = 2,
         FallingFloor = 4,
         RunCatch = 8,
-        RunAvoidCollect = 16,
+        Idle = 16,
+        Think = 32,
     }
 }

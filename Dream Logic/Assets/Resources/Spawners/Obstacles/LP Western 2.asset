@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 065b1c19f1fb5d945a4d00d5d25cd4dd, type: 3}
-  m_Name: Enemy 2
+  m_Name: LP Western 2
   m_EditorClassIdentifier: 
   prefabs:
-  - {fileID: 7378127139494620608, guid: 6278119168986b1498f801dff180a08d, type: 3}
-  minDistance: 3
-  maxDistance: 10
-  height: 15
-  createChance: 1
-  frequency: 2
+  - {fileID: 5667007515908569049, guid: a61d0fe6da0f91e458fb17f5c4286fcb, type: 3}
+  - {fileID: 8185274567305851164, guid: a203af026c92ae04f9ab601ff86d36b7, type: 3}
+  minDistance: 5
+  maxDistance: 20
+  height: 10
+  createChance: 0.9
+  frequency: 1.5

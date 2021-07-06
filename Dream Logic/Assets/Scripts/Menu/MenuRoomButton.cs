@@ -1,4 +1,3 @@
-using Game.Dream;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -20,6 +19,7 @@ namespace Game
 
         [SerializeField]
         private UnityEvent onClick;
+
         [SerializeField]
         private string hintText;
 

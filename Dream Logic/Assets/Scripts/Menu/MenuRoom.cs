@@ -21,11 +21,14 @@ namespace Game
         private void Awake()
         {
             Time.timeScale = 1f;
-            if (instance == this)
+            if (instance != null)
+            {
                 Destroy(gameObject);
-            else
+            }
+            else if (instance != this)
+            {
                 instance = this;
-
+            }
             DontDestroyOnLoad(gameObject);
         }
 

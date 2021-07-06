@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a6894f9990c0374882b5cbfc36b43e1, type: 3}
-  m_Name: Park
+  m_Name: Park 1
   m_EditorClassIdentifier: 
   floorPrefab:
   - {fileID: 6069777810758981989, guid: f0c7c254b391cfd4ea9b094376ad23d2, type: 3}

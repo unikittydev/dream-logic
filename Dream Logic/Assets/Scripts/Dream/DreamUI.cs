@@ -103,7 +103,7 @@ namespace Game.Dream
             modeCoroutine = StartCoroutine(DisplayDreamDescription(modeDesc, mode));
         }
 
-        private IEnumerator DisplayDreamDescription(TMP_Text ui, string text)
+        public IEnumerator DisplayDreamDescription(TMP_Text ui, string text)
         {
             ui.SetText(string.Empty);
             StartCoroutine(FadeUI(ui, true));

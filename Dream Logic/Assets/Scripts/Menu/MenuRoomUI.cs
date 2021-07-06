@@ -71,6 +71,11 @@ namespace Game
             StartCoroutine(DreamUI.DisplayText(navigationText, hintText, addLetterTime));
         }
 
+        public static void StartGame()
+        {
+            MenuRoom.StartGame();
+        }
+
         private IEnumerator GreetingMessage()
         {
             if (!PlayerPrefs.HasKey(launchedBefore))

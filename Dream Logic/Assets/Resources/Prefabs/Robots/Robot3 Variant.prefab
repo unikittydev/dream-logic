@@ -1,5 +1,21 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!54 &1774449293273586785
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3804108200288052122}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 80
+  m_CollisionDetection: 3
 --- !u!65 &759326427905993720
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13,6 +29,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.6382527, y: 3.351124, z: 3.7252452}
   m_Center: {x: 0, y: 1.6582657, z: 0.40077126}
+--- !u!114 &4935055598687883020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3804108200288052122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea7a4869fae06ba419e58474ef160ba8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forwardMoveSpeed: 5
+  rotationSpeed: 240
+  maxDashDistance: 20
 --- !u!1001 &4038463951331974859
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66,7 +97,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: eca9a4898b393a34d9c2219be6e8f07b, type: 3}
       propertyPath: m_Name
-      value: Robot3
+      value: Robot3 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: eca9a4898b393a34d9c2219be6e8f07b, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eca9a4898b393a34d9c2219be6e8f07b, type: 3}

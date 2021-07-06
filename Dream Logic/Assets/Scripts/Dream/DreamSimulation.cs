@@ -26,7 +26,8 @@ namespace Game.Dream
         private static DreamModeSwitcher modeSwitcher;
         private static DreamDifficulty _difficulty;
         public static DreamDifficulty difficulty => _difficulty;
-        private static DreamUI ui;
+        private static DreamUI _ui;
+        public static DreamUI ui => _ui;
 
         private static FloorSpawner _floorSpawner;
         public static FloorSpawner floorSpawner => _floorSpawner;
@@ -44,7 +45,7 @@ namespace Game.Dream
             themeSwitcher = GetComponent<DreamThemeSwitcher>();
             modeSwitcher = GetComponent<DreamModeSwitcher>();
             _difficulty = GetComponent<DreamDifficulty>();
-            ui = GetComponent<DreamUI>();
+            _ui = GetComponent<DreamUI>();
 
             _floorSpawner = FindObjectOfType<FloorSpawner>();
 

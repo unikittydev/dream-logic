@@ -15,6 +15,8 @@ namespace Game.Dream
             { DreamModeFlag.RunAvoid,       typeof(RunAvoidDream) },
             { DreamModeFlag.FallingFloor,   typeof(FallingFloorDream) },
             { DreamModeFlag.RunCatch,       typeof(RunCatchDream) },
+            { DreamModeFlag.Idle,           typeof(IdleDream) },
+            { DreamModeFlag.Think,          typeof(ThinkingDream) },
         };
 
         private Dictionary<DreamModeFlag, string> modeDesc = new Dictionary<DreamModeFlag, string>()
@@ -23,6 +25,8 @@ namespace Game.Dream
             { DreamModeFlag.RunAvoid, "Беги и уклоняйся!" },
             { DreamModeFlag.FallingFloor, "Смотри под ноги!" },
             { DreamModeFlag.RunCatch, "Беги и лови!" },
+            { DreamModeFlag.Idle, "Здесь нет врагов, и пол не падает. Можно перевести дух" },
+            { DreamModeFlag.Think, "" },
         };
 
         private DreamModeFlag _currMode;

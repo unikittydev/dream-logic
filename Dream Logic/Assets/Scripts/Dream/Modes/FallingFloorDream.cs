@@ -13,12 +13,16 @@ namespace Game.Dream
 
         private float voidHeight = -10f;
 
-        private float replaceTime = 1f;
+        private float avgReplaceTime = .75f;
+        private float replaceTimeOffset = .375f;
+        private float replaceTime;
+
         private float replaceCounter;
 
         private void Awake()
         {
             corruptedTilePrefab = Resources.Load<FloorTile>("Prefabs/Void Tile");
+            replaceTime = avgReplaceTime;
         }
 
         private void Update()
@@ -43,6 +47,7 @@ namespace Game.Dream
             {
                 DreamSimulation.floorSpawner.ReplaceRandomTile(corruptedTilePrefab, false);
                 replaceCounter = 0f;
+                replaceTime = avgReplaceTime + Random.Range(-replaceTimeOffset, replaceTimeOffset);
             }
         }
     }

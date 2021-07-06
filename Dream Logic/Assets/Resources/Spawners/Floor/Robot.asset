@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a6894f9990c0374882b5cbfc36b43e1, type: 3}
+  m_Name: Robot
+  m_EditorClassIdentifier: 
+  floorPrefab:
+  - {fileID: 1790075079859209227, guid: 231a6a99370ee5a48aba8843369e1810, type: 3}
+  - {fileID: 4096603173334383841, guid: 4af8674a91d62d548b3c152e534cdf89, type: 3}
+  weights:
+  - 0.6666667
+  - 0.33333334
+  cumWeights:
+  - 0.6666667
+  - 1
+  tileRadius: 2
+  heightOffset: 0.1
+  startHeight: 100
+  smoothTime: 0.25

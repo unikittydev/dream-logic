@@ -2346,8 +2346,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 792993904}
-        m_TargetAssemblyTypeName: MenuRoom, Assembly-CSharp
+      - m_Target: {fileID: 1382760165}
+        m_TargetAssemblyTypeName: Game.MenuRoomUI, Assembly-CSharp
         m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
@@ -2358,9 +2358,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1257945147}
-        m_TargetAssemblyTypeName: Game.MenuRoomButton, Assembly-CSharp
-        m_MethodName: set_buttonEnabled
+      - m_Target: {fileID: 1883080736}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
