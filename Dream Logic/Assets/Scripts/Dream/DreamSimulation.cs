@@ -39,7 +39,7 @@ namespace Game.Dream
         private void Awake()
         {
             player = FindObjectOfType<PlayerController>();
-            defaultPlayerPosition = player.tr.position;
+            defaultPlayerPosition = player.transform.position;
             _environment = GameObject.FindGameObjectWithTag(GameTags.environment).transform;
 
             themeSwitcher = GetComponent<DreamThemeSwitcher>();

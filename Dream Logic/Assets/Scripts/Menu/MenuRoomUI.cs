@@ -45,7 +45,7 @@ namespace Game
 
         private void Awake()
         {
-            seenGreet = skipGreeting;
+            seenGreet = seenGreet || skipGreeting;
             if (!seenGreet)
             {
                 buttons = FindObjectsOfType<MenuRoomButton>();

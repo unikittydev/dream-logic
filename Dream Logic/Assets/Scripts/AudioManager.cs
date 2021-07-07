@@ -25,8 +25,11 @@ namespace Game
         [SerializeField]
         private Sound[] soundEffects;
 
+        private static bool mute;
+
         private void Awake()
         {
+
             if (instance != this)
             {
                 if (instance != null)
@@ -44,7 +47,31 @@ namespace Game
                 AddAudioSource(sound);
             PlayTheme(menuTheme);
 
+            if (PlayerPrefs.HasKey("mute"))
+            {
+                mute = PlayerPrefs.GetInt("mute") == 1;
+                ToggleMute(mute);
+            }
+
             DontDestroyOnLoad(gameObject);
+        }
+
+        public void ToggleMute()
+        {
+            mute = !mute;
+            ToggleMute(mute);
+        }
+
+        private void ToggleMute(bool mute)
+        {
+            foreach (var sound in soundEffects)
+                sound.source.mute = mute;
+            if (currentThemeSource != null)
+                currentThemeSource.mute = mute;
+            if (nextThemeSource != null)
+                nextThemeSource.mute = mute;
+
+            PlayerPrefs.SetInt("mute", mute ? 1 : 0);
         }
 
         public void PlayTheme(Sound settings)
@@ -62,7 +89,9 @@ namespace Game
             if (settings == null)
                 Debug.LogWarning($"Sound {name} not found.");
             else
+            {
                 settings.source.Play();
+            }
         }
 
         private IEnumerator FadeCoroutine(Sound settings, bool enabled, float time)
@@ -70,7 +99,9 @@ namespace Game
             if (settings == null)
                 yield break;
             if (enabled)
+            {
                 settings.source.Play();
+            }
 
             float counter = 0f;
             float startVolume = enabled ? 0f : settings.source.volume, endVolume = enabled ? settings.maxVolume : 0f;

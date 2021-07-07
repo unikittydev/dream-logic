@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: menu.press
   clip: {fileID: 8300000, guid: dd22fb392b6833c44a893143a1fdbe60, type: 3}
-  maxVolume: 1
+  maxVolume: 0.33333334
   loop: 0
   source: {fileID: 0}

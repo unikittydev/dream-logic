@@ -91,7 +91,7 @@ namespace Game
 
                 floorTiles[k].Despawn(settings.startHeight, settings.smoothTime);
                 var newTile = CreateTile(position);
-                position.y = floorTiles[k].transform.position.y + (floorTiles[k].transform.lossyScale.y - newTile.transform.lossyScale.y) * .5f;
+                position.y += (floorTiles[k].transform.lossyScale.y - newTile.transform.lossyScale.y) * .5f;
                 newTile.transform.position = position;
                 floorTiles[k] = newTile;
             }
