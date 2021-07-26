@@ -2919,7 +2919,7 @@ MonoBehaviour:
   showTime: 2
   pauseTime: 0.5
   _addLetterTime: 0.05
-  skipGreeting: 0
+  skipGreeting: 1
   firstGreetingMessages:
   - "\u041C\u0438\u0440 \u0433\u0440\u0451\u0437 - \u0443\u0434\u0438\u0432\u0438\u0442\u0435\u043B\u044C\u043D\u043E\u0435
     \u043C\u0435\u0441\u0442\u043E!"
