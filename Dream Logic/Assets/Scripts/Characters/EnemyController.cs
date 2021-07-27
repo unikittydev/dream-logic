@@ -37,12 +37,12 @@ namespace Game
             _rb = GetComponent<Rigidbody>();
         }
 
-        private void OnEnable()
+        private void Start()
         {
             dashCoroutine = StartCoroutine(DashMove());
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
             StopCoroutine(dashCoroutine);
         }
@@ -55,7 +55,7 @@ namespace Game
 
         private IEnumerator DashMove()
         {
-            while (true)
+            while (enabled)
             {
                 float desiredAngle = Random.Range(-180f, 180f);
                 rotationInput = Mathf.Sign(Mathf.DeltaAngle(tr.rotation.eulerAngles.y, desiredAngle));

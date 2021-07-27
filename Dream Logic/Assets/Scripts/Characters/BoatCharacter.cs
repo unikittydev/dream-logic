@@ -23,9 +23,9 @@ namespace Game
 
         private void RotatePaddle(Transform paddle, float factor)
         {
-            var rot = paddle.eulerAngles;
+            var rot = paddle.localEulerAngles;
             rot.z += rowingSpeed * factor * Time.deltaTime;
-            paddle.eulerAngles = rot;
+            paddle.localEulerAngles = rot;
         }
     }
 }

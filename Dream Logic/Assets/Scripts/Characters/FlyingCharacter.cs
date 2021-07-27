@@ -22,10 +22,20 @@ namespace Game
         private void Awake()
         {
             model = transform.GetChild(0);
+        }
+
+        private void Start()
+        {
             startHeight = model.localPosition.y;
         }
 
         private void Update()
+        {
+            Fly();
+            UpdateFlyCounter();
+        }
+
+        private void UpdateFlyCounter()
         {
             if (riseCounter > riseTime)
             {
@@ -33,14 +43,16 @@ namespace Game
                 rise = !rise;
             }
 
+            riseCounter += Time.deltaTime;
+        }
+
+        private void Fly()
+        {
             Vector3 pos = model.localPosition;
-            //pos.y = height * Mathf.Sin(Time.time / riseTime + startHeight);
             pos.y = rise ?
                 Mathf.Lerp(startHeight, startHeight + height, riseCounter / riseTime) :
                 Mathf.Lerp(startHeight + height, startHeight, riseCounter / riseTime);
             model.localPosition = pos;
-
-            riseCounter += Time.deltaTime;
         }
     }
 }
