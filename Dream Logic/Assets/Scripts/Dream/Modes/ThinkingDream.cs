@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Game.Dream
 {
     /// <summary>
-    /// 
+    /// Режим случайных мыслей.
     /// </summary>
     public class ThinkingDream : DreamMode
     {

@@ -3636,7 +3636,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ffb415a0787e35c4cbd1377850cc2f9d, type: 2}
+  - {fileID: 2100000, guid: d81cb49b7e5e32e48b03955f92c6e287, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4001,7 +4001,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeTime: 0.5
-  menuTheme: {fileID: 11400000, guid: 9021a700dd26954449f2f7ae41d27e3e, type: 2}
+  menuTheme: {fileID: 0}
   soundEffects:
   - {fileID: 11400000, guid: 2f7908d22b999ac4991046f7725d6a52, type: 2}
   - {fileID: 11400000, guid: 3e7f0e7b9899c9748983b603ae655202, type: 2}

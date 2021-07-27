@@ -180,7 +180,7 @@ namespace Game.Dream
             objectSpawners.Clear();
             for (int i = 0; i < settings.Length; i++)
             {
-                if (settings[i].createChance > Random.value)
+                if (settings[i].spawnerCreateChance > Random.value)
                 {
                     var spawner = Instantiate(objectSpawnerPrefab);
                     objectSpawners.Add(spawner);

@@ -20,9 +20,9 @@ namespace Game
 
         private void Update()
         {
-            counter += Time.deltaTime;
+            counter += Time.deltaTime * DreamSimulation.difficulty.objectSpawnFrequencyMultiplier;
 
-            if (counter * DreamSimulation.difficulty.objectSpawnFrequencyMultiplier >= settings.frequency)
+            if (counter > settings.spawnTime)
             {
                 counter = 0f;
 
