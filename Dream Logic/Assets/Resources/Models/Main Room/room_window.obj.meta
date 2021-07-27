@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: room_windowMat
-    second: {fileID: 2100000, guid: b7b466cedf586dd41a172fedf3b73b78, type: 2}
+    second: {fileID: 2100000, guid: bb286bd51efcad842b4467d5e7f0578a, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
