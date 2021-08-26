@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 941d1afca80379248b7c5f8767d882ca, type: 3}
   m_Name: Theme
   m_EditorClassIdentifier: 
-  style: 0
   floorSpawnerSettings: {fileID: 11400000, guid: 3a9e177ab9bf9aa439c62dc2479f30f9, type: 2}
   skyColor: {r: 0.55695975, g: 0.68872094, b: 0.7924528, a: 0}
   cameraAngle: 20
@@ -23,10 +22,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2961065c4ca458f459e119102b75dc5e, type: 2}
   - {fileID: 11400000, guid: 4e4b0b343e66acb4ab50cdea0035bfb7, type: 2}
   - {fileID: 11400000, guid: ed79b33ac64225747b0c36865b5cf016, type: 2}
-  postprocessing: {fileID: 0}
+  postprocessing: {fileID: 11400000, guid: 56d3a981db4b2fc4e8390fd84c042707, type: 2}
   allowedModes: 14
   description: "\u0413\u043E\u0440\u044F\u0447\u0438\u0439 \u043F\u0435\u0441\u043E\u043A,
     \u043A\u043E\u0439\u043E\u0442\u044B \u0438 \u0433\u043B\u0430\u0432\u043D\u044B\u0439
     \u0433\u0435\u0440\u043E\u0439 \u0432 \u0432\u043E\u043A\u0441\u0435\u043B\u044C\u043D\u044B\u0445
     \u0448\u043B\u044F\u043F\u0435 \u0438 \u0441\u0430\u043F\u043E\u0433\u0430\u0445"
-  themeSound: {fileID: 0}
+  themeSound: {fileID: 11400000, guid: 92db02efc9b3ee346ab4b8ba5cbff464, type: 2}

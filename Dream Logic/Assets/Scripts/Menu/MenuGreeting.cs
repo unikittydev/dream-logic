@@ -6,22 +6,16 @@ using UnityEngine.UI;
 
 namespace Game
 {
-    /// <summary>
-    /// UI главного меню.
-    /// </summary>
-    public class MenuRoomUI : MonoBehaviour
+    public class MenuGreeting : MonoBehaviour
     {
         private const string launchedBefore = "LAUNCHED_BEFORE";
 
         private static bool seenGreet;
 
         [SerializeField]
-        private TMP_Text message;
-        [SerializeField]
         private Image greetPanel;
         [SerializeField]
-        private TMP_Text _navigationText;
-        public TMP_Text navigationText => _navigationText;
+        private TMP_Text message;
 
         [SerializeField]
         private float showTime;
@@ -32,26 +26,19 @@ namespace Game
         public float addLetterTime => _addLetterTime;
 
         [SerializeField]
-        private bool skipGreeting;
-
-
-        [SerializeField]
         private string[] firstGreetingMessages;
 
         [SerializeField]
         private string finalGreetingMessage;
 
-        private MenuRoomButton[] buttons;
+        [SerializeField]
+        private bool skipGreeting;
 
-        private void Awake()
+        private void Start()
         {
             seenGreet = seenGreet || skipGreeting;
             if (!seenGreet)
             {
-                buttons = FindObjectsOfType<MenuRoomButton>();
-
-                foreach (var button in buttons)
-                    button.buttonEnabled = false;
                 greetPanel.gameObject.SetActive(true);
                 StartCoroutine(GreetingMessage());
             }
@@ -59,25 +46,13 @@ namespace Game
             PlayerPrefs.SetInt(launchedBefore, 1);
         }
 
-        public void Quit()
-        {
-            Application.Quit();
-        }
-
-        public void ShowNavigationText(string hintText)
-        {
-            navigationText.gameObject.SetActive(true);
-            StopAllCoroutines();
-            StartCoroutine(DreamUI.DisplayText(navigationText, hintText, addLetterTime));
-        }
-
-        public static void StartGame()
-        {
-            MenuRoom.StartGame();
-        }
-
         private IEnumerator GreetingMessage()
         {
+            MenuRoomButton[] buttons = FindObjectsOfType<MenuRoomButton>();
+
+            foreach (var button in buttons)
+                button.enabled = false;
+
             if (!PlayerPrefs.HasKey(launchedBefore))
                 for (int i = 0; i < firstGreetingMessages.Length; i++)
                 {
@@ -98,7 +73,7 @@ namespace Game
             yield return StartCoroutine(DreamUI.FadeUI(greetPanel, false, 0f, showTime * 2f));
 
             foreach (var button in buttons)
-                button.buttonEnabled = true;
+                button.enabled = true;
         }
     }
 }

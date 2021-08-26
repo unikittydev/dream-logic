@@ -9,6 +9,8 @@ namespace Game
     /// </summary>
     public class PlayerController : MonoBehaviour
     {
+        private PlayerInput input;
+
         private Transform _tr;
         public Transform tr => _tr;
 
@@ -30,27 +32,37 @@ namespace Game
         [SerializeField]
         private float jumpHeight;
 
-        private bool jumping;
-
         private void Awake()
         {
             _tr = transform;
             _cc = GetComponent<CharacterController>();
+
+            input = new PlayerInput();
+            input.Player.Rotate.performed += ctx => rotationInput = ctx.ReadValue<float>();
+            input.Player.Jump.performed += ctx =>
+            {
+                if (cc.isGrounded && jumpHeight > 0f)
+                {
+                    StartCoroutine(Jump());
+                }
+            };
+        }
+
+        private void OnEnable()
+        {
+            input.Enable();
+        }
+
+        private void OnDisable()
+        {
+            input.Disable();
         }
 
         private void Update()
         {
-            rotationInput = Input.GetAxisRaw("Horizontal");
-
-            Vector3 motion = (tr.forward * forwardMoveSpeed * DreamSimulation.difficulty.playerSpeedMultiplier + (jumping ? Vector3.zero : Physics.gravity)) * Time.deltaTime;
+            Vector3 motion = (tr.forward * forwardMoveSpeed * DreamSimulation.difficulty.playerSpeedMultiplier + (!cc.isGrounded ? Vector3.zero : Physics.gravity)) * Time.deltaTime;
             cc.Move(motion);
-
             tr.Rotate(tr.up, rotationSpeed * rotationInput * DreamSimulation.difficulty.playerSpeedMultiplier * Time.deltaTime);
-
-            if (!jumping && cc.isGrounded && Input.GetKeyDown(KeyCode.Space) && jumpHeight > 0f)
-            {
-                StartCoroutine(Jump());
-            }
         }
 
         private void OnControllerColliderHit(ControllerColliderHit hit)
@@ -60,8 +72,6 @@ namespace Game
 
         private IEnumerator Jump()
         {
-            jumping = true;
-
             float startHeight = tr.position.y;
 
             AudioManager.instance.Play("jump");
@@ -74,11 +84,9 @@ namespace Game
             }
             // Stay
             yield return new WaitForSeconds(jumpStayTime);
-            // Fall
-            jumping = false;
         }
 
-        public void Move(Vector3 position)
+        public void InstantMove(Vector3 position)
         {
             cc.enabled = false;
             tr.position = position;

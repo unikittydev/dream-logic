@@ -48,7 +48,7 @@ namespace Game
             FindObjectOfType<EventSystem>().gameObject.SetActive(false);
             var buttons = FindObjectsOfType<MenuRoomButton>();
             foreach (var button in buttons)
-                button.buttonEnabled = false;
+                button.enabled = false;
 
             yield return new WaitForSeconds(waitTime);
 

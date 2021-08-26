@@ -78,7 +78,7 @@ namespace Game.Dream
         {
             if (player.tr.position.y < voidHeight)
             {
-                player.Move(defaultPlayerPosition);
+                player.InstantMove(defaultPlayerPosition);
             }
         }
 
@@ -94,7 +94,7 @@ namespace Game.Dream
         {
             ui.Restart();
             timeCounter = maxTime * difficulty.dreamDurationMultiplier;
-            player.Move(defaultPlayerPosition);
+            player.InstantMove(defaultPlayerPosition);
             score = 0f;
             difficulty.ResetDifficulty();
         }

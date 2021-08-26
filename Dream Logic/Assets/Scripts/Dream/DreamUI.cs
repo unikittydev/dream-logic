@@ -43,13 +43,13 @@ namespace Game.Dream
         {
             score.SetText(((int)DreamSimulation.score).ToString());
 
-            if (Input.GetKeyDown(KeyCode.Escape) && !lostPanel.gameObject.activeSelf)
+            /*if (Input.GetKeyDown(KeyCode.Escape) && !lostPanel.gameObject.activeSelf)
             {
                 if (Time.timeScale < 1f)
                     Resume();
                 else
                     Pause();
-            }
+            }*/
         }
 
         public void Pause()

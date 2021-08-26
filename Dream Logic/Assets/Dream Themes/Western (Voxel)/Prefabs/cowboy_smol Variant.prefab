@@ -48,18 +48,6 @@ MonoBehaviour:
   rotationSpeed: 90
   jumpStayTime: 0.5
   jumpHeight: 2
---- !u!114 &6173737926925923637
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5590471826003730166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7836642552887af46909d5334e9245b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &4707441732185564071
 PrefabInstance:
   m_ObjectHideFlags: 0

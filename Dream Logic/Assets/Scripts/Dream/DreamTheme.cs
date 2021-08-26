@@ -9,8 +9,6 @@ namespace Game.Dream
     [CreateAssetMenu(fileName = "New Dream Theme", menuName = "Dream/Theme")]
     public class DreamTheme : ScriptableObject
     {
-        public DreamStyle style;
-
         public FloorSpawnerSettings floorSpawnerSettings;
 
         public Color skyColor;

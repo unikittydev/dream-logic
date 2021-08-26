@@ -43,19 +43,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forwardMoveSpeed: 3
   rotationSpeed: 60
-  maxDashDistance: 7
---- !u!114 &-2412225943324151387
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 670867351924221419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7836642552887af46909d5334e9245b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &400274582773471418
 PrefabInstance:
   m_ObjectHideFlags: 0

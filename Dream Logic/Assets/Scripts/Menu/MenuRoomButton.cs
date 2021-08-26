@@ -1,59 +1,48 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 namespace Game
 {
     /// <summary>
     /// Ёлемент главного меню
     /// </summary>
-    public class MenuRoomButton : MonoBehaviour
+    public class MenuRoomButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
     {
-        private static MenuRoomUI roomUI;
-        
         private const float twinkSpeed = .25f;
-        private const string twinkKeyword = "Twink_Speed";
-
-        public bool buttonEnabled { get; set; } = true;
+        private static int twinkID = Shader.PropertyToID("Twink_Speed");
 
         private Material material;
 
         [SerializeField]
         private UnityEvent onClick;
 
-        [SerializeField]
-        private string hintText;
-
         private void Awake()
         {
-            if (roomUI == null)
-                roomUI = FindObjectOfType<MenuRoomUI>();
-
             material = GetComponentInChildren<Renderer>().material;
         }
 
-        private void OnMouseEnter()
+        public void OnPointerEnter(PointerEventData eventData)
         {
-            if (!buttonEnabled)
+            if (!enabled)
                 return;
 
-            roomUI.ShowNavigationText(hintText);
-            material.SetFloat(twinkKeyword, twinkSpeed);
+            material.SetFloat(twinkID, twinkSpeed);
 
             AudioManager.instance.Play("menu.over");
         }
 
-        private void OnMouseExit()
+        public void OnPointerExit(PointerEventData eventData)
         {
-            if (!buttonEnabled)
+            if (!enabled)
                 return;
 
-            roomUI.navigationText.gameObject.SetActive(false);
-            material.SetFloat(twinkKeyword, 0f);
+            material.SetFloat(twinkID, 0f);
         }
 
-        private void OnMouseDown()
+        public void OnPointerDown(PointerEventData eventData)
         {
-            if (!buttonEnabled)
+            if (!enabled)
                 return;
 
             AudioManager.instance.Play("menu.press");

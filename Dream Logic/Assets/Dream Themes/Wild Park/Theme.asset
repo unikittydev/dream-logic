@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 941d1afca80379248b7c5f8767d882ca, type: 3}
   m_Name: Theme
   m_EditorClassIdentifier: 
-  style: 0
-  floorSpawnerSettings: {fileID: 0}
+  floorSpawnerSettings: {fileID: 11400000, guid: 005279a2b7f940c4ab7d8d89f572923b, type: 2}
   skyColor: {r: 0.16470589, g: 0.5568628, b: 0.4902086, a: 0}
   cameraAngle: 45
   cameraDistance: 30
@@ -21,9 +20,9 @@ MonoBehaviour:
   objectSpawnerSettings:
   - {fileID: 11400000, guid: 10a2a3a86b6e12b439952cee8da21436, type: 2}
   - {fileID: 11400000, guid: 0cae21b169f56b74d861581fa3f2a124, type: 2}
-  postprocessing: {fileID: 0}
+  postprocessing: {fileID: 11400000, guid: 8e3ac9cdcd09c8f4496d9062fa1d0d2c, type: 2}
   allowedModes: 52
   description: "\u041A\u0430\u043A\u043E\u0439 \u0432\u0430\u0448 \u043B\u044E\u0431\u0438\u043C\u044B\u0439
     \"\u0433\u0430\u0432\"? \u0410\u0432, \u0442\u044F\u0432, \u0432\u0443\u0444,
     \u0433\u0430\u0432?"
-  themeSound: {fileID: 0}
+  themeSound: {fileID: 11400000, guid: d557db446ddc3384d96e985ffd20659f, type: 2}

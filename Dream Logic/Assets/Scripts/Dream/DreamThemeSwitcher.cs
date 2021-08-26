@@ -2,6 +2,7 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.Rendering;
 
 namespace Game.Dream
@@ -11,7 +12,7 @@ namespace Game.Dream
     /// </summary>
     public class DreamThemeSwitcher : MonoBehaviour
     {
-        private const string themesPath = "Dream Themes/";
+        private const string themesLabel = "Dream Theme";
 
         [SerializeField]
         private DreamTheme defaultTheme;
@@ -42,7 +43,11 @@ namespace Game.Dream
 
         private void Awake()
         {
-            allThemes = Resources.LoadAll<DreamTheme>(themesPath);
+            Addressables.LoadAssetsAsync<DreamTheme>(themesLabel, null).Completed += objects =>
+            {
+                Debug.Log(objects.Result.Count);
+                allThemes = objects.Result as DreamTheme[];
+            };
 
             objectSpawners = new List<ObjectSpawner>(FindObjectsOfType<ObjectSpawner>());
 
