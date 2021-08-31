@@ -86,7 +86,7 @@ namespace Game
                     ""name"": """",
                     ""id"": ""ecff8ad3-462c-4e5b-9ce7-34cff3074c81"",
                     ""path"": ""<Touchscreen>/primaryTouch/tap"",
-                    ""interactions"": ""MultiTap"",
+                    ""interactions"": ""MultiTap(tapCount=1)"",
                     ""processors"": """",
                     ""groups"": ""Input"",
                     ""action"": ""Jump"",
