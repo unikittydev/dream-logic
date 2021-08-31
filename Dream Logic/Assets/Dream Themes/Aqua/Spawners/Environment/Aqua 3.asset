@@ -19,6 +19,6 @@ MonoBehaviour:
   - {fileID: 3148210598621703219, guid: 12b3a423f64b6054daae8515b75a5e45, type: 3}
   minDistance: 7
   maxDistance: 20
-  height: 0
-  createChance: 0.33333334
-  frequency: 2
+  height: 10
+  spawnerCreateChance: 0.7
+  spawnTime: 2

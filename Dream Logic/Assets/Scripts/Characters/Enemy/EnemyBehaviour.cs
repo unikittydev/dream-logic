@@ -9,7 +9,7 @@ namespace Game
     {
         protected EnemyController ec;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             ec = GetComponent<EnemyController>();
         }

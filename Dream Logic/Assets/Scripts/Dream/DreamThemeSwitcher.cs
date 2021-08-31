@@ -43,11 +43,14 @@ namespace Game.Dream
 
         private void Awake()
         {
-            Addressables.LoadAssetsAsync<DreamTheme>(themesLabel, null).Completed += objects =>
+            var handle = Addressables.LoadAssetsAsync<DreamTheme>(themesLabel, null);
+            handle.WaitForCompletion();
+            handle.Completed += objects =>
             {
-                Debug.Log(objects.Result.Count);
-                allThemes = objects.Result as DreamTheme[];
+                allThemes = new DreamTheme[objects.Result.Count];
+                objects.Result.CopyTo(allThemes, 0);
             };
+
 
             objectSpawners = new List<ObjectSpawner>(FindObjectsOfType<ObjectSpawner>());
 

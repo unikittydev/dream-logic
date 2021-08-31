@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Plain
   m_EditorClassIdentifier: 
   floorPrefab:
-  - {fileID: 8611359788250657278, guid: 22d503917a41f0e469a88dc58a884e05, type: 3}
+  - {fileID: 6069777810758981989, guid: 455b697eff1738a409533e3071f3f826, type: 3}
   weights:
   - 1
-  cumWeights: []
+  cumWeights:
+  - 1
   tileRadius: 1
   heightOffset: 0.1
   startHeight: -30

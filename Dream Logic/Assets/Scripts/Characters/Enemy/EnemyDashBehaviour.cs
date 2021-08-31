@@ -15,8 +15,10 @@ namespace Game
         [SerializeField]
         private float maxDashDistance;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+
             tr = transform;
         }
 

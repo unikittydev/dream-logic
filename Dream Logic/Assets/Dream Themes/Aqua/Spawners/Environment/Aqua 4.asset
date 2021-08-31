@@ -17,8 +17,8 @@ MonoBehaviour:
   - {fileID: 5082250794837176522, guid: 6fb87b45aa5895e4aa1a9579a313523b, type: 3}
   - {fileID: 1888494171449517532, guid: 665ac7638a915684ebc772559be64a2b, type: 3}
   - {fileID: 8123467774317039764, guid: 4cc35e6ffdeca8740993830d03c0fb6f, type: 3}
-  minDistance: 0
+  minDistance: 5
   maxDistance: 20
-  height: 15
-  createChance: 0.8
-  frequency: 2
+  height: 0
+  spawnerCreateChance: 0.9
+  spawnTime: 1

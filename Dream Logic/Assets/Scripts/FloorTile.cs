@@ -14,18 +14,20 @@ namespace Game
         [SerializeField]
         private Transform model;
 
+        public float tileHeight => model.localScale.y;
+
         private void Awake()
         {
             tr = transform;
         }
 
-        public void Spawn(float height, float offset, float time)
+        public void Spawn(float offset, float time)
         {
             Vector3 pos = model.position;
             pos.y += offset;
             model.position = pos;
 
-            StartCoroutine(Move(height, time, false));
+            StartCoroutine(Move(-tileHeight * .5f, time, false));
         }
 
         public void Despawn(float height, float time)

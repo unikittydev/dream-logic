@@ -104,7 +104,8 @@ namespace Game
 
                 floorTiles[k].Despawn(settings.startHeight, settings.smoothTime);
                 var newTile = CreateTile(position);
-                position.y += (floorTiles[k].transform.lossyScale.y - newTile.transform.lossyScale.y) * .5f;
+                
+                position.y += (floorTiles[k].tileHeight - newTile.tileHeight) * .5f;
                 newTile.transform.position = position;
                 floorTiles[k] = newTile;
             }
@@ -128,7 +129,7 @@ namespace Game
 
             floorTiles[k].Despawn(settings.startHeight, settings.smoothTime);
             var newTile = CreateTile(position, prefab);
-            position.y = floorTiles[k].transform.position.y + (floorTiles[k].transform.lossyScale.y - newTile.transform.lossyScale.y) * .5f;
+            position.y = floorTiles[k].transform.position.y + (floorTiles[k].tileHeight - newTile.tileHeight) * .5f;
             newTile.transform.position = position;
             floorTiles[k] = newTile;
 
@@ -144,7 +145,7 @@ namespace Game
         private FloorTile CreateTile(Vector3 position, FloorTile prefab)
         {
             FloorTile newTile = Instantiate(prefab, position, Quaternion.identity, tr);
-            newTile.Spawn(prefab.transform.lossyScale.y * -.5f, Random.Range(-settings.heightOffset, settings.heightOffset), settings.smoothTime);
+            newTile.Spawn(Random.Range(-settings.heightOffset, settings.heightOffset), settings.smoothTime);
 
             return newTile;
         }

@@ -18,5 +18,5 @@ MonoBehaviour:
   minDistance: 10
   maxDistance: 20
   height: 30
-  createChance: 0.8
-  frequency: 1
+  spawnerCreateChance: 0.7
+  spawnTime: 2

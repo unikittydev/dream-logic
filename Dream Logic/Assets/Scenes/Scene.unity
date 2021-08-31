@@ -1038,7 +1038,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d096b576874ea64e831cde869b784a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultTheme: {fileID: 0}
+  defaultTheme: {fileID: 11400000, guid: 07e7a35e8bcb3f741a9939f390825a58, type: 2}
   currentVirtualCamera: {fileID: 845783663}
   nextVirtualCamera: {fileID: 1453703941}
   currentVolume: {fileID: 714233205}
@@ -1819,7 +1819,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc925557538a15741b0e64f2cbab8cbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings: {fileID: 0}
+  settings: {fileID: 11400000, guid: dcbc23d7c6933384598e3e5b9b2426ce, type: 2}
 --- !u!4 &1104563716
 Transform:
   m_ObjectHideFlags: 0

@@ -32,6 +32,8 @@ namespace Game
         [SerializeField]
         private float jumpHeight;
 
+        private bool jumping;
+
         private void Awake()
         {
             _tr = transform;
@@ -39,9 +41,11 @@ namespace Game
 
             input = new PlayerInput();
             input.Player.Rotate.performed += ctx => rotationInput = ctx.ReadValue<float>();
+            input.Player.Rotate.canceled += _ => rotationInput = 0f;
+
             input.Player.Jump.performed += ctx =>
             {
-                if (cc.isGrounded && jumpHeight > 0f)
+                if (!jumping && jumpHeight > 0f)
                 {
                     StartCoroutine(Jump());
                 }
@@ -60,7 +64,7 @@ namespace Game
 
         private void Update()
         {
-            Vector3 motion = (tr.forward * forwardMoveSpeed * DreamSimulation.difficulty.playerSpeedMultiplier + (!cc.isGrounded ? Vector3.zero : Physics.gravity)) * Time.deltaTime;
+            Vector3 motion = (tr.forward * forwardMoveSpeed * DreamSimulation.difficulty.playerSpeedMultiplier + (jumping ? Vector3.zero : Physics.gravity)) * Time.deltaTime;
             cc.Move(motion);
             tr.Rotate(tr.up, rotationSpeed * rotationInput * DreamSimulation.difficulty.playerSpeedMultiplier * Time.deltaTime);
         }
@@ -72,6 +76,8 @@ namespace Game
 
         private IEnumerator Jump()
         {
+            jumping = true;
+
             float startHeight = tr.position.y;
 
             AudioManager.instance.Play("jump");
@@ -84,6 +90,8 @@ namespace Game
             }
             // Stay
             yield return new WaitForSeconds(jumpStayTime);
+            // Fall
+            jumping = false;
         }
 
         public void InstantMove(Vector3 position)
