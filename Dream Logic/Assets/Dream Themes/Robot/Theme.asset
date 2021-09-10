@@ -24,3 +24,4 @@ MonoBehaviour:
   allowedModes: 30
   description: 01101000 11001010 10010100 11110010 01011011...
   themeSound: {fileID: 11400000, guid: 2f5116ae30439e047b567654c85ea8bc, type: 2}
+  minMaxEnemyCost: {x: 3, y: 6}

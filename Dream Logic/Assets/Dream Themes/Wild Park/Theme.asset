@@ -26,3 +26,4 @@ MonoBehaviour:
     \"\u0433\u0430\u0432\"? \u0410\u0432, \u0442\u044F\u0432, \u0432\u0443\u0444,
     \u0433\u0430\u0432?"
   themeSound: {fileID: 11400000, guid: d557db446ddc3384d96e985ffd20659f, type: 2}
+  minMaxEnemyCost: {x: 2, y: 3}

@@ -29,8 +29,8 @@ namespace Game
 
         private void FixedUpdate()
         {
-            rb.MovePosition(tr.position + tr.forward * forwardMoveSpeed * forwardInput * DreamSimulation.difficulty.objectSpeedMultiplier * Time.fixedDeltaTime);
-            rb.MoveRotation(tr.rotation * Quaternion.AngleAxis(rotationSpeed * rotationInput * DreamSimulation.difficulty.objectSpeedMultiplier * Time.fixedDeltaTime, tr.up));
+            rb.MovePosition(tr.position + tr.forward * forwardMoveSpeed * forwardInput * DreamGame.difficulty.objectSpeedMultiplier * Time.fixedDeltaTime);
+            rb.MoveRotation(tr.rotation * Quaternion.AngleAxis(rotationSpeed * rotationInput * DreamGame.difficulty.objectSpeedMultiplier * Time.fixedDeltaTime, tr.up));
         }
     }
 }

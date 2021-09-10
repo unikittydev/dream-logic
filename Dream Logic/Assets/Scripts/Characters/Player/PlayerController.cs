@@ -45,11 +45,13 @@ namespace Game
 
             input.Player.Jump.performed += ctx =>
             {
-                if (!jumping && jumpHeight > 0f)
+                if (cc.isGrounded && !jumping && jumpHeight > 0f)
                 {
                     StartCoroutine(Jump());
                 }
             };
+
+            input.Player.Pause.performed += _ => DreamGame.gameUI.TogglePause();
         }
 
         private void OnEnable()
@@ -64,14 +66,14 @@ namespace Game
 
         private void Update()
         {
-            Vector3 motion = (tr.forward * forwardMoveSpeed * DreamSimulation.difficulty.playerSpeedMultiplier + (jumping ? Vector3.zero : Physics.gravity)) * Time.deltaTime;
+            Vector3 motion = (tr.forward * forwardMoveSpeed * DreamGame.difficulty.playerSpeedMultiplier + (jumping ? Vector3.zero : Physics.gravity)) * Time.deltaTime;
             cc.Move(motion);
-            tr.Rotate(tr.up, rotationSpeed * rotationInput * DreamSimulation.difficulty.playerSpeedMultiplier * Time.deltaTime);
+            tr.Rotate(tr.up, rotationSpeed * rotationInput * DreamGame.difficulty.playerSpeedMultiplier * Time.deltaTime);
         }
 
         private void OnControllerColliderHit(ControllerColliderHit hit)
         {
-            DreamSimulation.onPlayerHit.Invoke(this, hit);
+            EventManager.OnPlayerHit.Invoke(this, new PlayerHitData() { hit = hit });
         }
 
         private IEnumerator Jump()

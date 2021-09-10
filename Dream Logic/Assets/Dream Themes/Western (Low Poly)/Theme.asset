@@ -27,3 +27,4 @@ MonoBehaviour:
     \u043E\u043D \u0432\u043E\u043E\u0431\u0440\u0430\u0437\u0438\u043B \u0441\u0435\u0431\u0435
     \u043B\u043E\u0443-\u043F\u043E\u043B\u0438 \u043F\u0443\u0441\u0442\u044B\u043D\u044E..."
   themeSound: {fileID: 11400000, guid: 92db02efc9b3ee346ab4b8ba5cbff464, type: 2}
+  minMaxEnemyCost: {x: 1, y: 3}

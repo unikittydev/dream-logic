@@ -8,13 +8,14 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Floor 2
-  m_Shader: {fileID: -6465566751694194690, guid: a09aa961c4b1f154fb8a6b896ddf49a9, type: 3}
+  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
+  m_CustomRenderQueue: 2000
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -108,7 +109,7 @@ Material:
     - First_Color: {r: 0.8584906, g: 0.8287819, b: 0.5385814, a: 0}
     - Resolution: {r: 1, g: 3, b: 0, a: 0}
     - Second_Color: {r: 0.85882354, g: 0.74445134, b: 0.5372549, a: 0}
-    - _BaseColor: {r: 0.10586506, g: 0.3679245, b: 0.18463159, a: 1}
+    - _BaseColor: {r: 0.764151, g: 0.6532471, b: 0.45056072, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}

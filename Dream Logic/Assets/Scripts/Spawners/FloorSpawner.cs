@@ -1,5 +1,6 @@
 using Game.Dream;
 using System.Collections.Generic;
+using Unity.Profiling;
 using UnityEngine;
 
 namespace Game
@@ -9,13 +10,16 @@ namespace Game
     /// </summary>
     public class FloorSpawner : MonoBehaviour
     {
-        private const float defaultTileSize = 8f;
+        public const float defaultTileSize = 8f;
 
         private Transform tr;
         private List<FloorTile> floorTiles;
 
         [SerializeField]
         private FloorSpawnerSettings settings;
+
+        private static ProfilerMarker spawn = new ProfilerMarker("SpawnCloseTiles");
+        private static ProfilerMarker despawn = new ProfilerMarker("DespawnFarTiles");
 
         private void Awake()
         {
@@ -42,7 +46,7 @@ namespace Game
 
         private void Update()
         {
-            int tileRadius = Mathf.RoundToInt(settings.tileRadius * DreamSimulation.difficulty.playerSpeedMultiplier);
+            int tileRadius = Mathf.RoundToInt(settings.tileRadius * DreamGame.difficulty.playerSpeedMultiplier);
 
             SpawnCloseTiles(tileRadius);
             DespawnFarTiles(tileRadius);
@@ -50,48 +54,49 @@ namespace Game
 
         private void SpawnCloseTiles(int tileRadius)
         {
+            spawn.Begin();
+            Vector3Int playerTilePos = Vector3Int.RoundToInt(DreamGame.player.tr.position / defaultTileSize);
+            playerTilePos.y = 0;
+
             for (int i = -tileRadius; i <= tileRadius; i++)
                 for (int j = -tileRadius; j <= tileRadius; j++)
                 {
-                    Vector3Int playerTilePos = Vector3Int.RoundToInt(DreamSimulation.player.transform.position / defaultTileSize);
-                    Vector3 desiredTilePos = new Vector3(i + playerTilePos.x, 0f, j + playerTilePos.z) * defaultTileSize;
+                    Vector3Int desiredTilePos = playerTilePos + new Vector3Int(i, 0, j);
 
                     if (!TryFindTile(desiredTilePos))
                     {
                         var newTile = CreateTile(desiredTilePos);
-                        desiredTilePos.y = settings.startHeight;
-                        newTile.transform.position = desiredTilePos;
                         floorTiles.Add(newTile);
+                        Debug.DrawLine(DreamGame.player.tr.position, newTile.transform.position, Color.red, 2f);
                     }
                 }
+            spawn.End();
         }
 
-        private bool TryFindTile(Vector3 position)
+        private bool TryFindTile(Vector3Int position)
         {
             for (int k = 0; k < floorTiles.Count; k++)
-            {
-                Vector3 planePos = floorTiles[k].transform.position;
-                planePos.y = 0f;
-                if (Mathf.Approximately((position - planePos).sqrMagnitude, 0f))
-                {
+                if (floorTiles[k].tilePosition == position)
                     return true;
-                }
-            }
             return false;
         }
 
         private void DespawnFarTiles(int tileRadius)
         {
+            despawn.Begin();
+            Vector3Int playerTilePos = Vector3Int.RoundToInt(DreamGame.player.tr.position / defaultTileSize);
+            playerTilePos.y = 0;
+
             for (int k = 0; k < floorTiles.Count; k++)
             {
-                Vector3Int playerTilePos = Vector3Int.RoundToInt(DreamSimulation.player.transform.position / defaultTileSize);
-                Vector3Int floorTilePos = Vector3Int.RoundToInt(floorTiles[k].transform.position / defaultTileSize);
+                Vector3Int floorTilePos = floorTiles[k].tilePosition;
                 if (Mathf.Abs(playerTilePos.x - floorTilePos.x) > tileRadius || Mathf.Abs(playerTilePos.z - floorTilePos.z) > tileRadius)
                 {
                     floorTiles[k].Despawn(settings.startHeight, settings.smoothTime);
                     floorTiles.RemoveAt(k);
                 }
             }
+            despawn.End();
         }
 
         public void Refresh(FloorSpawnerSettings newSettings)
@@ -100,20 +105,13 @@ namespace Game
             SetupWeights();
             for (int k = 0; k < floorTiles.Count; k++)
             {
-                Vector3 position = floorTiles[k].transform.position;
-
-                floorTiles[k].Despawn(settings.startHeight, settings.smoothTime);
-                var newTile = CreateTile(position);
-                
-                position.y += (floorTiles[k].tileHeight - newTile.tileHeight) * .5f;
-                newTile.transform.position = position;
-                floorTiles[k] = newTile;
+                ReplaceTile(k);
             }
         }
 
         public void ReplaceRandomTile(FloorTile prefab, bool includePlayerTile = false)
         {
-            Vector3Int playerTilePos = Vector3Int.RoundToInt(DreamSimulation.player.transform.position / defaultTileSize);
+            Vector3Int playerTilePos = Vector3Int.RoundToInt(DreamGame.player.tr.position / defaultTileSize);
             playerTilePos.y = 0;
             Vector3Int floorTilePos;
             int k;
@@ -121,33 +119,45 @@ namespace Game
             do
             {
                 k = Random.Range(0, floorTiles.Count);
-                floorTilePos = Vector3Int.RoundToInt(floorTiles[k].transform.position / defaultTileSize);
+                floorTilePos = floorTiles[k].tilePosition;
             }
             while (!includePlayerTile && floorTilePos == playerTilePos);
 
-            Vector3 position = floorTiles[k].transform.position;
-
-            floorTiles[k].Despawn(settings.startHeight, settings.smoothTime);
-            var newTile = CreateTile(position, prefab);
-            position.y = floorTiles[k].transform.position.y + (floorTiles[k].tileHeight - newTile.tileHeight) * .5f;
-            newTile.transform.position = position;
-            floorTiles[k] = newTile;
+            ReplaceTile(k, prefab);
 
             AudioManager.instance.Play("fall");
         }
 
-        private FloorTile CreateTile(Vector3 position)
+        private FloorTile CreateTile(Vector3Int position)
         {
             var floorPrefab = GetRandomPrefab();
             return CreateTile(position, floorPrefab);
         }
 
-        private FloorTile CreateTile(Vector3 position, FloorTile prefab)
+        private FloorTile CreateTile(Vector3Int position, FloorTile prefab)
         {
-            FloorTile newTile = Instantiate(prefab, position, Quaternion.identity, tr);
+            FloorTile newTile = Instantiate(prefab, new Vector3(defaultTileSize * position.x, settings.startHeight, defaultTileSize * position.z), Quaternion.identity, tr);
             newTile.Spawn(Random.Range(-settings.heightOffset, settings.heightOffset), settings.smoothTime);
 
             return newTile;
+        }
+
+        private void ReplaceTile(int oldIndex)
+        {
+            var floorPrefab = GetRandomPrefab();
+            ReplaceTile(oldIndex, floorPrefab);
+        }
+
+        private void ReplaceTile(int oldIndex, FloorTile newPrefab)
+        {
+            floorTiles[oldIndex].Despawn(settings.startHeight, settings.smoothTime);
+            var newTile = CreateTile(floorTiles[oldIndex].tilePosition, newPrefab);
+
+            Vector3 position = floorTiles[oldIndex].transform.position;
+            position.y += (floorTiles[oldIndex].tileHeight - newTile.tileHeight) * .5f;
+            newTile.transform.position = position;
+
+            floorTiles[oldIndex] = newTile;
         }
 
         private FloorTile GetRandomPrefab()

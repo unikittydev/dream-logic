@@ -35,6 +35,14 @@ namespace Game
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""9d5b7cd0-8297-44bb-a0be-984597a372b4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -72,6 +80,39 @@ namespace Game
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""Touchscreen"",
+                    ""id"": ""ab6d0b1a-b11c-4103-b722-3326b564131f"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""9dc6b2f0-ff65-4163-b26f-94840807fdd6"",
+                    ""path"": ""<AndroidGamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""45d96f83-5692-4296-bd46-06fb7003b186"",
+                    ""path"": ""<AndroidGamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""3c37fd46-85a7-4c40-9f56-92fa2d0ce9b3"",
                     ""path"": ""<Keyboard>/space"",
@@ -84,12 +125,23 @@ namespace Game
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ecff8ad3-462c-4e5b-9ce7-34cff3074c81"",
+                    ""id"": ""1db6bd75-0237-4725-ac69-4df750fb5097"",
                     ""path"": ""<Touchscreen>/primaryTouch/tap"",
                     ""interactions"": ""MultiTap(tapCount=1)"",
                     ""processors"": """",
                     ""groups"": ""Input"",
                     ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1da93d5f-0d87-4ce6-bcbf-c9c6ad94f489"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Input"",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -108,6 +160,7 @@ namespace Game
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
             m_Player_Rotate = m_Player.FindAction("Rotate", throwIfNotFound: true);
             m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+            m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -159,12 +212,14 @@ namespace Game
         private IPlayerActions m_PlayerActionsCallbackInterface;
         private readonly InputAction m_Player_Rotate;
         private readonly InputAction m_Player_Jump;
+        private readonly InputAction m_Player_Pause;
         public struct PlayerActions
         {
             private @PlayerInput m_Wrapper;
             public PlayerActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
             public InputAction @Rotate => m_Wrapper.m_Player_Rotate;
             public InputAction @Jump => m_Wrapper.m_Player_Jump;
+            public InputAction @Pause => m_Wrapper.m_Player_Pause;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -180,6 +235,9 @@ namespace Game
                     @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                     @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                     @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                    @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                    @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                    @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -190,6 +248,9 @@ namespace Game
                     @Jump.started += instance.OnJump;
                     @Jump.performed += instance.OnJump;
                     @Jump.canceled += instance.OnJump;
+                    @Pause.started += instance.OnPause;
+                    @Pause.performed += instance.OnPause;
+                    @Pause.canceled += instance.OnPause;
                 }
             }
         }
@@ -207,6 +268,7 @@ namespace Game
         {
             void OnRotate(InputAction.CallbackContext context);
             void OnJump(InputAction.CallbackContext context);
+            void OnPause(InputAction.CallbackContext context);
         }
     }
 }

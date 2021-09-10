@@ -16,9 +16,20 @@ namespace Game
 
         public float tileHeight => model.localScale.y;
 
+        [SerializeField]
+        private Vector3Int _tilePosition;
+        public Vector3Int tilePosition => _tilePosition;
+
         private void Awake()
         {
             tr = transform;
+            _tilePosition = Vector3Int.RoundToInt(tr.position / FloorSpawner.defaultTileSize);
+            _tilePosition.y = 0;
+        }
+
+        private void OnDestroy()
+        {
+            StopAllCoroutines();
         }
 
         public void Spawn(float offset, float time)
