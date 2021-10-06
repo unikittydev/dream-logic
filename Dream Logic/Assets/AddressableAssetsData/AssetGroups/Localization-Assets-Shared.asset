@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Localization-Assets-Shared
+  m_EditorClassIdentifier: 
+  m_GroupName: Localization-Assets-Shared
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 54a61459a2fdc8145901352499c9a6c4
+  m_SerializeEntries:
+  - m_GUID: 64cf2762f1e19fd4dab9a9c52cd7446e
+    m_Address: Assets/Settings/Localization/Greeting Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: ca5cd89e04f54e943b530ade43716f62
+    m_Address: Assets/Settings/Localization/Main Menu Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 76f9b601fb8b33d45b4a93149e094f26
+    m_Address: Assets/Settings/Localization/Tables/Pause Menu/Pause Menu Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: ffbedf2e35e75dc4499126f3597cbafe
+    m_Address: Assets/Settings/Localization/Tables/Dream Themes/Dream Themes Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: fc40898f269de2849ae068032b28db5e
+    m_Address: Assets/Settings/Localization/Tables/Dream Modes/Dream Modes Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  m_ReadOnly: 1
+  m_Settings: {fileID: 11400000, guid: 30fc0e9745e158245bc0c028850745b2, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: c3e79cd831ddc064cbcc0df4fe75a31f, type: 2}
+    - {fileID: 11400000, guid: 9c98aa557b22d3941ba30e35559b6350, type: 2}

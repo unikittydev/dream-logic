@@ -25,7 +25,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 957fa719d9b342449bad059a3487f4b5, type: 2}
   postprocessing: {fileID: 11400000, guid: 8e3ac9cdcd09c8f4496d9062fa1d0d2c, type: 2}
   allowedModes: 14
-  description: "\u0412\u044B \u0441\u043E\u0431\u0430\u043A\u0430, \u043C\u0438\u0440\u043D\u043E
-    \u0433\u0443\u043B\u044F\u044E\u0449\u0430\u044F \u043F\u043E \u043F\u0430\u0440\u043A\u0443."
+  description:
+    m_TableReference:
+      m_TableCollectionName: GUID:ffbedf2e35e75dc4499126f3597cbafe
+    m_TableEntryReference:
+      m_KeyId: 2820453613568
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 1
   themeSound: {fileID: 11400000, guid: a68406f1f5982e645807ef8d3cc97a74, type: 2}
   minMaxEnemyCost: {x: 1, y: 3}

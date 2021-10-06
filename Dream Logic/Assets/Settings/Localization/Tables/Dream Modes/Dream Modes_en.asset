@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Dream Modes_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: fc40898f269de2849ae068032b28db5e, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 2104167153664
+    m_Localized: Watch your steps!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2126401159168
+    m_Localized: There are no enemies. You can relax
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2136702369792
+    m_Localized: Run and avoid
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2157514506240
+    m_Localized: Run and catch!
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 1

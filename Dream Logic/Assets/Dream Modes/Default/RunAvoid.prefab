@@ -47,7 +47,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mode: 2
-  _description: "\u0411\u0435\u0433\u0438 \u0438 \u0443\u043A\u043B\u043E\u043D\u044F\u0439\u0441\u044F!"
+  _description:
+    m_TableReference:
+      m_TableCollectionName: GUID:fc40898f269de2849ae068032b28db5e
+    m_TableEntryReference:
+      m_KeyId: 2136702369792
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 1
 --- !u!114 &4537760249779181594
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Main Menu Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Main Menu
+  m_TableCollectionNameGuidString: ca5cd89e04f54e943b530ade43716f62
+  m_Entries:
+  - m_Id: 38820560896
+    m_Key: development
+    m_Metadata:
+      m_Items: []
+  - m_Id: 623238103040
+    m_Key: credit dismiss
+    m_Metadata:
+      m_Items: []
+  - m_Id: 811231002624
+    m_Key: vlad name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 842835083264
+    m_Key: vlad position
+    m_Metadata:
+      m_Items: []
+  - m_Id: 917871181824
+    m_Key: stas name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 939215994880
+    m_Key: stas position
+    m_Metadata:
+      m_Items: []
+  - m_Id: 952813928448
+    m_Key: asya name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 969888940032
+    m_Key: asya position
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2391300816896
+    m_Key: loading
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15659335598080
+    m_Key: nav start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15733608333312
+    m_Key: nav quit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15769259917312
+    m_Key: nav settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15824901554176
+    m_Key: nav credits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15884217401344
+    m_Key: nav progression
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1633527900905

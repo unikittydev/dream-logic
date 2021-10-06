@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Greeting Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Greeting
+  m_TableCollectionNameGuidString: 64cf2762f1e19fd4dab9a9c52cd7446e
+  m_Entries:
+  - m_Id: 123063156736
+    m_Key: greeting0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 149680209920
+    m_Key: greeting1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 163852763136
+    m_Key: greeting2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 181137489920
+    m_Key: greetingFinal
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1633526958159

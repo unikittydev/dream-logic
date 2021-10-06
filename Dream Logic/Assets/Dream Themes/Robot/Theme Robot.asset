@@ -22,6 +22,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 05f92ae8bd881e54a916261a22534d72, type: 2}
   postprocessing: {fileID: 11400000, guid: 6abb90b281df9494f9f301b16cbdc5e5, type: 2}
   allowedModes: 30
-  description: 01101000 11001010 10010100 11110010 01011011...
+  description:
+    m_TableReference:
+      m_TableCollectionName: GUID:ffbedf2e35e75dc4499126f3597cbafe
+    m_TableEntryReference:
+      m_KeyId: 2858315595776
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 1
   themeSound: {fileID: 11400000, guid: 2f5116ae30439e047b567654c85ea8bc, type: 2}
   minMaxEnemyCost: {x: 3, y: 6}

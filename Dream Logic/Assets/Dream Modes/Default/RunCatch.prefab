@@ -47,7 +47,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mode: 8
-  _description: "\u0411\u0435\u0433\u0438 \u0438 \u043B\u043E\u0432\u0438!"
+  _description:
+    m_TableReference:
+      m_TableCollectionName: GUID:fc40898f269de2849ae068032b28db5e
+    m_TableEntryReference:
+      m_KeyId: 2157514506240
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 1
 --- !u!114 &2464062178925829158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,7 +67,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faa4be043b7fdb34993ece6b14eb453d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreMultiplier: 3
 --- !u!114 &2464062178925829159
 MonoBehaviour:
   m_ObjectHideFlags: 0

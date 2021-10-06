@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.Rendering;
 
 namespace Game.Dream
@@ -24,7 +25,7 @@ namespace Game.Dream
 
         public DreamModeFlag allowedModes;
 
-        public string description;
+        public LocalizedString description;
 
         public Sound themeSound;
 

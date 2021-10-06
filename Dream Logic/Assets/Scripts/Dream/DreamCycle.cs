@@ -70,7 +70,7 @@ namespace Game.Dream
             // Применить эту тему
             // Применить этот режим
             modeSwitcher.SetRandomMode(themeSwitcher.currentTheme);
-            ui.DisplayDescription(themeSwitcher.currentTheme.description, modeSwitcher.currentMode.description);
+            ui.DisplayDescription(themeSwitcher.currentTheme.description.GetLocalizedString(), modeSwitcher.currentMode.description.GetLocalizedString());
             GameUI.FadeUI(DreamScore.scoreText, true);
             difficulty.RaiseDifficulty();
         }

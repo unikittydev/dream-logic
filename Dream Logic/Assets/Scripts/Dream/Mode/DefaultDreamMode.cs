@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Localization;
 
 namespace Game.Dream
 {
@@ -12,8 +13,8 @@ namespace Game.Dream
         public DreamModeFlag mode => _mode;
 
         [SerializeField]
-        private string _description;
-        public string description => _description;
+        private LocalizedString _description;
+        public LocalizedString description => _description;
     }
 }
 

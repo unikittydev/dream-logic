@@ -2,6 +2,7 @@ using Game.Dream;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.UI;
 
 namespace Game
@@ -26,18 +27,24 @@ namespace Game
         public float addLetterTime => _addLetterTime;
 
         [SerializeField]
-        private string[] firstGreetingMessages;
+        private LocalizedString[] firstGreetingMessages;
 
         [SerializeField]
-        private string finalGreetingMessage;
+        private LocalizedString finalGreetingMessage;
+
+        private enum GreetingMode
+        {
+            Skip,
+            ShowFinal,
+            ShowAll
+        }
 
         [SerializeField]
-        private bool skipGreeting;
+        private GreetingMode greetingMode;
 
         private void Start()
         {
-            seenGreet = seenGreet || skipGreeting;
-            if (!seenGreet)
+            if (!seenGreet || greetingMode != GreetingMode.Skip)
             {
                 greetPanel.gameObject.SetActive(true);
                 StartCoroutine(GreetingMessage());
@@ -53,12 +60,12 @@ namespace Game
             foreach (var button in buttons)
                 button.enabled = false;
 
-            if (!PlayerPrefs.HasKey(launchedBefore))
+            if (!PlayerPrefs.HasKey(launchedBefore) || greetingMode == GreetingMode.ShowAll)
                 for (int i = 0; i < firstGreetingMessages.Length; i++)
                 {
                     message.SetText(string.Empty);
                     yield return GameUI.FadeUI(message, true);
-                    yield return GameUI.DisplayText(message, firstGreetingMessages[i], addLetterTime);
+                    yield return GameUI.DisplayText(message, firstGreetingMessages[i].GetLocalizedString(), addLetterTime);
                     yield return new WaitForSeconds(showTime);
                     yield return GameUI.FadeUI(message, false);
                     yield return new WaitForSeconds(pauseTime);
@@ -66,7 +73,7 @@ namespace Game
 
             message.SetText(string.Empty);
             yield return GameUI.FadeUI(message, true);
-            yield return GameUI.DisplayText(message, finalGreetingMessage, addLetterTime);
+            yield return GameUI.DisplayText(message, finalGreetingMessage.GetLocalizedString(), addLetterTime);
             yield return new WaitForSeconds(showTime);
 
             GameUI.FadeUI(message, false, 0f, showTime * 2f);
