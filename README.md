@@ -1,2 +1,4 @@
-# dream-logic
- A project for Dubna University Game Jam
+# Мир грёз
+
+- [Идеи](ideas.md)
+- [План](plan.md)
