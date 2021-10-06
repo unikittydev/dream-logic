@@ -8,6 +8,7 @@ TagManager:
   - Environment
   - Objects
   - Volume
+  - Floor
   layers:
   - Default
   - TransparentFX

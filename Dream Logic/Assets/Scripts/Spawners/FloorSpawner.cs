@@ -12,8 +12,7 @@ namespace Game
     {
         public const float defaultTileSize = 8f;
 
-        private Transform tr;
-        private List<FloorTile> floorTiles;
+        private List<FloorTile> floorTiles = new List<FloorTile>();
 
         [SerializeField]
         private FloorSpawnerSettings settings;
@@ -21,10 +20,25 @@ namespace Game
         private static ProfilerMarker spawn = new ProfilerMarker("SpawnCloseTiles");
         private static ProfilerMarker despawn = new ProfilerMarker("DespawnFarTiles");
 
-        private void Awake()
+        private void Start()
         {
-            tr = transform;
-            floorTiles = new List<FloorTile>(FindObjectsOfType<FloorTile>());
+            floorTiles.AddRange(FindObjectsOfType<FloorTile>());
+            
+            for (int i = 0; i < floorTiles.Count; i++)
+                ReplaceTile(i);
+        }
+
+        public void Create(FloorSpawnerSettings newSettings)
+        {
+            settings = newSettings;
+            DreamGame.pool.AddPool(settings.floorPrefab, (newSettings.tileRadius + 1) * (newSettings.tileRadius + 1), DreamGame.tiles);
+
+            SetupWeights();
+        }
+
+        private void OnDestroy()
+        {
+            DreamGame.pool.RemovePool(settings.floorPrefab);
         }
 
         private void SetupWeights()
@@ -99,16 +113,6 @@ namespace Game
             despawn.End();
         }
 
-        public void Refresh(FloorSpawnerSettings newSettings)
-        {
-            settings = newSettings;
-            SetupWeights();
-            for (int k = 0; k < floorTiles.Count; k++)
-            {
-                ReplaceTile(k);
-            }
-        }
-
         public void ReplaceRandomTile(FloorTile prefab, bool includePlayerTile = false)
         {
             Vector3Int playerTilePos = Vector3Int.RoundToInt(DreamGame.player.tr.position / defaultTileSize);
@@ -136,8 +140,8 @@ namespace Game
 
         private FloorTile CreateTile(Vector3Int position, FloorTile prefab)
         {
-            FloorTile newTile = Instantiate(prefab, new Vector3(defaultTileSize * position.x, settings.startHeight, defaultTileSize * position.z), Quaternion.identity, tr);
-            newTile.Spawn(Random.Range(-settings.heightOffset, settings.heightOffset), settings.smoothTime);
+            FloorTile newTile = DreamGame.pool.GetObject(prefab, DreamGame.tiles, new Vector3(defaultTileSize * position.x, settings.startHeight, defaultTileSize * position.z));
+            newTile.Spawn(position, Random.Range(-settings.heightOffset, settings.heightOffset), settings.smoothTime);
 
             return newTile;
         }
@@ -150,13 +154,13 @@ namespace Game
 
         private void ReplaceTile(int oldIndex, FloorTile newPrefab)
         {
-            floorTiles[oldIndex].Despawn(settings.startHeight, settings.smoothTime);
             var newTile = CreateTile(floorTiles[oldIndex].tilePosition, newPrefab);
 
             Vector3 position = floorTiles[oldIndex].transform.position;
             position.y += (floorTiles[oldIndex].tileHeight - newTile.tileHeight) * .5f;
             newTile.transform.position = position;
 
+            floorTiles[oldIndex].Despawn(settings.startHeight, settings.smoothTime);
             floorTiles[oldIndex] = newTile;
         }
 

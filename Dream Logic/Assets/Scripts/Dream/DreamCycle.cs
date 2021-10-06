@@ -9,6 +9,8 @@ namespace Game.Dream
         [SerializeField]
         private float maxCycleTime = 15f;
 
+        public float totalTime => maxCycleTime * difficulty.dreamDurationMultiplier;
+
         private DreamThemeSwitcher themeSwitcher;
         private DreamModeSwitcher modeSwitcher;
 
@@ -26,9 +28,14 @@ namespace Game.Dream
             ui = GetComponent<DreamDescriptionUI>();
         }
 
-        private void OnEnable()
+        private void Start()
         {
             StartCoroutine(StartNewDreamCycle());
+        }
+
+        private void OnEnable()
+        {
+            timeCounter = maxCycleTime;
         }
 
         private void Update()
@@ -38,7 +45,7 @@ namespace Game.Dream
 
         private void Simulate()
         {
-            if (timeCounter >= maxCycleTime * difficulty.dreamDurationMultiplier)
+            if (timeCounter >= totalTime)
             {
                 StartCoroutine(StartNewDreamCycle());
             }
@@ -51,12 +58,17 @@ namespace Game.Dream
         private IEnumerator StartNewDreamCycle()
         {
             timeCounter = -5f;
-
             themeSwitcher.SetDefaultTheme();
             modeSwitcher.SetDefaultMode();
+            var newTheme = StartCoroutine(themeSwitcher.LoadRandomTheme());
+            // Загрузить новую тему
+            // Загрузить новый режим
             GameUI.FadeUI(DreamScore.scoreText, false);
             yield return new WaitForSeconds(5f);
-            themeSwitcher.SetRandomTheme();
+            yield return newTheme;
+            themeSwitcher.SwitchTheme();
+            // Применить эту тему
+            // Применить этот режим
             modeSwitcher.SetRandomMode(themeSwitcher.currentTheme);
             ui.DisplayDescription(themeSwitcher.currentTheme.description, modeSwitcher.currentMode.description);
             GameUI.FadeUI(DreamScore.scoreText, true);

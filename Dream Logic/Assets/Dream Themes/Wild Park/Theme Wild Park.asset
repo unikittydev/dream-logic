@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 941d1afca80379248b7c5f8767d882ca, type: 3}
-  m_Name: Theme
+  m_Name: Theme Wild Park
   m_EditorClassIdentifier: 
   floorSpawnerSettings: {fileID: 11400000, guid: 005279a2b7f940c4ab7d8d89f572923b, type: 2}
   skyColor: {r: 0.16470589, g: 0.5568628, b: 0.4902086, a: 0}

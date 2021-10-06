@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 941d1afca80379248b7c5f8767d882ca, type: 3}
-  m_Name: Theme
+  m_Name: Theme Robot
   m_EditorClassIdentifier: 
   floorSpawnerSettings: {fileID: 11400000, guid: 7a1f8d1ce32c0b445a738a178becfa06, type: 2}
   skyColor: {r: 0.32213682, g: 0.21484515, b: 0.6415094, a: 0}

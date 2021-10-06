@@ -113,6 +113,10 @@ MonoBehaviour:
     m_SerializedLabels:
     - dreamMode
     - Dream Mode
+  - m_GUID: 07e7a35e8bcb3f741a9939f390825a58
+    m_Address: Assets/Dream Themes/Blank/Theme Blank.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 30fc0e9745e158245bc0c028850745b2, type: 2}
   m_SchemaSet:

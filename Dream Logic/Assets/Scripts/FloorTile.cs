@@ -1,3 +1,4 @@
+using Game.Dream;
 using System.Collections;
 using UnityEngine;
 
@@ -23,17 +24,17 @@ namespace Game
         private void Awake()
         {
             tr = transform;
-            _tilePosition = Vector3Int.RoundToInt(tr.position / FloorSpawner.defaultTileSize);
-            _tilePosition.y = 0;
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             StopAllCoroutines();
         }
 
-        public void Spawn(float offset, float time)
+        public void Spawn(Vector3Int position, float offset, float time)
         {
+            _tilePosition = position;
+
             Vector3 pos = model.position;
             pos.y += offset;
             model.position = pos;
@@ -57,7 +58,9 @@ namespace Game
                 yield return null;
             }
             if (destroy)
-                Destroy(gameObject);
+            {
+                DreamGame.pool.AddObject(this);
+            }
         }
     }
 }

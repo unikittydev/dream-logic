@@ -23,7 +23,7 @@ namespace Game.Dream
             {
                 AudioManager.instance.Play("hit");
                 DreamScore.value += Random.Range(enemyCost.x, enemyCost.y);
-                Destroy(data.hit.gameObject);
+                DreamGame.pool.AddObject(data.hit.gameObject);
             }
         }
     }

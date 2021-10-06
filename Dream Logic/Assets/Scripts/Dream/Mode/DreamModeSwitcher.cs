@@ -20,12 +20,16 @@ namespace Game.Dream
         private void Awake()
         {
             var handle = Addressables.LoadAssetsAsync<GameObject>(modesLabel, null);
-            var list = handle.WaitForCompletion();
-            dreamModes = new DefaultDreamMode[list.Count];
-            for (int i = 0; i < list.Count; i++)
+            handle.Completed += _ =>
             {
-                dreamModes[i] = list[i].GetComponent<DefaultDreamMode>();
-            }
+                var list = handle.Result;
+                dreamModes = new DefaultDreamMode[list.Count];
+                for (int i = 0; i < list.Count; i++)
+                {
+                    dreamModes[i] = list[i].GetComponent<DefaultDreamMode>();
+                }
+                FindObjectOfType<DreamCycle>().enabled = true;
+            };
         }
 
         private void OnDestroy()

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.Rendering;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.ResourceManagement.ResourceLocations;
 
 namespace Game.Dream
 {
@@ -14,7 +16,10 @@ namespace Game.Dream
     {
         private const string themesLabel = "Dream Theme";
 
+        private DreamCycle cycle;
+
         [SerializeField]
+        private AssetReference defaultThemeRef;
         private DreamTheme defaultTheme;
 
         private DreamTheme _currentTheme;
@@ -34,47 +39,58 @@ namespace Game.Dream
 
         [SerializeField]
         private ObjectSpawner objectSpawnerPrefab;
+        [SerializeField]
+        private FloorSpawner floorSpawnerPrefab;
 
         [SerializeField]
         private Transform environment;
 
-        private List<ObjectSpawner> objectSpawners;
+        private List<GameObject> oldSpawners;
+        private List<GameObject> newSpawners;
 
-        private DreamTheme[] allThemes;
+        private List<IResourceLocation> themesLocations = new List<IResourceLocation>();
 
         private void Awake()
         {
-            var handle = Addressables.LoadAssetsAsync<DreamTheme>(themesLabel, null);
-            var list = handle.WaitForCompletion();
-            allThemes = new DreamTheme[list.Count];
-            list.CopyTo(allThemes, 0);
+            cycle = GetComponent<DreamCycle>();
 
-            objectSpawners = new List<ObjectSpawner>(FindObjectsOfType<ObjectSpawner>());
+            var handle = Addressables.LoadResourceLocationsAsync(themesLabel);
+            handle.Completed += _ =>
+            {
+                themesLocations.AddRange(handle.Result);
+            };
+
+            var defaultThemeHandle = defaultThemeRef.LoadAssetAsync<DreamTheme>();
+            defaultThemeHandle.WaitForCompletion();
+            defaultTheme = defaultThemeHandle.Result;
+        }
+
+        public IEnumerator LoadRandomTheme()
+        {
+            var handle = Addressables.LoadAssetAsync<DreamTheme>(themesLocations[Random.Range(0, themesLocations.Count)]);
+            yield return handle;
+            _currentTheme = handle.Result;
+            LoadSpawners(currentTheme.objectSpawnerSettings, currentTheme.floorSpawnerSettings);
         }
 
         public void SetDefaultTheme()
         {
-            SwitchThemes(defaultTheme);
+            _currentTheme = defaultTheme;
+            LoadSpawners(defaultTheme.objectSpawnerSettings, defaultTheme.floorSpawnerSettings);
+            SwitchTheme();
         }
 
-        public void SetRandomTheme()
-        {
-            SwitchThemes(allThemes[Random.Range(0, allThemes.Length)]);
-        }
-
-        private void SwitchThemes(DreamTheme newTheme)
+        public void SwitchTheme()
         {
             AudioManager.instance.Play("theme.switch");
-            AudioManager.instance.PlayTheme(newTheme.themeSound);
-            _currentTheme = newTheme;
-            StartCoroutine(SwitchEffect(1f));
-            StartCoroutine(SetSkyColor(newTheme.skyColor, 2f));
-            SetCameraSettings(newTheme.cameraAngle, newTheme.cameraDistance);
-            StartCoroutine(SetActiveVolume(newTheme.postprocessing, 2f));
-            DreamGame.floorSpawner.Refresh(newTheme.floorSpawnerSettings);
-            ClearEnvironment();
-            ReplacePlayer(newTheme.playerPrefab);
-            ReplaceSpawners(newTheme.objectSpawnerSettings);
+            AudioManager.instance.PlayTheme(currentTheme.themeSound);
+            //StartCoroutine(SwitchEffect(1f));
+            StartCoroutine(SetSkyColor(currentTheme.skyColor, 2f));
+            SetCameraSettings(currentTheme.cameraAngle, currentTheme.cameraDistance);
+            //StartCoroutine(SetActiveVolume(currentTheme.postprocessing, 2f));
+            //ClearEnvironment();
+            ReplacePlayer(currentTheme.playerPrefab);
+            ReplaceSpawners();
         }
 
         private IEnumerator SwitchEffect(float switchTime)
@@ -174,22 +190,36 @@ namespace Game.Dream
             currentVirtualCamera.Follow = nextVirtualCamera.Follow = player.tr;
         }
 
-        private void ReplaceSpawners(ObjectSpawnerSettings[] settings)
+        private void LoadSpawners(ObjectSpawnerSettings[] objSettings, FloorSpawnerSettings floorSettings)
         {
-            for (int i = 0; i < objectSpawners.Count; i++)
+            newSpawners = new List<GameObject>();
+
+            for (int i = 0; i < objSettings.Length; i++)
             {
-                Destroy(objectSpawners[i].gameObject);
-            }
-            objectSpawners.Clear();
-            for (int i = 0; i < settings.Length; i++)
-            {
-                if (settings[i].spawnerCreateChance > Random.value)
+                if (objSettings[i].spawnerCreateChance > Random.value)
                 {
                     var spawner = Instantiate(objectSpawnerPrefab);
-                    objectSpawners.Add(spawner);
-                    spawner.Refresh(settings[i]);
+                    spawner.gameObject.SetActive(false);
+                    newSpawners.Add(spawner.gameObject);
+                    spawner.Create(objSettings[i], -Mathf.Abs(floorSettings.smoothTime));
                 }
             }
+
+            var floorSpawner = Instantiate(floorSpawnerPrefab);
+            floorSpawner.gameObject.SetActive(false);
+            newSpawners.Add(floorSpawner.gameObject);
+            floorSpawner.Create(floorSettings);
+        }
+
+        private void ReplaceSpawners()
+        {
+            if (oldSpawners != null)
+                for (int i = 0; i < oldSpawners.Count; i++)
+                    Destroy(oldSpawners[i].gameObject);
+            if (newSpawners != null)
+                for (int i = 0; i < newSpawners.Count; i++)
+                    newSpawners[i].gameObject.SetActive(true);
+            oldSpawners = newSpawners;
         }
     }
 }

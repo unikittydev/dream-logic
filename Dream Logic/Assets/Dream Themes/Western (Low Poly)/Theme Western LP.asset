@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 941d1afca80379248b7c5f8767d882ca, type: 3}
-  m_Name: Theme
+  m_Name: Theme Western LP
   m_EditorClassIdentifier: 
   floorSpawnerSettings: {fileID: 11400000, guid: 3a9e177ab9bf9aa439c62dc2479f30f9, type: 2}
   skyColor: {r: 0.5731577, g: 0.66997814, b: 0.754717, a: 0}
