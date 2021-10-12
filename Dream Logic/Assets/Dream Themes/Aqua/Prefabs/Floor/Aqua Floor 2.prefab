@@ -59,6 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 4368117866516157087}
+  _tilePosition: {x: 0, y: 0, z: 0}
 --- !u!1 &7396122116269953477
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,7 +99,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7396122116269953477}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: -2432090755550338912, guid: 05a1fb59a2e4f9c409fc46889db26238, type: 3}
 --- !u!23 &5372363050476583710
 MeshRenderer:
   m_ObjectHideFlags: 0
