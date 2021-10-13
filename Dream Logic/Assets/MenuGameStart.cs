@@ -1,67 +1,72 @@
-using Game;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
-[RequireComponent(typeof(MenuLightSwitcher), typeof(MenuSkySwitcher))]
-public class MenuGameStart : MonoBehaviour
+namespace Game.Menu
 {
-    /// <summary>
-    /// Относительное время. Значение 0 соответствует ночи, а 1 - дню.
-    /// </summary>
-    private static float daytime = 0f;
-
-    private MenuSkySwitcher skySwitcher;
-    private MenuLightSwitcher lightSwitcher;
-
-    [SerializeField]
-    private float switchTime;
-    [SerializeField]
-    private GameObject navigationParent;
-
-    private void Awake()
+    [RequireComponent(typeof(MenuLightSwitcher), typeof(MenuSkySwitcher))]
+    public class MenuGameStart : MonoBehaviour
     {
-        lightSwitcher = GetComponent<MenuLightSwitcher>();
-        skySwitcher = GetComponent<MenuSkySwitcher>();
+        /// <summary>
+        /// Относительное время. Значение 0 соответствует ночи, а 1 - дню.
+        /// </summary>
+        private static float daytime = 0f;
 
-        ToggleTime();
-    }
+        private MenuNavigationSwitcher navSwitcher;
+        private MenuSkySwitcher skySwitcher;
+        private MenuLightSwitcher lightSwitcher;
+        [SerializeField]
+        private TextFlashing textFlashing;
 
-    public void ToggleTime()
-    {
-        StartCoroutine(ToggleTime_Internal(1f - daytime, switchTime));
-    }
+        private Coroutine toggleTime;
 
-    private IEnumerator ToggleTime_Internal(float time, float switchTime)
-    {
-        float counter = 0f;
+        [SerializeField]
+        private AssetReference gameScene;
 
-        navigationParent.SetActive(time > daytime);
-
-        while (counter < switchTime)
+        private void Awake()
         {
-            float currentTime = Mathf.Lerp(daytime, time, counter / switchTime);
+            navSwitcher = GetComponent<MenuNavigationSwitcher>();
+            lightSwitcher = GetComponent<MenuLightSwitcher>();
+            skySwitcher = GetComponent<MenuSkySwitcher>();
 
-            skySwitcher.SetDaytime(currentTime);
-            lightSwitcher.SetDaytime(currentTime, time < daytime);
-
-            counter += Time.deltaTime;
-            yield return null;
+            ToggleTime();
         }
 
-        if (time < daytime)
+        public void StartGame()
         {
-            counter = 0f;
-            while (counter < switchTime)
-            {
-                float currentTime = -counter / switchTime;
-
-                lightSwitcher.SetDaytime(currentTime, time < daytime);
-
-                counter += Time.deltaTime;
-                yield return null;
-            }
+            StartCoroutine(StartGame_Internal(gameScene));
         }
 
-        daytime = time;
+        private IEnumerator StartGame_Internal(AssetReference scene)
+        {
+            yield return ToggleTime();
+            GameSceneLoader.LoadScene(scene);
+        }
+
+        public Coroutine ToggleTime()
+        {
+            if (toggleTime != null)
+                StopCoroutine(toggleTime);
+            toggleTime = StartCoroutine(ToggleTime_Internal(1f - daytime));
+            return toggleTime;
+        }
+
+        private IEnumerator ToggleTime_Internal(float time)
+        {
+            navSwitcher.SwitchNavigationUI(time > daytime);
+            var sky = skySwitcher.SetDaytime(daytime, time);
+            var light = lightSwitcher.SetDaytime(daytime, time);
+
+            yield return new WaitForSeconds(navSwitcher.switchTime);
+            yield return sky;
+            yield return light;
+
+            if (time < daytime)
+                yield return textFlashing.DisplayText();
+            else
+                textFlashing.Clear();
+
+            daytime = time;
+        }
     }
 }

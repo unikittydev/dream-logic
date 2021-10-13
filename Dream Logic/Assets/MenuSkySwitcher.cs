@@ -1,6 +1,7 @@
+using System.Collections;
 using UnityEngine;
 
-namespace Game
+namespace Game.Menu
 {
     public class MenuSkySwitcher : MonoBehaviour
     {
@@ -17,11 +18,38 @@ namespace Game
         [SerializeField]
         private Gradient skyGradient;
 
-        public void SetDaytime(float time)
+        [SerializeField]
+        private float startDelay;
+        [SerializeField]
+        private float switchTime;
+
+        private void OnDestroy()
         {
-            sun.intensity = time;
-            sun.transform.rotation = Quaternion.Lerp(dayTargetRotation.rotation, nightTargetRotation.rotation, time);
-            camera.backgroundColor = skyGradient.Evaluate(time);
+            StopAllCoroutines();
+        }
+
+        public Coroutine SetDaytime(float from, float to)
+        {
+            return StartCoroutine(SetDaytime_Internal(from, to));
+        }
+
+        private IEnumerator SetDaytime_Internal(float from, float to)
+        {
+            yield return new WaitForSeconds(startDelay);
+
+            float counter = 0f;
+
+            while (counter < switchTime)
+            {
+                float currTime = Mathf.Lerp(from, to, counter / switchTime);
+
+                sun.intensity = currTime;
+                sun.transform.rotation = Quaternion.Lerp(nightTargetRotation.rotation, dayTargetRotation.rotation, currTime);
+                camera.backgroundColor = skyGradient.Evaluate(currTime);
+
+                counter += Time.deltaTime;
+                yield return null;
+            }
         }
     }
 }

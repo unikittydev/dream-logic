@@ -24,7 +24,7 @@ namespace Game
             DreamGame.pool.AddPool(newSettings.prefabs, Mathf.CeilToInt(DreamGame.cycle.totalTime / newSettings.spawnTime), DreamGame.environment);
         }
 
-        private void OnDestroy()
+        public void Clear()
         {
             foreach (var go in objects)
                 if (go.activeSelf)

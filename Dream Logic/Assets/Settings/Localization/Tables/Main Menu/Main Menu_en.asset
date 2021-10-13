@@ -74,5 +74,9 @@ MonoBehaviour:
     m_Localized: Progress
     m_Metadata:
       m_Items: []
+  - m_Id: 2550813287432192
+    m_Localized: ZzZzZz...
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

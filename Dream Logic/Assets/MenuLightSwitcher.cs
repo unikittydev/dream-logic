@@ -1,42 +1,60 @@
+using System.Collections;
 using UnityEngine;
 
-public class MenuLightSwitcher : MonoBehaviour
+namespace Game.Menu
 {
-    private static readonly string emissionKeyword = "_EMISSION";
-    private static readonly int emissionColorId = Shader.PropertyToID("_EmissionColor");
-
-    [SerializeField]
-    private GameObject nightlight;
-    [SerializeField]
-    private MeshRenderer nightlightRenderer;
-    [SerializeField]
-    private GameObject roomLight;
-
-    [SerializeField]
-    private float nightlightOnThreshold;
-    [SerializeField]
-    private float roomlightOnThreshold;
-    [SerializeField]
-    private float roomlightOffThreshold;
-
-    private void Awake()
+    public class MenuLightSwitcher : MonoBehaviour
     {
-        nightlightRenderer.material.EnableKeyword(emissionKeyword);
-    }
+        private static readonly string emissionKeyword = "_EMISSION";
+        private static readonly int emissionColorId = Shader.PropertyToID("_EmissionColor");
 
-    public void SetDaytime(float time, bool turnRoomlightOn)
-    {
-        if (1f - time > nightlightOnThreshold)
+        [SerializeField]
+        private GameObject nightlight;
+        [SerializeField]
+        private MeshRenderer nightlightRenderer;
+        [SerializeField]
+        private GameObject roomLight;
+
+        [SerializeField]
+        private float nightlightOnDelay;
+        [SerializeField]
+        private float roomlightOnDelay;
+        [SerializeField]
+        private float roomlightOffDelay;
+        [SerializeField]
+        private float switchTime;
+
+        private void Awake()
         {
-            nightlight.SetActive(true);
-            nightlightRenderer.material.SetColor(emissionColorId, Color.white);
-        }
-        else
-        {
-            nightlight.SetActive(false);
-            nightlightRenderer.material.SetColor(emissionColorId, Color.black);
+            nightlightRenderer.material.EnableKeyword(emissionKeyword);
         }
 
-        roomLight.SetActive(/*turnRoomlightOn && 1f - time > roomlightOnThreshold &&*/ 1f - time < roomlightOffThreshold);
+        private void OnDestroy()
+        {
+            StopAllCoroutines();
+        }
+
+        public Coroutine SetDaytime(float fromDaytime, float toDaytime)
+        {
+            return StartCoroutine(SetDaytime_Internal(fromDaytime, toDaytime));
+        }
+
+        private IEnumerator SetDaytime_Internal(float fromDaytime, float toDaytime)
+        {
+            float counter = 0f;
+
+            while (counter < switchTime)
+            {
+                float currTime = switchTime * Mathf.Lerp(fromDaytime, toDaytime, 1f - counter / switchTime);
+
+                nightlight.SetActive(currTime > nightlightOnDelay);
+                nightlightRenderer.material.SetColor(emissionColorId, currTime > nightlightOnDelay ? Color.white : Color.black);
+
+                roomLight.SetActive(fromDaytime > toDaytime && roomlightOnDelay < currTime && currTime < roomlightOffDelay);
+
+                counter += Time.deltaTime;
+                yield return null;
+            }
+        }
     }
 }

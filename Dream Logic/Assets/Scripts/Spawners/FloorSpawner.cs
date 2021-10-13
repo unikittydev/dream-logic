@@ -36,7 +36,7 @@ namespace Game
             SetupWeights();
         }
 
-        private void OnDestroy()
+        public void Clear()
         {
             DreamGame.pool.RemovePool(settings.floorPrefab);
         }

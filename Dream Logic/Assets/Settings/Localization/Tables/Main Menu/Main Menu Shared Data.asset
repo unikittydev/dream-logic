@@ -71,6 +71,10 @@ MonoBehaviour:
     m_Key: nav progression
     m_Metadata:
       m_Items: []
+  - m_Id: 2550813287432192
+    m_Key: zzz
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

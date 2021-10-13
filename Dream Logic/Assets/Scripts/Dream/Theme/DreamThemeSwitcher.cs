@@ -215,7 +215,14 @@ namespace Game.Dream
         {
             if (oldSpawners != null)
                 for (int i = 0; i < oldSpawners.Count; i++)
+                {
+                    if (oldSpawners[i].TryGetComponent<FloorSpawner>(out var floor))
+                        floor.Clear();
+                    if (oldSpawners[i].TryGetComponent<ObjectSpawner>(out var obj))
+                        obj.Clear();
+
                     Destroy(oldSpawners[i].gameObject);
+                }
             if (newSpawners != null)
                 for (int i = 0; i < newSpawners.Count; i++)
                     newSpawners[i].gameObject.SetActive(true);
