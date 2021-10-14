@@ -6,7 +6,7 @@ namespace Game.Menu
     public class MenuSkySwitcher : MonoBehaviour
     {
         [SerializeField]
-        private new Camera camera;
+        private Camera cam;
 
         [SerializeField]
         private Light sun;
@@ -35,7 +35,8 @@ namespace Game.Menu
 
         private IEnumerator SetDaytime_Internal(float from, float to)
         {
-            yield return new WaitForSeconds(startDelay);
+            if (from < to)
+                yield return new WaitForSeconds(startDelay);
 
             float counter = 0f;
 
@@ -45,7 +46,7 @@ namespace Game.Menu
 
                 sun.intensity = currTime;
                 sun.transform.rotation = Quaternion.Lerp(nightTargetRotation.rotation, dayTargetRotation.rotation, currTime);
-                camera.backgroundColor = skyGradient.Evaluate(currTime);
+                cam.backgroundColor = skyGradient.Evaluate(currTime);
 
                 counter += Time.deltaTime;
                 yield return null;

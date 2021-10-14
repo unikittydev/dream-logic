@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.EventSystems;
 
 namespace Game.Menu
 {
@@ -16,6 +17,9 @@ namespace Game.Menu
         private MenuSkySwitcher skySwitcher;
         private MenuLightSwitcher lightSwitcher;
         [SerializeField]
+        private PhysicsRaycaster raycaster;
+
+        [SerializeField]
         private TextFlashing textFlashing;
 
         private Coroutine toggleTime;
@@ -29,7 +33,7 @@ namespace Game.Menu
             lightSwitcher = GetComponent<MenuLightSwitcher>();
             skySwitcher = GetComponent<MenuSkySwitcher>();
 
-            ToggleTime();
+            ToggleTimeCoroutine();
         }
 
         public void StartGame()
@@ -39,11 +43,11 @@ namespace Game.Menu
 
         private IEnumerator StartGame_Internal(AssetReference scene)
         {
-            yield return ToggleTime();
+            yield return ToggleTimeCoroutine();
             GameSceneLoader.LoadScene(scene);
         }
 
-        public Coroutine ToggleTime()
+        public Coroutine ToggleTimeCoroutine()
         {
             if (toggleTime != null)
                 StopCoroutine(toggleTime);
@@ -51,9 +55,17 @@ namespace Game.Menu
             return toggleTime;
         }
 
+        public void ToggleTime()
+        {
+            ToggleTimeCoroutine();
+        }
+
         private IEnumerator ToggleTime_Internal(float time)
         {
-            navSwitcher.SwitchNavigationUI(time > daytime);
+            raycaster.enabled = false;
+
+            if (time < daytime)
+                navSwitcher.SwitchNavigationUI(false);
             var sky = skySwitcher.SetDaytime(daytime, time);
             var light = lightSwitcher.SetDaytime(daytime, time);
 
@@ -61,12 +73,17 @@ namespace Game.Menu
             yield return sky;
             yield return light;
 
-            if (time < daytime)
+            /*if (time < daytime)
                 yield return textFlashing.DisplayText();
             else
-                textFlashing.Clear();
+                textFlashing.Clear();*/
+
+            if (time > daytime)
+                navSwitcher.SwitchNavigationUI(true);
 
             daytime = time;
+
+            raycaster.enabled = true;
         }
     }
 }

@@ -90,6 +90,7 @@ namespace Game
                 Debug.LogWarning($"Sound {name} not found.");
             else
             {
+                //settings.source.volume = settings.maxVolume * SoundSettings.effects;
                 settings.source.Play();
             }
         }
