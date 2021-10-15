@@ -125,6 +125,42 @@ MonoBehaviour:
     m_Address: Assets/Scenes/Scene.unity
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: b5f0dec923e2e634ab847bc707d0c77e
+    m_Address: Assets/Audio Clips/Audio Source.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a018c2f3a1cbeb34588ac4ac11d4a120
+    m_Address: Assets/Menu/Menu Theme.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bcb6f23a124c7264caef17287d143b56
+    m_Address: Assets/Audio Clips/Settings/fall.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: efb3b1b23d1732a4daf6b216b8f25c3f
+    m_Address: Assets/Audio Clips/Settings/hit.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a5b295709e7c49544b1c745eed4dfd2c
+    m_Address: Assets/Audio Clips/Settings/jump.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 05cc5ff8c40c7494292a12a04330b877
+    m_Address: Assets/Audio Clips/Settings/lost.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e7d510532249f1b479dc845728f4cd47
+    m_Address: Assets/Audio Clips/Settings/lost.newRecord.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 604b4140d04993a409093b233686c581
+    m_Address: Assets/Audio Clips/Settings/menu.press.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 36c7ffe32a0b2de4cb588b25a49ae1f2
+    m_Address: Assets/Audio Clips/Settings/theme.switch.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 30fc0e9745e158245bc0c028850745b2, type: 2}
   m_SchemaSet:

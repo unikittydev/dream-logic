@@ -82,7 +82,7 @@ namespace Game
 
             float startHeight = tr.position.y;
 
-            AudioManager.instance.Play("jump");
+            AudioManager.instance.PlaySound("jump");
 
             // Rise
             while (tr.position.y < startHeight + jumpHeight)

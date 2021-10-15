@@ -18,7 +18,7 @@ namespace Game.Dream
         {
             if (data.hit.gameObject.CompareTag(GameTags.enemy))
             {
-                AudioManager.instance.Play("hit");
+                AudioManager.instance.PlaySound("hit");
                 DreamGame.WakeUp();
             }
         }

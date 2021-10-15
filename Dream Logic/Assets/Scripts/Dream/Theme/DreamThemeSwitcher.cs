@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.Rendering;
-using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceLocations;
 
 namespace Game.Dream
@@ -16,10 +15,7 @@ namespace Game.Dream
     {
         private const string themesLabel = "Dream Theme";
 
-        private DreamCycle cycle;
-
         [SerializeField]
-        private AssetReference defaultThemeRef;
         private DreamTheme defaultTheme;
 
         private DreamTheme _currentTheme;
@@ -42,31 +38,30 @@ namespace Game.Dream
         [SerializeField]
         private FloorSpawner floorSpawnerPrefab;
 
-        [SerializeField]
-        private Transform environment;
-
         private List<GameObject> oldSpawners;
         private List<GameObject> newSpawners;
 
         private List<IResourceLocation> themesLocations = new List<IResourceLocation>();
 
+        private Coroutine loadThemesCoroutine;
+
         private void Awake()
         {
-            cycle = GetComponent<DreamCycle>();
+            loadThemesCoroutine = StartCoroutine(LoadThemeLocations());
+        }
 
+        private IEnumerator LoadThemeLocations()
+        {
             var handle = Addressables.LoadResourceLocationsAsync(themesLabel);
-            handle.Completed += _ =>
-            {
-                themesLocations.AddRange(handle.Result);
-            };
-
-            var defaultThemeHandle = defaultThemeRef.LoadAssetAsync<DreamTheme>();
-            defaultThemeHandle.WaitForCompletion();
-            defaultTheme = defaultThemeHandle.Result;
+            yield return handle;
+            themesLocations.AddRange(handle.Result);
         }
 
         public IEnumerator LoadRandomTheme()
         {
+            if (loadThemesCoroutine != null)
+                yield return loadThemesCoroutine;
+
             var handle = Addressables.LoadAssetAsync<DreamTheme>(themesLocations[Random.Range(0, themesLocations.Count)]);
             yield return handle;
             _currentTheme = handle.Result;
@@ -82,8 +77,8 @@ namespace Game.Dream
 
         public void SwitchTheme()
         {
-            AudioManager.instance.Play("theme.switch");
-            AudioManager.instance.PlayTheme(currentTheme.themeSound);
+            AudioManager.instance.PlaySound("theme.switch");
+            AudioManager.instance.PlayTheme(currentTheme.themeSettings);
             //StartCoroutine(SwitchEffect(1f));
             StartCoroutine(SetSkyColor(currentTheme.skyColor, 2f));
             SetCameraSettings(currentTheme.cameraAngle, currentTheme.cameraDistance);
@@ -165,14 +160,6 @@ namespace Game.Dream
             currentVolume.weight = 1f;
             nextVolume.weight = 0f;
             nextVolume.enabled = false;
-        }
-
-        private void ClearEnvironment()
-        {
-            for (int i = 0; i < environment.childCount; i++)
-            {
-                Destroy(environment.GetChild(i).gameObject);
-            }
         }
 
         private void ReplacePlayer(PlayerController newPlayer)

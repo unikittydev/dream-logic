@@ -1,139 +1,189 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace Game
 {
-    /// <summary>
-    /// Менеджер звука.
-    /// </summary>
     public class AudioManager : MonoBehaviour
     {
+        private const string EFFECTS_VOLUME_KEY = "EFFECTS_VOLUME";
+        private const string MUSIC_VOLUME_KEY = "MUSIC_VOLUME";
+
         private static AudioManager _instance;
         public static AudioManager instance => _instance;
 
+        private float _effectsVolume;
+        public float effectsVolume
+        {
+            get => _effectsVolume;
+            set
+            {
+                _effectsVolume = Mathf.Clamp01(value);
+                PlayerPrefs.SetFloat(EFFECTS_VOLUME_KEY, value);
+            }
+        }
+
+        private float _musicVolume;
+        public float musicVolume
+        {
+            get => _musicVolume;
+            set
+            {
+                _musicVolume = Mathf.Clamp01(value);
+                PlayerPrefs.SetFloat(MUSIC_VOLUME_KEY, value);
+            }
+        }
+
+        private bool _isReady;
+        public bool isReady => _isReady;
+
         [SerializeField]
-        private float fadeTime;
-
-        private AudioSource currentThemeSource;
-        private AudioSource nextThemeSource;
-
-        private Sound currentTheme;
+        private AssetReference sourcePrefabReference;
+        private AudioSource sourcePrefab;
         [SerializeField]
-        private Sound menuTheme;
+        private AssetReference[] effects;
 
         [SerializeField]
-        private Sound[] soundEffects;
+        private int poolCapacity;
 
-        private static bool mute;
+        [SerializeField]
+        private float themeFadeSpeed;
+
+        private AudioSource currThemeSource;
+
+        private List<AudioSource> effectSources = new List<AudioSource>();
 
         private void Awake()
         {
-
-            if (instance != this)
+            if (instance == null)
             {
-                if (instance != null)
-                {
-                    instance.currentTheme.source.Stop();
-                    Destroy(instance.gameObject);
-                }
                 _instance = this;
+                StartCoroutine(Init());
             }
-
-            currentThemeSource = gameObject.AddComponent<AudioSource>();
-            nextThemeSource = gameObject.AddComponent<AudioSource>();
-
-            foreach (var sound in soundEffects)
-                AddAudioSource(sound);
-            PlayTheme(menuTheme);
-
-            if (PlayerPrefs.HasKey("mute"))
+            else if (instance != this)
             {
-                mute = PlayerPrefs.GetInt("mute") == 1;
-                ToggleMute(mute);
+                Destroy(gameObject);
             }
-
             DontDestroyOnLoad(gameObject);
         }
 
-        public void ToggleMute()
+        private void SetSettings()
         {
-            mute = !mute;
-            ToggleMute(mute);
+            if (!PlayerPrefs.HasKey(EFFECTS_VOLUME_KEY))
+                PlayerPrefs.SetFloat(EFFECTS_VOLUME_KEY, 1f);
+            if (!PlayerPrefs.HasKey(MUSIC_VOLUME_KEY))
+                PlayerPrefs.SetFloat(MUSIC_VOLUME_KEY, 1f);
+
+            effectsVolume = PlayerPrefs.GetFloat(EFFECTS_VOLUME_KEY);
+            musicVolume = PlayerPrefs.GetFloat(MUSIC_VOLUME_KEY);
         }
 
-        private void ToggleMute(bool mute)
+        private IEnumerator Init()
         {
-            foreach (var sound in soundEffects)
-                sound.source.mute = mute;
-            if (currentThemeSource != null)
-                currentThemeSource.mute = mute;
-            if (nextThemeSource != null)
-                nextThemeSource.mute = mute;
-
-            PlayerPrefs.SetInt("mute", mute ? 1 : 0);
+            SetSettings();
+            yield return StartCoroutine(AddPool());
+            yield return StartCoroutine(LoadEffects());
+            //yield return StartCoroutine(LoadAssetAndPlay(mainTheme, PlayTheme));
+            _isReady = true;
         }
 
-        public void PlayTheme(Sound settings)
+        private IEnumerator AddPool()
         {
-            SetAudioSource(nextThemeSource, currentTheme);
-            StartCoroutine(FadeCoroutine(currentTheme, false, fadeTime));
-            currentTheme = settings;
-            SetAudioSource(currentThemeSource, currentTheme);
-            StartCoroutine(FadeCoroutine(currentTheme, true, fadeTime));
+            var handle = sourcePrefabReference.LoadAssetAsync<GameObject>();
+            yield return handle;
+            sourcePrefab = (sourcePrefabReference.Asset as GameObject).GetComponent<AudioSource>();
+            GamePool.instance.AddPool(sourcePrefab, poolCapacity, transform);
         }
 
-        public void Play(string name)
+        private IEnumerator LoadEffects()
         {
-            Sound settings = Array.Find(soundEffects, sound => sound.name == name);
-            if (settings == null)
-                Debug.LogWarning($"Sound {name} not found.");
+            foreach (var effect in effects)
+                yield return effect.LoadAssetAsync<AudioClipSettings>();
+        }
+
+        public void PlaySound(string name)
+        {
+            PlaySound(Array.Find(effects, x => x.Asset.name == name).Asset as AudioClipSettings);
+        }
+
+        public void PlaySound(AudioClipSettings sound)
+        {
+            AudioSource source = GetSoundSource(sound.clip);
+
+            source.pitch = 1f + UnityEngine.Random.Range(-sound.pitchRandomOffset, sound.pitchRandomOffset);
+            source.loop = sound.loop;
+            source.volume = sound.maxVolume * effectsVolume;
+
+            source.PlayOneShot(sound.clip);
+        }
+
+        private AudioSource GetSoundSource(AudioClip clip)
+        {
+            foreach (var source in effectSources)
+                if (source.clip == clip)
+                    return source;
+            var instance = GamePool.instance.GetObject(sourcePrefab, transform);
+            instance.clip = clip;
+            effectSources.Add(instance);
+            return instance;
+        }
+
+        public void PlayTheme(AssetReference reference)
+        {
+            StartCoroutine(LoadAssetAndPlay(reference, PlayTheme));
+        }
+
+        private IEnumerator LoadAssetAndPlay(AssetReference reference, Action<AudioClipSettings> callback)
+        {
+            if (reference.Asset == null)
+            {
+                var handle = reference.LoadAssetAsync<AudioClipSettings>();
+                yield return handle;
+                callback(handle.Result);
+            }
             else
-            {
-                //settings.source.volume = settings.maxVolume * SoundSettings.effects;
-                settings.source.Play();
-            }
+                callback(reference.Asset as AudioClipSettings);
         }
 
-        private IEnumerator FadeCoroutine(Sound settings, bool enabled, float time)
+        public void PlayTheme(AudioClipSettings theme)
         {
-            if (settings == null)
-                yield break;
-            if (enabled)
-            {
-                settings.source.Play();
-            }
+            AudioSource source = GamePool.instance.GetObject(sourcePrefab, transform);
+            
+            source.clip = theme.clip;
+            source.loop = theme.loop;
+            source.volume = theme.maxVolume * musicVolume;
+
+            if (currThemeSource != null)
+                StartCoroutine(FadeSource(currThemeSource, false, themeFadeSpeed));
+            StartCoroutine(FadeSource(source, true, themeFadeSpeed));
+
+            currThemeSource = source;
+        }
+
+        private IEnumerator FadeSource(AudioSource source, bool enable, float time)
+        {
+            float startVolume = enable ? 0f : source.volume, endVolume = source.volume - startVolume;
 
             float counter = 0f;
-            float startVolume = enabled ? 0f : settings.source.volume, endVolume = enabled ? settings.maxVolume : 0f;
+
+            if (enable)
+                source.Play();
 
             while (counter < time)
             {
-                settings.source.volume = Mathf.Lerp(startVolume, endVolume, counter / time);
+                source.volume = Mathf.Lerp(startVolume, endVolume, counter / time);
                 counter += Time.deltaTime;
                 yield return null;
             }
 
-            if (!enabled)
-                settings.source.Stop();
-        }
-
-        private void AddAudioSource(Sound sound)
-        {
-            var source = gameObject.AddComponent<AudioSource>();
-            SetAudioSource(source, sound);
-        }
-
-        private void SetAudioSource(AudioSource source, Sound sound)
-        {
-            if (sound == null)
-                return;
-
-            source.clip = sound.clip;
-            source.volume = sound.maxVolume;
-            source.loop = sound.loop;
-
-            sound.source = source;
+            if (!enable)
+            {
+                source.Stop();
+                GamePool.instance.AddObject(source);
+            }
         }
     }
 }
+

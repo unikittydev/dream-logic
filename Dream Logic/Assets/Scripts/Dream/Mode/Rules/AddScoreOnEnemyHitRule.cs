@@ -21,7 +21,7 @@ namespace Game.Dream
         {
             if (data.hit.gameObject.CompareTag(GameTags.enemy))
             {
-                AudioManager.instance.Play("hit");
+                AudioManager.instance.PlaySound("hit");
                 DreamScore.value += Random.Range(enemyCost.x, enemyCost.y);
                 DreamGame.pool.AddObject(data.hit.gameObject);
             }

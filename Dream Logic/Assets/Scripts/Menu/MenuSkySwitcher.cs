@@ -28,12 +28,19 @@ namespace Game.Menu
             StopAllCoroutines();
         }
 
-        public Coroutine SetDaytime(float from, float to)
+        public void SetDaytime(float time)
         {
-            return StartCoroutine(SetDaytime_Internal(from, to));
+            sun.intensity = time;
+            sun.transform.rotation = Quaternion.Lerp(nightTargetRotation.rotation, dayTargetRotation.rotation, time);
+            cam.backgroundColor = skyGradient.Evaluate(time);
         }
 
-        private IEnumerator SetDaytime_Internal(float from, float to)
+        public Coroutine SwitchDaytime(float from, float to)
+        {
+            return StartCoroutine(SwitchDaytime_Internal(from, to));
+        }
+
+        private IEnumerator SwitchDaytime_Internal(float from, float to)
         {
             if (from < to)
                 yield return new WaitForSeconds(startDelay);
@@ -44,9 +51,7 @@ namespace Game.Menu
             {
                 float currTime = Mathf.Lerp(from, to, counter / switchTime);
 
-                sun.intensity = currTime;
-                sun.transform.rotation = Quaternion.Lerp(nightTargetRotation.rotation, dayTargetRotation.rotation, currTime);
-                cam.backgroundColor = skyGradient.Evaluate(currTime);
+                SetDaytime(currTime);
 
                 counter += Time.deltaTime;
                 yield return null;

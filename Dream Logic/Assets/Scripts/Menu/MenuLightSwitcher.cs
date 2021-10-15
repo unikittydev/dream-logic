@@ -43,12 +43,25 @@ namespace Game.Menu
             StopAllCoroutines();
         }
 
-        public Coroutine SetDaytime(float fromDaytime, float toDaytime)
+        public void SetDaytime(float time)
         {
-            return StartCoroutine(SetDaytime_Internal(fromDaytime, toDaytime));
+            bool enableRoomlight = switchTime * (1f - time) > roomlightOffDelay;
+            roomLight.gameObject.SetActive(enableRoomlight);
+            roomLight.intensity = enableRoomlight ? roomlightIntensity : 0f;
+
+            bool enableNightlight = switchTime * (1f - time) < nightlightOnDelay;
+            roomLight.gameObject.SetActive(enableNightlight);
+            roomLight.intensity = enableNightlight ? nightlightIntensity : 0f;
+
+            nightlightRenderer.material.SetColor(emissionColorId, Color.Lerp(Color.black, onEmissionColor, time));
         }
 
-        private IEnumerator SetDaytime_Internal(float fromDaytime, float toDaytime)
+        public Coroutine SwitchDaytime(float fromDaytime, float toDaytime)
+        {
+            return StartCoroutine(SwitchDaytime_Internal(fromDaytime, toDaytime));
+        }
+
+        private IEnumerator SwitchDaytime_Internal(float fromDaytime, float toDaytime)
         {
             float counter = 0f;
 

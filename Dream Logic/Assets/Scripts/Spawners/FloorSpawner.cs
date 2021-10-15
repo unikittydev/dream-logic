@@ -28,6 +28,11 @@ namespace Game
                 ReplaceTile(i);
         }
 
+        private void OnDestroy()
+        {
+            Clear();
+        }
+
         public void Create(FloorSpawnerSettings newSettings)
         {
             settings = newSettings;
@@ -129,7 +134,7 @@ namespace Game
 
             ReplaceTile(k, prefab);
 
-            AudioManager.instance.Play("fall");
+            AudioManager.instance.PlaySound("fall");
         }
 
         private FloorTile CreateTile(Vector3Int position)

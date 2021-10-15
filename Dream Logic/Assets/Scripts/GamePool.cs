@@ -7,6 +7,21 @@ namespace Game
     {
         private readonly Dictionary<Object, Queue<Object>> pool = new Dictionary<Object, Queue<Object>>();
 
+        private static GamePool _instance;
+        public static GamePool instance => _instance;
+        private void Awake()
+        {
+            if (instance == null)
+            {
+                _instance = this;
+            }
+            else if (instance != this)
+            {
+                Destroy(gameObject);
+            }
+            DontDestroyOnLoad(gameObject);
+        }
+
         public void AddPool<T>(T prefab, int capacity, Transform parent) where T : Object
         {
             if (!pool.ContainsKey(prefab))
@@ -33,12 +48,13 @@ namespace Game
         {
             if (pool.ContainsKey(prefab))
             {
-                foreach (var instance in pool[prefab])
-                {
-                    GameObject go = GetGameObject(instance);
-                    if (destroyObjects || !go.activeSelf)
-                        Destroy(go);
-                }
+                if (destroyObjects)
+                    foreach (var instance in pool[prefab])
+                    {
+                        GameObject go = GetGameObject(instance);
+                        if (!go.activeSelf)
+                            Destroy(go);
+                    }
                 pool.Remove(prefab);
             }
         }
@@ -49,15 +65,16 @@ namespace Game
                 RemovePool(prefab, destroyObjects);
         }
 
-        public void Clear()
+        public void Clear(bool destroyObjects = true)
         {
-            foreach (var kv in pool)
-            {
-                foreach (var instance in kv.Value)
+            if (destroyObjects)
+                foreach (var kv in pool)
                 {
-                    Destroy(GetGameObject(instance));
+                    foreach (var instance in kv.Value)
+                    {
+                        Destroy(GetGameObject(instance));
+                    }
                 }
-            }
             pool.Clear();
         }
 

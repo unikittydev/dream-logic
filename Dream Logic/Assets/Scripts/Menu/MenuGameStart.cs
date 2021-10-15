@@ -33,6 +33,7 @@ namespace Game.Menu
             lightSwitcher = GetComponent<MenuLightSwitcher>();
             skySwitcher = GetComponent<MenuSkySwitcher>();
 
+            SetTime(daytime);
             ToggleTimeCoroutine();
         }
 
@@ -51,7 +52,7 @@ namespace Game.Menu
         {
             if (toggleTime != null)
                 StopCoroutine(toggleTime);
-            toggleTime = StartCoroutine(ToggleTime_Internal(1f - daytime));
+            toggleTime = StartCoroutine(SwitchTime_Internal(1f - daytime));
             return toggleTime;
         }
 
@@ -60,14 +61,22 @@ namespace Game.Menu
             ToggleTimeCoroutine();
         }
 
-        private IEnumerator ToggleTime_Internal(float time)
+        public void SetTime(float time)
+        {
+            skySwitcher.SetDaytime(time);
+            lightSwitcher.SetDaytime(time);
+
+            daytime = time;
+        }
+
+        private IEnumerator SwitchTime_Internal(float time)
         {
             raycaster.enabled = false;
 
             if (time < daytime)
                 navSwitcher.SwitchNavigationUI(false);
-            var sky = skySwitcher.SetDaytime(daytime, time);
-            var light = lightSwitcher.SetDaytime(daytime, time);
+            var sky = skySwitcher.SwitchDaytime(daytime, time);
+            var light = lightSwitcher.SwitchDaytime(daytime, time);
 
             yield return new WaitForSeconds(navSwitcher.switchTime);
             yield return sky;

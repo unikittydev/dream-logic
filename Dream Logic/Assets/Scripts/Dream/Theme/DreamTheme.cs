@@ -27,7 +27,7 @@ namespace Game.Dream
 
         public LocalizedString description;
 
-        public Sound themeSound;
+        public AudioClipSettings themeSettings;
 
         public Vector2Int minMaxEnemyCost;
     }

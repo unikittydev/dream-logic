@@ -53,7 +53,7 @@ namespace Game.Dream
 
             _cycle = GetComponent<DreamCycle>();
 
-            _pool = GetComponent<GamePool>();
+            _pool = FindObjectOfType<GamePool>();
         }
 
         public static void WakeUp()

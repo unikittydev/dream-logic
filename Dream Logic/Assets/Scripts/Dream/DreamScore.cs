@@ -57,10 +57,10 @@ namespace Game.Dream
             if (!PlayerPrefs.HasKey(highScoreKey) || value > PlayerPrefs.GetFloat(highScoreKey))
             {
                 PlayerPrefs.SetFloat(highScoreKey, value);
-                AudioManager.instance.Play("lost.newRecord");
+                AudioManager.instance.PlaySound("lost.newRecord");
             }
             else
-                AudioManager.instance.Play("lost");
+                AudioManager.instance.PlaySound("lost");
             endHighScore.SetText(((int)PlayerPrefs.GetFloat(highScoreKey)).ToString());
             endGameScore.SetText(((int)value).ToString());
         }
