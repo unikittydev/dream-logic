@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.Audio;
 
 namespace Game
 {
@@ -10,6 +11,7 @@ namespace Game
     {
         private const string EFFECTS_VOLUME_KEY = "EFFECTS_VOLUME";
         private const string MUSIC_VOLUME_KEY = "MUSIC_VOLUME";
+        private const string VOL_FACTOR = "volFactor";
 
         private static AudioManager _instance;
         public static AudioManager instance => _instance;
@@ -22,6 +24,7 @@ namespace Game
             {
                 _effectsVolume = Mathf.Clamp01(value);
                 PlayerPrefs.SetFloat(EFFECTS_VOLUME_KEY, value);
+                effectsMixer.audioMixer.SetFloat(VOL_FACTOR, Mathf.Log10(_effectsVolume) * 20f);
             }
         }
 
@@ -33,11 +36,17 @@ namespace Game
             {
                 _musicVolume = Mathf.Clamp01(value);
                 PlayerPrefs.SetFloat(MUSIC_VOLUME_KEY, value);
+                musicMixer.audioMixer.SetFloat(VOL_FACTOR, Mathf.Log10(_musicVolume) * 20f);
             }
         }
 
         private bool _isReady;
         public bool isReady => _isReady;
+
+        [SerializeField]
+        private AudioMixerGroup effectsMixer;
+        [SerializeField]
+        private AudioMixerGroup musicMixer;
 
         [SerializeField]
         private AssetReference sourcePrefabReference;
@@ -124,7 +133,9 @@ namespace Game
             foreach (var source in effectSources)
                 if (source.clip == clip)
                     return source;
+
             var instance = GamePool.instance.GetObject(sourcePrefab, transform);
+            instance.outputAudioMixerGroup = effectsMixer;
             instance.clip = clip;
             effectSources.Add(instance);
             return instance;
@@ -150,7 +161,8 @@ namespace Game
         public void PlayTheme(AudioClipSettings theme)
         {
             AudioSource source = GamePool.instance.GetObject(sourcePrefab, transform);
-            
+
+            source.outputAudioMixerGroup = musicMixer;
             source.clip = theme.clip;
             source.loop = theme.loop;
             source.volume = theme.maxVolume * musicVolume;
